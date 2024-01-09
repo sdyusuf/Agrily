@@ -74,7 +74,11 @@ const multer = require('../middleware/multer-config.js')
     
         const product = new Product({
             name: req.body.name,
+            category: req.body.category || 'other',
+            unit: req.body.unit || 'kg',
             quantity: req.body.quantity,
+            minOrderQuantity: req.body.minOrderQuantity || 1,
+            harvestDate: req.body.harvestDate || null,
             imageURL: req.body.imageURL,
             ownerEmail: req.body.ownerEmail,
             ownerName: req.body.ownerName,
@@ -83,13 +87,13 @@ const multer = require('../middleware/multer-config.js')
             isSold: false,
             soldDate: req.body.soldDate,
             soldTo: req.body.soldTo
-            
         });
 
     product.save().then(
-        () => {
+        (savedProduct) => {
         res.status(201).json({
-            message: 'Product saved successfully!'
+            message: 'Product saved successfully!',
+            product: savedProduct
         });
         }
     ).catch(
@@ -124,28 +128,31 @@ const multer = require('../middleware/multer-config.js')
 
         const id = req.params.id;
 
-        const url = req.protocol + '://' + req.get('host');
-    
-        const product = new Product({
-            _id: id,
+        const updateData = {
             name: req.body.name,
+            category: req.body.category,
+            unit: req.body.unit,
             quantity: req.body.quantity,
-            imageURL: req.body.imageURL ,//url + '/images/' + req.file.filename,
+            minOrderQuantity: req.body.minOrderQuantity,
+            harvestDate: req.body.harvestDate,
+            imageURL: req.body.imageURL,
             ownerEmail: req.body.ownerEmail,
             ownerName: req.body.ownerName,
             description: req.body.description,
             price: req.body.price,
-            isSold: false,
+            isSold: req.body.isSold || false,
             soldDate: req.body.soldDate,
             soldTo: req.body.soldTo
-            
-        });
+        };
 
+        // Remove undefined keys so we do not overwrite with null unless specified
+        Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
         
-        Product.updateOne({_id:id}, product).then(
-            () => {
-            res.status(201).json({
-                message: 'Product Updated successfully!'
+        Product.findByIdAndUpdate(id, updateData, { new: true, runValidators: true }).then(
+            (updatedProduct) => {
+            res.status(200).json({
+                message: 'Product Updated successfully!',
+                product: updatedProduct
             });
             }
             ).catch(
