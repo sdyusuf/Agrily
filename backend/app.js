@@ -12,8 +12,9 @@ app.use(cors())
 
 
 const userRouter = require('./routes/user');
-const productRouter = require('./routes/myProducts')
-const auth = require('./middleware/auth')
+const productRouter = require('./routes/myProducts');
+const categoryRouter = require('./routes/categories');
+const auth = require('./middleware/auth');
 
 
 app.use(express.urlencoded({ extended : true }));
@@ -40,6 +41,9 @@ app.use((req, res, next) => { //allowing request from any source
     next();
 });
 
+
+  // Public category and reference routes
+  app.use('/api', categoryRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
