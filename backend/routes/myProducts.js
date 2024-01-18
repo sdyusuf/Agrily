@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const auth = require('../middleware/auth.js')
 const Product = require('../models/Product')
 const multer = require('../middleware/multer-config.js')
+const { validateProductInput } = require('../middleware/productValidator.js')
 
     router.get('/products', async (req, res) => {
         
@@ -60,7 +61,7 @@ const multer = require('../middleware/multer-config.js')
     })
 
 
-    router.post('/product', (req, res, next) =>{
+    router.post('/product', validateProductInput, (req, res, next) =>{
 
         //console.log(req.file.filename)
         //console.log(JSON.stringify(req.body))
@@ -124,7 +125,7 @@ const multer = require('../middleware/multer-config.js')
     })
 
 
-    router.put('/product/:id', multer, (req, res) =>{
+    router.put('/product/:id', multer, validateProductInput, (req, res) =>{
 
         const id = req.params.id;
 
