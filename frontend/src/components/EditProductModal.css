@@ -1,0 +1,97 @@
+.agrily-modal .modal-content {
+  border-radius: 20px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+.agrily-modal-header {
+  background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.25rem 1.75rem;
+}
+
+.agrily-modal-title {
+  color: #1b4332;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agrily-modal-body {
+  padding: 1.75rem;
+  background-color: #ffffff;
+}
+
+.agrily-modal-footer {
+  background-color: #f8faf9;
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem 1.75rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.agrily-form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.agrily-form-control {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.95rem;
+  color: #0f172a;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agrily-form-control:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+  outline: none;
+}
+
+.agrily-btn-cancel {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 0.55rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 200ms ease;
+}
+
+.agrily-btn-cancel:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.agrily-btn-save {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px -1px rgba(27, 67, 50, 0.2);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agrily-btn-save:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px -2px rgba(27, 67, 50, 0.3);
+  color: #ffffff;
+}
+
+.agrily-btn-save:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
