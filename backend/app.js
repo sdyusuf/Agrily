@@ -14,6 +14,7 @@ app.use(cors())
 const userRouter = require('./routes/user');
 const productRouter = require('./routes/myProducts');
 const categoryRouter = require('./routes/categories');
+const marketplaceRouter = require('./routes/marketplace');
 const auth = require('./middleware/auth');
 
 
@@ -44,6 +45,7 @@ app.use((req, res, next) => { //allowing request from any source
 
   // Public category and reference routes
   app.use('/api', categoryRouter);
+  app.use('/api', marketplaceRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
