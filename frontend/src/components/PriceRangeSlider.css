@@ -1,0 +1,92 @@
+.agrily-price-slider-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.15rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.agrily-price-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.agrily-price-slider-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin-bottom: 0;
+}
+
+.agrily-price-display-pill {
+  background-color: #fefae0;
+  border: 1px solid #dda15e;
+  color: #bc6c25;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.agrily-range-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.agrily-range-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agrily-range-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  width: 32px;
+}
+
+.agrily-range-slider {
+  flex: 1;
+  accent-color: #2d6a4f;
+  cursor: pointer;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.agrily-price-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 0.75rem;
+}
+
+.agrily-price-preset-btn {
+  background-color: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.agrily-price-preset-btn:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  border-color: #cbd5e1;
+}
+
+.agrily-price-preset-btn.active {
+  background-color: #ecfdf5;
+  border-color: #52b788;
+  color: #1b4332;
+  font-weight: 700;
+}
