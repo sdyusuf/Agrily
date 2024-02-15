@@ -1,0 +1,87 @@
+.agrily-marketplace-hero {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 60%, #40916c 100%);
+  color: #ffffff;
+  padding: 3.5rem 1rem 3rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.agrily-marketplace-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.agrily-marketplace-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.75rem 0.25rem;
+  scrollbar-width: thin;
+}
+
+.agrily-marketplace-chips-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.agrily-marketplace-chips-bar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.agrily-filter-sidebar {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.agrily-sort-select {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.agrily-sort-select:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.agrily-pagination-btn {
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1b4332;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.agrily-pagination-btn:hover:not(:disabled) {
+  background-color: #ecfdf5;
+  border-color: #52b788;
+}
+
+.agrily-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #94a3b8;
+}
