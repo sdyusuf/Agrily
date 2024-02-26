@@ -13,6 +13,8 @@ import ResetPassword from './pages/ResetPassword'
 import AddProduct from './pages/AddProduct'
 import Marketplace from './pages/Marketplace'
 import { AppContext } from './state/AppContext'
+import { CartProvider } from './state/CartContext'
+import CartDrawer from './components/CartDrawer'
 import useFetch from './hook/useFetch'
 import { useUser } from './auth/useUser'
 import { useToken } from './auth/useToken'
@@ -38,30 +40,33 @@ function App() {
 
   return(
     <AppContext.Provider value={providerValue}>
-    <BrowserRouter>
-    <>
-      <Routes> 
-      
-      <Route exact path="/" element={<Index/>} />      
-        <Route path="/index" element={<Index/>} />   
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/forgot-password" element={<ForgotPassword/>} />
-        <Route path="/verify/:verificationString" element={<EmailVerificationLandingPage/>}/>
-        <Route path="/verify-email" element={<PleaseVerifyEmailPage/>}/>
-        <Route path="/reset-password/:resetPasswordCode" element={<ResetPassword/>} />
-        <Route path="*" element={<NotFound/>} />
-        <Route path="/add-product" element ={<AddProduct/>}/>
-        <Route path="/marketplace" element={<Marketplace/>}/>
-        
-        
-        <Route exact path='/home' element={<PrivateRoute/>}>
-            <Route exact path='/home' element={<Home/>}/>
-        </Route>
-       
-      </Routes>
-      </>
-    </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <>
+            <CartDrawer />
+            <Routes> 
+            
+            <Route exact path="/" element={<Index/>} />      
+              <Route path="/index" element={<Index/>} />   
+              <Route path="/login" element={<Login/>} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/forgot-password" element={<ForgotPassword/>} />
+              <Route path="/verify/:verificationString" element={<EmailVerificationLandingPage/>}/>
+              <Route path="/verify-email" element={<PleaseVerifyEmailPage/>}/>
+              <Route path="/reset-password/:resetPasswordCode" element={<ResetPassword/>} />
+              <Route path="*" element={<NotFound/>} />
+              <Route path="/add-product" element ={<AddProduct/>}/>
+              <Route path="/marketplace" element={<Marketplace/>}/>
+              
+              
+              <Route exact path='/home' element={<PrivateRoute/>}>
+                  <Route exact path='/home' element={<Home/>}/>
+              </Route>
+             
+            </Routes>
+          </>
+        </BrowserRouter>
+      </CartProvider>
     </AppContext.Provider>
   );
 }

@@ -5,9 +5,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { CategoryBadge, StockBadge } from './CategoryBadge';
 import { SproutIcon } from './Icons';
+import { useCart } from '../state/CartContext';
 import './ProductDetailModal.css';
 
 function ProductDetailModal({ show, onHide, product, onOrderInquiry }) {
+  let addToCart = null;
+  try {
+    const cart = useCart();
+    addToCart = cart.addToCart;
+  } catch {
+    // Graceful fallback if rendered outside CartProvider
+  }
+
   if (!product) return null;
 
   const {
@@ -176,6 +185,19 @@ function ProductDetailModal({ show, onHide, product, onOrderInquiry }) {
         <Button variant="light" onClick={onHide} style={{ fontWeight: 600, fontSize: '0.9rem' }}>
           Close
         </Button>
+        <button
+          type="button"
+          className="btn-agrily-outline"
+          style={{ padding: '0.45rem 1.1rem', fontSize: '0.9rem' }}
+          onClick={() => {
+            if (addToCart) {
+              addToCart(product, product.minOrderQuantity || 1);
+              onHide();
+            }
+          }}
+        >
+          + Add to Cart
+        </button>
         <button
           type="button"
           className="btn-agrily-harvest"

@@ -4,8 +4,19 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
+import { useCart } from '../state/CartContext';
 
 function NavBar() {
+  let toggleCart = null;
+  let totalItems = 0;
+  try {
+    const cart = useCart();
+    toggleCart = cart.toggleCart;
+    totalItems = cart.totalItems;
+  } catch {
+    // Graceful fallback if rendered outside CartProvider
+  }
+
   return (
     <Navbar
       collapseOnSelect
@@ -53,6 +64,56 @@ function NavBar() {
             >
               Categories
             </Nav.Link>
+
+            {/* Cart Trigger Button */}
+            {toggleCart && (
+              <button
+                type="button"
+                onClick={toggleCart}
+                aria-label={`Open shopping cart (${totalItems} items)`}
+                style={{
+                  background: 'none',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '10px',
+                  padding: '0.45rem 0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  cursor: 'pointer',
+                  color: '#1b4332',
+                  fontWeight: '600',
+                  fontSize: '0.88rem',
+                  position: 'relative',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Cart</span>
+                {totalItems > 0 && (
+                  <span
+                    style={{
+                      backgroundColor: '#bc6c25',
+                      color: '#ffffff',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                      fontSize: '0.72rem',
+                      fontWeight: '700',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginLeft: '0.1rem'
+                    }}
+                  >
+                    {totalItems}
+                  </span>
+                )}
+              </button>
+            )}
 
             <div className="d-flex align-items-center" style={{ gap: '0.75rem', marginLeft: '0.5rem' }}>
               <Link

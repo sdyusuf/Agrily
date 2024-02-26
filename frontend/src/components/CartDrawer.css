@@ -1,0 +1,503 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - CART DRAWER STYLESHEET
+ * ==============================================================================
+ * 
+ * Aesthetic Architecture:
+ *  - Backgrounds: Clean, frosted surface with backdrop-filter blur for modern depth.
+ *  - Color Palette:
+ *      * Brand Emerald Deep:   #1b4332
+ *      * Brand Emerald Active: #2d6a4f
+ *      * Brand Leaf Accent:    #52b788
+ *      * Harvest Ochre Accent: #bc6c25
+ *      * Warm Sun Ochre:       #dda15e
+ *      * Neutral Light Canvas: #f8faf9
+ *      * Neutral Pure Surface: #ffffff
+ *      * Slate Typography:     #0f172a, #334155, #64748b
+ *  - Transitions:
+ *      * Drawer Slide: transform 340ms cubic-bezier(0.16, 1, 0.3, 1)
+ *      * Hover Elevation: translateY(-2px), box-shadow 200ms ease
+ */
+
+/* Overlay with subtle blur */
+.agrily-cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1050;
+  display: flex;
+  justify-content: flex-end;
+  animation: agrilyFadeIn 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes agrilyFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide-out Drawer Panel */
+.agrily-cart-drawer {
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(15, 23, 42, 0.18);
+  animation: agrilySlideIn 340ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes agrilySlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Header Section */
+.agrily-cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.agrily-cart-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.agrily-cart-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #dda15e;
+}
+
+.agrily-cart-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.agrily-cart-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.2rem 0 0 0;
+}
+
+.agrily-cart-close-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.agrily-cart-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* Body / Item List */
+.agrily-cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  background-color: #f8faf9;
+}
+
+/* Empty State */
+.agrily-cart-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.agrily-cart-empty-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  color: #2d6a4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.15);
+}
+
+.agrily-cart-empty-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin-bottom: 0.5rem;
+}
+
+.agrily-cart-empty-text {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 1.75rem;
+}
+
+.agrily-cart-browse-btn {
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background-color: #2d6a4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+  transition: all 0.2s ease;
+}
+
+.agrily-cart-browse-btn:hover {
+  background-color: #1b4332;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(45, 106, 79, 0.35);
+}
+
+/* Item List Header */
+.agrily-cart-items-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.agrily-cart-clear-link {
+  background: none;
+  border: none;
+  color: #bc6c25;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.agrily-cart-clear-link:hover {
+  color: #9a4d10;
+}
+
+/* Item Card */
+.agrily-cart-item-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.agrily-cart-item-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.agrily-cart-item-img-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f1f5f9;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agrily-cart-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agrily-cart-item-img-placeholder {
+  font-size: 1.75rem;
+}
+
+.agrily-cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.agrily-cart-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.agrily-cart-item-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.agrily-cart-item-farmer {
+  font-size: 0.75rem;
+  color: #64748b;
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.agrily-cart-item-remove-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.agrily-cart-item-remove-btn:hover {
+  color: #dc2626;
+  background-color: #fee2e2;
+}
+
+.agrily-cart-item-pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.agrily-cart-item-unit-price {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.agrily-cart-item-line-total {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+/* Stepper Controls */
+.agrily-cart-stepper-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.agrily-cart-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  overflow: hidden;
+}
+
+.agrily-cart-stepper-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.agrily-cart-stepper-btn:hover:not(:disabled) {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.agrily-cart-stepper-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.agrily-cart-stepper-value {
+  min-width: 34px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.agrily-cart-unit-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2d6a4f;
+  background-color: #e8f5e9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Footer Section */
+.agrily-cart-footer {
+  padding: 1.25rem 1.5rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.agrily-cart-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.agrily-cart-summary-val {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.agrily-cart-free-badge {
+  color: #2d6a4f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background-color: #e8f5e9;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+
+.agrily-cart-summary-divider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 0.75rem 0;
+}
+
+.agrily-cart-grand-total-row {
+  margin-bottom: 1.25rem;
+}
+
+.agrily-cart-total-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.agrily-cart-total-amount {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b4332;
+}
+
+.agrily-cart-footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.agrily-cart-checkout-btn {
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.25);
+  transition: all 0.2s ease;
+}
+
+.agrily-cart-checkout-btn:hover {
+  background: linear-gradient(135deg, #143225 0%, #245740 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 67, 50, 0.35);
+}
+
+.agrily-cart-continue-btn {
+  background: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.agrily-cart-continue-btn:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+  .agrily-cart-drawer {
+    max-width: 100%;
+  }
+
+  .agrily-cart-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .agrily-cart-body {
+    padding: 1rem;
+  }
+
+  .agrily-cart-footer {
+    padding: 1rem 1.25rem;
+  }
+}
