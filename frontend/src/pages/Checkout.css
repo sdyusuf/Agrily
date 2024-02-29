@@ -1,0 +1,364 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - CHECKOUT PAGE STYLESHEET
+ * ==============================================================================
+ * 
+ * Aesthetic Architecture:
+ *  - Colors:
+ *      * Brand Emerald:  #1b4332, #2d6a4f, #52b788
+ *      * Harvest Ochre:  #bc6c25, #dda15e, #fefae0
+ *      * Canvas Neutral: #f8faf9, #ffffff
+ *      * Text Slate:     #0f172a, #334155, #64748b
+ *  - Tactile Forms: Smooth focus rings, clean micro-interactions, responsive grid
+ */
+
+.agrily-checkout-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8faf9;
+}
+
+.agrily-checkout-main {
+  flex: 1;
+}
+
+/* Breadcrumbs */
+.agrily-checkout-breadcrumb {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.agrily-checkout-breadcrumb li + li::before {
+  content: "/";
+  margin-right: 0.5rem;
+  color: #cbd5e1;
+}
+
+.agrily-checkout-breadcrumb a {
+  color: #2d6a4f;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.agrily-checkout-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Heading */
+.agrily-checkout-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.agrily-checkout-subheading {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Section Cards */
+.agrily-checkout-section-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.agrily-checkout-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.agrily-checkout-section-step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #2d6a4f;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agrily-checkout-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* Form Controls */
+.agrily-form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.agrily-form-control,
+.agrily-form-select {
+  width: 100%;
+  padding: 0.7rem 0.95rem;
+  font-size: 0.92rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.agrily-form-control:focus,
+.agrily-form-select:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.agrily-form-control.is-invalid,
+.agrily-form-select.is-invalid {
+  border-color: #dc2626;
+  background-image: none;
+}
+
+.invalid-feedback {
+  font-size: 0.8rem;
+  color: #dc2626;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Payment Selection Grid */
+.agrily-payment-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.agrily-payment-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.agrily-payment-card:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.agrily-payment-card.selected {
+  border-color: #2d6a4f;
+  background-color: #f4fbf7;
+}
+
+.agrily-payment-card input[type="radio"] {
+  margin-top: 0.25rem;
+  accent-color: #2d6a4f;
+  width: 18px;
+  height: 18px;
+}
+
+.agrily-payment-card-body {
+  flex: 1;
+}
+
+.agrily-payment-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.agrily-badge-recommended {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background-color: #e8f5e9;
+  color: #1b4332;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.agrily-payment-desc {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin: 0.25rem 0 0 0;
+  line-height: 1.45;
+}
+
+/* Right Summary Sidebar */
+.agrily-checkout-summary-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 1.75rem;
+  position: sticky;
+  top: 90px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.agrily-checkout-summary-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.agrily-checkout-items-list {
+  max-height: 280px;
+  overflow-y: auto;
+  margin-bottom: 1.25rem;
+  padding-right: 0.25rem;
+}
+
+.agrily-checkout-item-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.agrily-checkout-item-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0f172a;
+  display: block;
+}
+
+.agrily-checkout-item-meta {
+  font-size: 0.8rem;
+  color: #64748b;
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.agrily-checkout-item-farmer {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: block;
+}
+
+.agrily-checkout-item-total {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1b4332;
+  white-space: nowrap;
+}
+
+.agrily-checkout-totals-block {
+  padding-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.agrily-checkout-calc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 0.45rem;
+}
+
+.agrily-checkout-divider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 0.85rem 0;
+}
+
+.agrily-checkout-grand-row {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 0.5rem;
+}
+
+.agrily-checkout-grand-amount {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b4332;
+}
+
+.agrily-checkout-submit-btn {
+  padding: 0.95rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(188, 108, 37, 0.3);
+  transition: all 0.2s ease;
+}
+
+.agrily-checkout-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(188, 108, 37, 0.4);
+}
+
+.agrily-checkout-guarantee-note {
+  font-size: 0.78rem;
+  color: #64748b;
+  text-align: center;
+  margin: 0.85rem 0 0 0;
+}
+
+/* Empty State Card */
+.agrily-checkout-empty-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.agrily-checkout-empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.agrily-checkout-empty-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 0.75rem;
+}
+
+.agrily-checkout-empty-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.agrily-checkout-return-btn {
+  display: inline-block;
+  padding: 0.85rem 1.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 10px;
+}
