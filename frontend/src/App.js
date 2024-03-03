@@ -13,6 +13,7 @@ import ResetPassword from './pages/ResetPassword'
 import AddProduct from './pages/AddProduct'
 import Marketplace from './pages/Marketplace'
 import Checkout from './pages/Checkout'
+import OrderConfirmation from './pages/OrderConfirmation'
 import { AppContext } from './state/AppContext'
 import { CartProvider } from './state/CartContext'
 import CartDrawer from './components/CartDrawer'
@@ -59,6 +60,7 @@ function App() {
               <Route path="/add-product" element ={<AddProduct/>}/>
               <Route path="/marketplace" element={<Marketplace/>}/>
               <Route path="/checkout" element={<Checkout/>}/>
+              <Route path="/order-confirmation" element={<OrderConfirmation/>}/>
               
               
               <Route exact path='/home' element={<PrivateRoute/>}>

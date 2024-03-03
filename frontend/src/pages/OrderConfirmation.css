@@ -1,0 +1,345 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - ORDER CONFIRMATION PAGE STYLESHEET
+ * ==============================================================================
+ * 
+ * Aesthetic Architecture:
+ *  - Colors:
+ *      * Brand Emerald:  #1b4332, #2d6a4f, #52b788
+ *      * Harvest Ochre:  #bc6c25, #dda15e, #fefae0
+ *      * Surface White:  #ffffff, #f8faf9
+ *      * Slate Text:     #0f172a, #334155, #64748b
+ *  - Tactile Print & Action Cards:
+ *      * Soft elevation, crisp borders, responsive table
+ */
+
+.agrily-confirmation-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8faf9;
+}
+
+.agrily-confirmation-main {
+  flex: 1;
+}
+
+/* Hero Section */
+.agrily-confirmation-hero {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.agrily-confirmation-check-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem auto;
+  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.3);
+  animation: agrilyPop 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes agrilyPop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.agrily-confirmation-status-pill {
+  display: inline-block;
+  background-color: #e8f5e9;
+  color: #1b4332;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  margin-bottom: 0.85rem;
+}
+
+.agrily-confirmation-heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.65rem;
+}
+
+.agrily-confirmation-subheading {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Reference Banner */
+.agrily-reference-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  background-color: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.agrily-reference-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.agrily-reference-code {
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1b4332;
+  letter-spacing: 0.05em;
+}
+
+.agrily-copy-btn {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.agrily-copy-btn:hover {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f;
+  color: #ffffff;
+}
+
+/* Receipt Cards */
+.agrily-receipt-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.agrily-receipt-card-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.agrily-receipt-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin: 0;
+}
+
+.agrily-receipt-count-tag {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.agrily-receipt-table-wrapper {
+  overflow-x: auto;
+}
+
+.agrily-receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.agrily-receipt-table th {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.agrily-receipt-table td {
+  padding: 1rem 0.5rem;
+  font-size: 0.92rem;
+  color: #0f172a;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.agrily-receipt-item-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.agrily-receipt-item-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+.agrily-unit-tag {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Info Group */
+.agrily-info-group {
+  margin-bottom: 0.5rem;
+}
+
+.agrily-info-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+}
+
+.agrily-info-val {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Escrow Timeline Card */
+.agrily-escrow-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.agrily-escrow-badge {
+  background-color: #fefae0;
+  color: #bc6c25;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #dda15e;
+}
+
+.agrily-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.agrily-timeline::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 13px;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.agrily-timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+
+.agrily-timeline-bullet {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid #cbd5e1;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.agrily-timeline-step.completed .agrily-timeline-bullet {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f;
+  color: #ffffff;
+}
+
+.agrily-timeline-step.active .agrily-timeline-bullet {
+  background-color: #bc6c25;
+  border-color: #bc6c25;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(188, 108, 37, 0.2);
+}
+
+.agrily-timeline-content {
+  flex: 1;
+}
+
+.agrily-timeline-title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.agrily-timeline-desc {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin-top: 0.15rem;
+}
+
+/* Actions Card */
+.agrily-confirmation-actions-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.agrily-print-btn {
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+/* Print Styles */
+@media print {
+  .agrily-confirmation-page {
+    background-color: #ffffff;
+  }
+  .navbar,
+  footer,
+  .agrily-confirmation-actions-card,
+  .agrily-copy-btn {
+    display: none !important;
+  }
+  .agrily-receipt-card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
