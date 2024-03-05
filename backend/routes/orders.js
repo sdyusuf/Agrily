@@ -324,15 +324,274 @@ async function getOrderByIdController(req, res) {
   }
 }
 
+/**
+ * Validates whether an order status change complies with agricultural supply chain state machine.
+ * 
+ * Permitted Lifecycle Transitions:
+ *  - 'Pending'    -> 'Confirmed', 'Cancelled'
+ *  - 'Confirmed'  -> 'In Transit', 'Cancelled'
+ *  - 'In Transit' -> 'Delivered', 'Cancelled'
+ *  - 'Delivered'  -> Terminal state (no further transitions permitted)
+ *  - 'Cancelled'  -> Terminal state (no further transitions permitted)
+ * 
+ * @function isValidStatusTransition
+ * @param {string} currentStatus - Existing order status in database
+ * @param {string} newStatus - Requested target status
+ * @returns {boolean} True if transition is legally allowed by state machine
+ */
+function isValidStatusTransition(currentStatus, newStatus) {
+  if (currentStatus === newStatus) return true;
+
+  const validTransitions = {
+    'Pending': ['Confirmed', 'Cancelled'],
+    'Confirmed': ['In Transit', 'Cancelled'],
+    'In Transit': ['Delivered', 'Cancelled'],
+    'Delivered': [],
+    'Cancelled': []
+  };
+
+  const allowedNext = validTransitions[currentStatus] || [];
+  return allowedNext.includes(newStatus);
+}
+
+/**
+ * Controller: Handles GET /api/orders/farmer and GET /api/orders/farmer/:email
+ * Retrieves all incoming buyer procurement orders allocated to a farmer producer account.
+ * 
+ * @async
+ * @function getFarmerOrdersController
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @returns {Promise<express.Response>} List of matching farmer orders and revenue aggregates
+ */
+async function getFarmerOrdersController(req, res) {
+  try {
+    const farmerEmail = (
+      req.params.email ||
+      req.query.email ||
+      req.headers['x-farmer-email'] ||
+      ''
+    ).toLowerCase().trim();
+
+    if (!farmerEmail) {
+      return res.status(400).json({
+        success: false,
+        message: 'Farmer producer email is mandatory to fetch allocated orders'
+      });
+    }
+
+    // Filter by farmerEmail in master record or nested item line allocation
+    const query = {
+      $or: [
+        { farmerEmail: farmerEmail },
+        { 'items.ownerEmail': farmerEmail }
+      ]
+    };
+
+    if (req.query.status) {
+      query.status = req.query.status;
+    }
+
+    const orders = await Order.find(query)
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // Compute fulfillment pipeline aggregates
+    let totalFarmerRevenue = 0;
+    let pendingCount = 0;
+    let confirmedCount = 0;
+    let inTransitCount = 0;
+    let deliveredCount = 0;
+
+    orders.forEach(order => {
+      // Sum items allocated to this specific farmer
+      const farmerItems = (order.items || []).filter(
+        it => it.ownerEmail && it.ownerEmail.toLowerCase() === farmerEmail
+      );
+      const orderFarmerSubtotal = farmerItems.reduce(
+        (sum, it) => sum + ((Number(it.quantity) || 0) * (Number(it.price) || 0)),
+        0
+      );
+      totalFarmerRevenue += orderFarmerSubtotal;
+
+      if (order.status === 'Pending') pendingCount++;
+      else if (order.status === 'Confirmed') confirmedCount++;
+      else if (order.status === 'In Transit') inTransitCount++;
+      else if (order.status === 'Delivered') deliveredCount++;
+    });
+
+    return res.status(200).json({
+      success: true,
+      count: orders.length,
+      metrics: {
+        totalRevenue: Number(totalFarmerRevenue.toFixed(2)),
+        pendingCount,
+        confirmedCount,
+        inTransitCount,
+        deliveredCount
+      },
+      orders
+    });
+  } catch (error) {
+    console.error('Error fetching farmer incoming orders:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve farmer order queue.',
+      error: error.message
+    });
+  }
+}
+
+/**
+ * Controller: Handles PATCH /api/orders/:id/status
+ * Updates the lifecycle progress of an agricultural order (e.g. from 'Pending' to 'Confirmed').
+ * Automatically decrements inventory in the Product catalog when an order is Confirmed.
+ * 
+ * @async
+ * @function updateOrderStatusController
+ * @param {express.Request} req - Express request
+ * @param {express.Response} res - Express response
+ * @returns {Promise<express.Response>} Updated order details
+ */
+async function updateOrderStatusController(req, res) {
+  try {
+    const identifier = req.params.id;
+    const { status: requestedStatus, trackingNumber, cancellationReason } = req.body;
+
+    if (!requestedStatus) {
+      return res.status(400).json({
+        success: false,
+        message: 'A target status is required in the request body.'
+      });
+    }
+
+    // Verify requested status is a recognized enum
+    const validStatuses = Order.orderLifecycleStatuses || [
+      'Pending',
+      'Confirmed',
+      'In Transit',
+      'Delivered',
+      'Cancelled'
+    ];
+
+    if (!validStatuses.includes(requestedStatus)) {
+      return res.status(400).json({
+        success: false,
+        message: `"${requestedStatus}" is not a valid order status. Permitted statuses: ${validStatuses.join(', ')}`
+      });
+    }
+
+    // Find the order by ObjectId or orderNumber
+    let order = null;
+    if (identifier.startsWith('AGR-')) {
+      order = await Order.findOne({ orderNumber: identifier });
+    } else {
+      try {
+        order = await Order.findById(identifier);
+      } catch {
+        order = await Order.findOne({ orderNumber: identifier });
+      }
+    }
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: `Order with reference "${identifier}" was not found.`
+      });
+    }
+
+    // Verify state machine transition legality
+    const currentStatus = order.status;
+    if (!isValidStatusTransition(currentStatus, requestedStatus)) {
+      return res.status(400).json({
+        success: false,
+        message: `Illegal lifecycle transition: cannot move order from "${currentStatus}" to "${requestedStatus}".`
+      });
+    }
+
+    // Inventory Adjustment Trigger:
+    // When moving from 'Pending' to 'Confirmed', decrement available produce stock
+    if (currentStatus === 'Pending' && requestedStatus === 'Confirmed') {
+      if (Array.isArray(order.items)) {
+        for (const lineItem of order.items) {
+          if (lineItem.productId && Product.findByIdAndUpdate) {
+            try {
+              await Product.findByIdAndUpdate(lineItem.productId, {
+                $inc: { quantity: -lineItem.quantity }
+              });
+            } catch (err) {
+              console.warn(`Could not adjust inventory for product ${lineItem.productId}:`, err);
+            }
+          }
+        }
+      }
+    }
+
+    // Restock adjustment if order is Cancelled after being Confirmed or In Transit
+    if ((currentStatus === 'Confirmed' || currentStatus === 'In Transit') && requestedStatus === 'Cancelled') {
+      if (Array.isArray(order.items)) {
+        for (const lineItem of order.items) {
+          if (lineItem.productId && Product.findByIdAndUpdate) {
+            try {
+              await Product.findByIdAndUpdate(lineItem.productId, {
+                $inc: { quantity: lineItem.quantity }
+              });
+            } catch (err) {
+              console.warn(`Could not restock product ${lineItem.productId}:`, err);
+            }
+          }
+        }
+      }
+    }
+
+    // Update order state fields
+    order.status = requestedStatus;
+
+    if (trackingNumber !== undefined) {
+      order.trackingNumber = String(trackingNumber).trim();
+    }
+
+    if (cancellationReason !== undefined) {
+      order.cancellationReason = String(cancellationReason).trim();
+    }
+
+    // Update paymentStatus to 'paid' when Delivered
+    if (requestedStatus === 'Delivered' && order.paymentStatus === 'escrow') {
+      order.paymentStatus = 'paid';
+    }
+
+    const updatedOrder = await order.save();
+
+    return res.status(200).json({
+      success: true,
+      message: `Order status successfully transitioned from "${currentStatus}" to "${requestedStatus}".`,
+      order: updatedOrder
+    });
+  } catch (error) {
+    console.error('Error updating order lifecycle status:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to update order status.',
+      error: error.message
+    });
+  }
+}
+
 // Route definitions
 router.post('/orders', createOrderController);
 router.get('/orders/buyer', getBuyerOrdersController);
 router.get('/orders/buyer/:email', getBuyerOrdersController);
+router.get('/orders/farmer', getFarmerOrdersController);
+router.get('/orders/farmer/:email', getFarmerOrdersController);
 router.get('/orders/:id', getOrderByIdController);
+router.patch('/orders/:id/status', updateOrderStatusController);
 
 // Export router and isolated helper controllers for automated unit testing
 module.exports = router;
 module.exports.validateOrderPayload = validateOrderPayload;
 module.exports.createOrderController = createOrderController;
 module.exports.getBuyerOrdersController = getBuyerOrdersController;
+module.exports.getFarmerOrdersController = getFarmerOrdersController;
 module.exports.getOrderByIdController = getOrderByIdController;
+module.exports.updateOrderStatusController = updateOrderStatusController;
+module.exports.isValidStatusTransition = isValidStatusTransition;

@@ -29,7 +29,10 @@ const orderRoutes = require('../routes/orders');
 const {
   validateOrderPayload,
   createOrderController,
-  getBuyerOrdersController
+  getBuyerOrdersController,
+  getFarmerOrdersController,
+  updateOrderStatusController,
+  isValidStatusTransition
 } = orderRoutes;
 
 /**
@@ -119,7 +122,6 @@ async function runTests() {
   // TEST CASE 3: Buyer Email Format Enforcement
   // --------------------------------------------------------------------------
   it('should flag missing or malformed buyer email addresses', () => {
-    // Missing email
     const missingEmailResult = validateOrderPayload({
       items: [{ name: 'Rice', quantity: 1, price: 1000, ownerEmail: 'f@f.com' }],
       deliveryAddress: { street: 'Main St', city: 'Abuja', state: 'FCT' }
@@ -127,7 +129,6 @@ async function runTests() {
     assert.strictEqual(missingEmailResult.isValid, false);
     assert.ok(missingEmailResult.errors.some(e => e.includes('Buyer email address is mandatory')));
 
-    // Malformed email
     const malformedResult = validateOrderPayload({
       buyerEmail: 'not-an-email-at-all',
       items: [{ name: 'Rice', quantity: 1, price: 1000, ownerEmail: 'f@f.com' }],
@@ -145,10 +146,10 @@ async function runTests() {
       buyerEmail: 'buyer@valid.com',
       items: [
         {
-          name: '', // Empty name
-          quantity: 0, // Zero quantity
-          price: -500, // Negative price
-          ownerEmail: '' // Missing farmer email
+          name: '',
+          quantity: 0,
+          price: -500,
+          ownerEmail: ''
         }
       ],
       deliveryAddress: {
@@ -184,7 +185,6 @@ async function runTests() {
       items: [{ name: 'Millet', quantity: 5, price: 12000, ownerEmail: 'farm@ng.com' }],
       deliveryAddress: {
         street: 'Warehouse 5'
-        // Missing city & state
       }
     };
 
@@ -257,9 +257,96 @@ async function runTests() {
   });
 
   // --------------------------------------------------------------------------
-  // TEST CASE 8: Router Route Stack Registration
+  // TEST CASE 8: Farmer Orders Email Query Guard
   // --------------------------------------------------------------------------
-  it('should properly configure Express router with expected routes', () => {
+  it('getFarmerOrdersController should respond with HTTP 400 if farmer email is missing', async () => {
+    const mockReq = {
+      params: {},
+      query: {},
+      headers: {}
+    };
+
+    let statusCode = null;
+    let responseBody = null;
+
+    const mockRes = {
+      status: function (code) {
+        statusCode = code;
+        return this;
+      },
+      json: function (data) {
+        responseBody = data;
+        return this;
+      }
+    };
+
+    await getFarmerOrdersController(mockReq, mockRes);
+    assert.strictEqual(statusCode, 400, 'Controller must require farmer email');
+    assert.strictEqual(responseBody.success, false);
+    assert.ok(responseBody.message.includes('Farmer producer email is mandatory'));
+  });
+
+  // --------------------------------------------------------------------------
+  // TEST CASE 9: Status State Machine Transition Rules
+  // --------------------------------------------------------------------------
+  it('isValidStatusTransition should strictly enforce allowed lifecycle progressions', () => {
+    // Valid forward transitions
+    assert.strictEqual(isValidStatusTransition('Pending', 'Confirmed'), true);
+    assert.strictEqual(isValidStatusTransition('Pending', 'Cancelled'), true);
+    assert.strictEqual(isValidStatusTransition('Confirmed', 'In Transit'), true);
+    assert.strictEqual(isValidStatusTransition('Confirmed', 'Cancelled'), true);
+    assert.strictEqual(isValidStatusTransition('In Transit', 'Delivered'), true);
+    assert.strictEqual(isValidStatusTransition('In Transit', 'Cancelled'), true);
+    assert.strictEqual(isValidStatusTransition('Pending', 'Pending'), true); // Idempotent same-state
+
+    // Invalid backwards or illegal skips
+    assert.strictEqual(isValidStatusTransition('Pending', 'Delivered'), false, 'Cannot skip directly to Delivered');
+    assert.strictEqual(isValidStatusTransition('Delivered', 'Pending'), false, 'Terminal delivered state cannot rewind');
+    assert.strictEqual(isValidStatusTransition('Cancelled', 'Confirmed'), false, 'Cancelled state cannot be revived');
+    assert.strictEqual(isValidStatusTransition('Delivered', 'Cancelled'), false, 'Delivered order cannot be cancelled');
+  });
+
+  // --------------------------------------------------------------------------
+  // TEST CASE 10: updateOrderStatusController Validation Guards
+  // --------------------------------------------------------------------------
+  it('updateOrderStatusController should reject missing status or unrecognized status enums', async () => {
+    // Missing status in body
+    const mockReq1 = {
+      params: { id: 'AGR-123' },
+      body: {}
+    };
+    let code1 = null;
+    let body1 = null;
+    const mockRes1 = {
+      status: c => { code1 = c; return mockRes1; },
+      json: d => { body1 = d; return mockRes1; }
+    };
+    await updateOrderStatusController(mockReq1, mockRes1);
+    assert.strictEqual(code1, 400);
+    assert.strictEqual(body1.success, false);
+    assert.ok(body1.message.includes('target status is required'));
+
+    // Unrecognized enum status
+    const mockReq2 = {
+      params: { id: 'AGR-123' },
+      body: { status: 'RandomInvalidState' }
+    };
+    let code2 = null;
+    let body2 = null;
+    const mockRes2 = {
+      status: c => { code2 = c; return mockRes2; },
+      json: d => { body2 = d; return mockRes2; }
+    };
+    await updateOrderStatusController(mockReq2, mockRes2);
+    assert.strictEqual(code2, 400);
+    assert.strictEqual(body2.success, false);
+    assert.ok(body2.message.includes('not a valid order status'));
+  });
+
+  // --------------------------------------------------------------------------
+  // TEST CASE 11: Router Route Stack Registration
+  // --------------------------------------------------------------------------
+  it('should properly configure Express router with expected routes including PATCH and farmer queues', () => {
     assert.ok(orderRoutes && orderRoutes.stack, 'Exported module should be an Express Router instance');
 
     const registeredPaths = orderRoutes.stack
@@ -278,8 +365,16 @@ async function runTests() {
       'GET /orders/buyer must be registered on router'
     );
     assert.ok(
+      registeredPaths.some(r => r.path === '/orders/farmer' && r.methods.includes('get')),
+      'GET /orders/farmer must be registered on router'
+    );
+    assert.ok(
       registeredPaths.some(r => r.path === '/orders/:id' && r.methods.includes('get')),
       'GET /orders/:id must be registered on router'
+    );
+    assert.ok(
+      registeredPaths.some(r => r.path === '/orders/:id/status' && r.methods.includes('patch')),
+      'PATCH /orders/:id/status must be registered on router'
     );
   });
 
