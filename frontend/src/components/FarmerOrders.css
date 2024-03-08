@@ -1,0 +1,398 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - FARMER ORDERS FULFILLMENT BOARD STYLESHEET
+ * ==============================================================================
+ * 
+ * Aesthetic Architecture:
+ *  - Colors:
+ *      * Brand Emerald:  #1b4332, #2d6a4f, #52b788
+ *      * Harvest Ochre:  #bc6c25, #dda15e, #fefae0
+ *      * Transit Blue:   #0284c7, #e0f2fe
+ *      * Neutral Slate:  #0f172a, #334155, #64748b, #cbd5e1
+ *      * Canvas Surface: #ffffff, #f8faf9
+ *  - Visual Excellence:
+ *      * Crisp responsive table, tactile action pills, subtle hover elevations
+ */
+
+.agrily-farmer-orders-container {
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 1.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  margin-bottom: 2rem;
+}
+
+/* Header */
+.agrily-farmer-orders-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.agrily-farmer-orders-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.agrily-farmer-orders-subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.agrily-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2d6a4f;
+  background-color: #f8faf9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.agrily-refresh-btn:hover:not(:disabled) {
+  background-color: #e8f5e9;
+  border-color: #2d6a4f;
+}
+
+.agrily-refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spinAnim 1s linear infinite;
+}
+
+@keyframes spinAnim {
+  100% { transform: rotate(360deg); }
+}
+
+/* Notice Banner */
+.agrily-action-notice {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  animation: fadeInNotice 200ms ease;
+}
+
+.agrily-action-notice.success {
+  background-color: #e8f5e9;
+  color: #1b4332;
+  border: 1px solid #c8e6c9;
+}
+
+.agrily-action-notice.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+@keyframes fadeInNotice {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Filter Chips */
+.agrily-order-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.agrily-order-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #475569;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.agrily-order-filter-chip:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.agrily-order-filter-chip.active {
+  background-color: #1b4332;
+  border-color: #1b4332;
+  color: #ffffff;
+}
+
+.agrily-chip-badge {
+  background-color: rgba(0, 0, 0, 0.08);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 10px;
+}
+
+.agrily-order-filter-chip.active .agrily-chip-badge {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Table Wrapper */
+.agrily-orders-table-wrapper {
+  overflow-x: auto;
+}
+
+.agrily-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.agrily-orders-table th {
+  padding: 0.85rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  border-bottom: 2px solid #e2e8f0;
+  background-color: #f8faf9;
+}
+
+.agrily-orders-table td {
+  padding: 1rem 0.75rem;
+  font-size: 0.9rem;
+  color: #0f172a;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.agrily-order-row:hover {
+  background-color: #fafbfc;
+}
+
+.agrily-order-ref-code {
+  font-family: monospace;
+  font-weight: 700;
+  color: #1b4332;
+  font-size: 0.88rem;
+}
+
+.agrily-order-date {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+.agrily-buyer-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.agrily-buyer-contact {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.agrily-buyer-phone {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Items Pills */
+.agrily-items-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.agrily-item-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.agrily-item-pill-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.agrily-item-pill-qty {
+  color: #2d6a4f;
+  font-weight: 700;
+}
+
+/* Status Badges */
+.agrily-status-pill {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pill-pending {
+  background-color: #fefae0;
+  color: #bc6c25;
+  border: 1px solid #dda15e;
+}
+
+.pill-confirmed {
+  background-color: #e8f5e9;
+  color: #2d6a4f;
+  border: 1px solid #a7f3d0;
+}
+
+.pill-in-transit {
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.pill-delivered {
+  background-color: #1b4332;
+  color: #ffffff;
+}
+
+.pill-cancelled {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+/* Action Buttons */
+.agrily-action-buttons-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.agrily-btn-confirm {
+  background-color: #2d6a4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.agrily-btn-confirm:hover:not(:disabled) {
+  background-color: #1b4332;
+  transform: translateY(-1px);
+}
+
+.agrily-btn-cancel-sm {
+  background: none;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  border-radius: 6px;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.agrily-btn-cancel-sm:hover:not(:disabled) {
+  background-color: #fee2e2;
+}
+
+.agrily-btn-transit {
+  background-color: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.agrily-btn-transit:hover:not(:disabled) {
+  background-color: #0369a1;
+  transform: translateY(-1px);
+}
+
+.agrily-btn-delivered {
+  background-color: #1b4332;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.agrily-btn-delivered:hover:not(:disabled) {
+  background-color: #0f271d;
+  transform: translateY(-1px);
+}
+
+.agrily-completed-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2d6a4f;
+}
+
+.agrily-cancelled-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* Loading & Empty States */
+.agrily-orders-loading-state,
+.agrily-orders-empty-state,
+.agrily-orders-error-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.agrily-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2d6a4f;
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  animation: spinAnim 0.8s linear infinite;
+}
+
+.agrily-empty-icon,
+.agrily-error-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
