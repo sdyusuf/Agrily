@@ -16,6 +16,7 @@ const productRouter = require('./routes/myProducts');
 const categoryRouter = require('./routes/categories');
 const marketplaceRouter = require('./routes/marketplace');
 const ordersRouter = require('./routes/orders');
+const analyticsRouter = require('./routes/analytics');
 const auth = require('./middleware/auth');
 
 
@@ -44,10 +45,11 @@ app.use((req, res, next) => { //allowing request from any source
 });
 
 
-  // Public category, marketplace, and order routes
+  // Public category, marketplace, order, and analytics routes
   app.use('/api', categoryRouter);
   app.use('/api', marketplaceRouter);
   app.use('/api', ordersRouter);
+  app.use('/api', analyticsRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
