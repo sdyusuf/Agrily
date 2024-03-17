@@ -32,6 +32,10 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
 const Product = require('../models/Product');
+const {
+  sendNewOrderAlertToFarmer,
+  sendOrderDispatchedAlertToBuyer
+} = require('../utils/emailService');
 
 /**
  * Validates the raw order submission payload prior to database interaction.
@@ -197,6 +201,13 @@ async function createOrderController(req, res) {
 
     // Step F: Save order to database
     const savedOrder = await newOrder.save();
+
+    // Trigger automated email alert to producing farmer (non-blocking)
+    if (savedOrder.farmerEmail) {
+      sendNewOrderAlertToFarmer(savedOrder.farmerEmail, savedOrder).catch(err => {
+        console.warn('Asynchronous farmer email notification warning:', err.message);
+      });
+    }
 
     // Step G: Return response with confirmation metadata
     return res.status(201).json({
@@ -561,6 +572,13 @@ async function updateOrderStatusController(req, res) {
     }
 
     const updatedOrder = await order.save();
+
+    // Trigger automated email alert to buyer when produce enters transit
+    if (requestedStatus === 'In Transit' && updatedOrder.buyerEmail) {
+      sendOrderDispatchedAlertToBuyer(updatedOrder.buyerEmail, updatedOrder).catch(err => {
+        console.warn('Asynchronous buyer dispatch notification warning:', err.message);
+      });
+    }
 
     return res.status(200).json({
       success: true,
