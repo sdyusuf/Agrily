@@ -1,0 +1,567 @@
+/**
+ * ============================================================================
+ * AGRILY AGRICULTURAL DESIGN SYSTEM
+ * Farm Profile Editor Stylesheet
+ * ============================================================================
+ * 
+ * Implements the Agrily brand color tokens, tactile form controls,
+ * status pills, chip tags, and responsive container layout.
+ */
+
+:root {
+  --agrily-emerald-dark: #1b4332;
+  --agrily-emerald-primary: #2d6a4f;
+  --agrily-emerald-medium: #40916c;
+  --agrily-emerald-light: #52b788;
+  --agrily-emerald-pale: #d8f3dc;
+  --agrily-ochre-earth: #bc6c25;
+  --agrily-ochre-harvest: #dda15e;
+  --agrily-cornsilk: #fefae0;
+  --agrily-surface: #f8faf9;
+  --agrily-white: #ffffff;
+  --agrily-slate-900: #0f172a;
+  --agrily-slate-700: #334155;
+  --agrily-slate-500: #64748b;
+  --agrily-slate-300: #cbd5e1;
+  --agrily-slate-200: #e2e8f0;
+  --agrily-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --agrily-shadow-md: 0 4px 16px rgba(27, 67, 50, 0.08);
+  --agrily-shadow-lg: 0 10px 25px -5px rgba(27, 67, 50, 0.12);
+  --agrily-radius-sm: 6px;
+  --agrily-radius-md: 10px;
+  --agrily-radius-lg: 16px;
+  --agrily-transition-smooth: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.farm-profile-editor-container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 32px;
+  background-color: var(--agrily-white);
+  border: 1px solid var(--agrily-slate-200);
+  border-radius: var(--agrily-radius-lg);
+  box-shadow: var(--agrily-shadow-md);
+  color: var(--agrily-slate-900);
+  font-family: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   HEADER & TRUST BADGE SECTION
+   ------------------------------------------------------------------------- */
+.farm-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--agrily-slate-200);
+  flex-wrap: wrap;
+}
+
+.farm-profile-title-group {
+  flex: 1;
+  min-width: 280px;
+}
+
+.farm-profile-heading {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--agrily-emerald-dark);
+  letter-spacing: -0.015em;
+}
+
+.farm-profile-subheading {
+  margin: 0;
+  font-size: 0.925rem;
+  color: var(--agrily-slate-500);
+  line-height: 1.5;
+}
+
+.farm-profile-trust-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Verification Status Pills */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  transition: var(--agrily-transition-smooth);
+}
+
+.status-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.status-verified {
+  background-color: var(--agrily-emerald-pale);
+  color: var(--agrily-emerald-primary);
+  border: 1px solid rgba(45, 106, 79, 0.2);
+}
+
+.status-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.status-unverified {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.status-flagged {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Trust Score Gauge */
+.trust-score-gauge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: var(--agrily-cornsilk);
+  border: 1px solid var(--agrily-ochre-harvest);
+  border-radius: 9999px;
+  font-size: 0.825rem;
+}
+
+.trust-score-label {
+  color: var(--agrily-ochre-earth);
+  font-weight: 500;
+}
+
+.trust-score-value {
+  color: var(--agrily-ochre-earth);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   ALERT BANNERS
+   ------------------------------------------------------------------------- */
+.farm-profile-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--agrily-radius-md);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.alert-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  border: 1px solid #f87171;
+  color: #991b1b;
+}
+
+.alert-success {
+  background-color: #f0fdf4;
+  border: 1px solid #86efac;
+  color: var(--agrily-emerald-dark);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   FORM SECTIONS & CARDS
+   ------------------------------------------------------------------------- */
+.form-section-card {
+  background-color: var(--agrily-surface);
+  border: 1px solid var(--agrily-slate-200);
+  border-radius: var(--agrily-radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: var(--agrily-transition-smooth);
+}
+
+.form-section-card:hover {
+  border-color: rgba(45, 106, 79, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--agrily-emerald-dark);
+  margin: 0 0 18px 0;
+  letter-spacing: -0.01em;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--agrily-slate-700);
+  margin-bottom: 6px;
+}
+
+.char-counter {
+  font-size: 0.775rem;
+  color: var(--agrily-slate-500);
+}
+
+.counter-warning {
+  color: #d97706;
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.925rem;
+  font-family: inherit;
+  color: var(--agrily-slate-900);
+  background-color: var(--agrily-white);
+  border: 1px solid var(--agrily-slate-300);
+  border-radius: var(--agrily-radius-sm);
+  transition: var(--agrily-transition-smooth);
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--agrily-emerald-primary);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* -------------------------------------------------------------------------
+   CROP SPECIALTY CHIPS & TAG INPUT
+   ------------------------------------------------------------------------- */
+.tag-chips-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--agrily-white);
+  border: 1px dashed var(--agrily-slate-300);
+  border-radius: var(--agrily-radius-sm);
+  min-height: 48px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.no-tags-hint {
+  font-size: 0.85rem;
+  color: var(--agrily-slate-500);
+  font-style: italic;
+}
+
+.crop-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: linear-gradient(135deg, var(--agrily-emerald-pale), #edf7f0);
+  border: 1px solid rgba(82, 183, 136, 0.3);
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--agrily-emerald-dark);
+  animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.crop-chip-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--agrily-emerald-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--agrily-transition-smooth);
+}
+
+.crop-chip-remove:hover {
+  color: #dc2626;
+  transform: scale(1.15);
+}
+
+.tag-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.tag-text-input {
+  flex: 1;
+}
+
+.btn-add-tag {
+  background-color: var(--agrily-emerald-primary);
+  color: var(--agrily-white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--agrily-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--agrily-transition-smooth);
+}
+
+.btn-add-tag:hover {
+  background-color: var(--agrily-emerald-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(45, 106, 79, 0.25);
+}
+
+.quick-suggestions-block {
+  margin-top: 10px;
+}
+
+.suggestions-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--agrily-slate-500);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.suggestion-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill-suggestion {
+  background-color: var(--agrily-white);
+  border: 1px solid var(--agrily-slate-300);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.775rem;
+  color: var(--agrily-slate-700);
+  cursor: pointer;
+  transition: var(--agrily-transition-smooth);
+}
+
+.pill-suggestion:hover {
+  background-color: var(--agrily-emerald-pale);
+  border-color: var(--agrily-emerald-light);
+  color: var(--agrily-emerald-dark);
+}
+
+.pill-suggestion.pill-active {
+  background-color: var(--agrily-emerald-primary);
+  border-color: var(--agrily-emerald-primary);
+  color: var(--agrily-white);
+}
+
+/* -------------------------------------------------------------------------
+   CERTIFICATION CARDS GRID
+   ------------------------------------------------------------------------- */
+.cert-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.cert-item-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background-color: var(--agrily-white);
+  border: 1px solid var(--agrily-slate-300);
+  border-radius: var(--agrily-radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: var(--agrily-transition-smooth);
+  user-select: none;
+}
+
+.cert-item-card:hover {
+  border-color: var(--agrily-emerald-light);
+  background-color: #f7fdf9;
+}
+
+.cert-item-card.cert-active {
+  background-color: var(--agrily-emerald-pale);
+  border-color: var(--agrily-emerald-medium);
+  font-weight: 600;
+  color: var(--agrily-emerald-dark);
+}
+
+.cert-checkbox {
+  accent-color: var(--agrily-emerald-primary);
+  width: 16px;
+  height: 16px;
+}
+
+/* -------------------------------------------------------------------------
+   ACTION BUTTONS
+   ------------------------------------------------------------------------- */
+.farm-profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--agrily-slate-200);
+}
+
+.btn-editor-cancel {
+  background: none;
+  border: 1px solid var(--agrily-slate-300);
+  color: var(--agrily-slate-700);
+  padding: 12px 24px;
+  border-radius: var(--agrily-radius-sm);
+  font-size: 0.925rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--agrily-transition-smooth);
+}
+
+.btn-editor-cancel:hover {
+  background-color: var(--agrily-surface);
+  border-color: var(--agrily-slate-500);
+}
+
+.btn-editor-save {
+  background: linear-gradient(135deg, var(--agrily-emerald-dark), var(--agrily-emerald-primary));
+  color: var(--agrily-white);
+  border: none;
+  padding: 12px 32px;
+  border-radius: var(--agrily-radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.25);
+  transition: var(--agrily-transition-smooth);
+}
+
+.btn-editor-save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 106, 79, 0.35);
+}
+
+.btn-editor-save:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-loading-flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner-dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--agrily-white);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   RESPONSIVE MOBILE BREAKPOINTS
+   ------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .farm-profile-editor-container {
+    padding: 20px;
+    margin: 12px;
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tag-input-row {
+    flex-direction: column;
+  }
+
+  .farm-profile-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-editor-cancel,
+  .btn-editor-save {
+    width: 100%;
+  }
+}
