@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { CategoryBadge, StockBadge } from './CategoryBadge';
 import { SproutIcon, AlertCircleIcon } from './Icons';
+import { TrustBadge } from './TrustBadge';
 
 function ProductCard({ product, onEdit, onDelete, onArchive }) {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -129,7 +130,7 @@ function ProductCard({ product, onEdit, onDelete, onArchive }) {
 
         {/* Card Body */}
         <Card.Body style={{ padding: '1.25rem', flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
-          <div className="d-flex justify-content-between align-items-start mb-2">
+          <div className="d-flex justify-content-between align-items-center mb-2">
             <h3
               style={{
                 fontSize: '1.15rem',
@@ -141,6 +142,12 @@ function ProductCard({ product, onEdit, onDelete, onArchive }) {
             >
               {name}
             </h3>
+            <TrustBadge
+              status={product.verificationStatus || (product.farmerProfile?.verificationStatus) || 'verified'}
+              trustScore={product.trustScore || (product.farmerProfile?.trustScore) || 98}
+              size="sm"
+              showLabel={false}
+            />
           </div>
 
           {/* Price & Unit */}
