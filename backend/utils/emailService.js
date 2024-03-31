@@ -29,6 +29,20 @@ require('dotenv/config');
  * @returns {nodemailer.Transporter}
  */
 function createEmailTransporter() {
+  if (process.env.BREVO_API_KEY) {
+    return {
+      sendMail: async (options) => {
+        const { sendViaBrevo } = require('./sendMail');
+        return await sendViaBrevo({
+          to: options.to,
+          subject: options.subject,
+          text: options.text,
+          html: options.html
+        });
+      }
+    };
+  }
+
   const user = process.env.User || process.env.SMTP_USER || '';
   const pass = process.env.Password || process.env.SMTP_PASS || '';
 

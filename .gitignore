@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment files
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+backend/.env
+frontend/.env
+
+# Production builds
+build/
+dist/
+*/build/
+*/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Gitignored commit schedule & planning
+COMMITS.md
+commits.md
+backdated_commits.md
+Sprints.md
+sprints.md
+SPRINT_LOC_TRACKER.md
+sprint_loc_tracker.md
+tokens.json
+.tokens.json
+DESIGN_SYSTEM.md
+design_system.md
+UI_DESIGN_SYSTEM.md
+*.local.md
+
+# OS files
+.DS_Store
+Thumbs.db

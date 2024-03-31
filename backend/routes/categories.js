@@ -7,56 +7,56 @@ const CATEGORY_DEFINITIONS = [
   {
     id: 'grains',
     label: 'Grains & Cereals',
-    icon: '🌾',
+    icon: 'wheat',
     description: 'Maize, rice, millet, sorghum, and other cereal grains',
     recommendedUnits: ['bag', 'kg', 'ton']
   },
   {
     id: 'tubers',
     label: 'Tubers & Roots',
-    icon: '🥔',
+    icon: 'root',
     description: 'Yam, cassava, sweet potatoes, cocoyam, and Irish potatoes',
     recommendedUnits: ['bag', 'ton', 'piece']
   },
   {
     id: 'fruits',
     label: 'Fresh Fruits',
-    icon: '🍎',
+    icon: 'apple',
     description: 'Citrus, mangoes, pineapples, watermelon, bananas, and papaya',
     recommendedUnits: ['crate', 'basket', 'piece', 'kg']
   },
   {
     id: 'vegetables',
     label: 'Vegetables & Greens',
-    icon: '🥬',
+    icon: 'leaf',
     description: 'Tomatoes, bell peppers, onions, spinach, and leafy greens',
     recommendedUnits: ['basket', 'crate', 'bag', 'kg']
   },
   {
     id: 'livestock',
     label: 'Livestock',
-    icon: '🐄',
+    icon: 'cow',
     description: 'Cattle, goats, sheep, pigs, and pasture livestock',
     recommendedUnits: ['piece', 'kg']
   },
   {
     id: 'poultry',
     label: 'Poultry & Eggs',
-    icon: '🐔',
+    icon: 'egg',
     description: 'Broilers, layers, cockerels, turkeys, and crates of eggs',
     recommendedUnits: ['crate', 'piece']
   },
   {
     id: 'dairy',
     label: 'Dairy Produce',
-    icon: '🥛',
+    icon: 'milk',
     description: 'Fresh cow milk, artisanal cheeses, butter, and yogurt',
     recommendedUnits: ['liter', 'kg']
   },
   {
     id: 'other',
     label: 'Other Farm Produce',
-    icon: '📦',
+    icon: 'package',
     description: 'Agro-forestry, raw spices, seeds, honey, and artisanal goods',
     recommendedUnits: ['kg', 'bag', 'liter', 'piece']
   }
