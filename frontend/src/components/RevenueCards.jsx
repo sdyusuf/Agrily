@@ -109,7 +109,12 @@ const RevenueCards = ({ email: propEmail, initialMetrics = null, activeListings 
         </div>
         <div className="agrily-kpi-value">{formatNaira(grossRevenue)}</div>
         <div className="agrily-kpi-meta">
-          <span className="agrily-kpi-badge success">✓ Confirmed & Delivered</span>
+          <span className="agrily-kpi-badge success">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Confirmed & Delivered
+          </span>
           <span className="agrily-kpi-subtext">{completedOrders} deals completed</span>
         </div>
       </div>
@@ -127,7 +132,13 @@ const RevenueCards = ({ email: propEmail, initialMetrics = null, activeListings 
         </div>
         <div className="agrily-kpi-value">{formatNaira(pendingRevenue)}</div>
         <div className="agrily-kpi-meta">
-          <span className="agrily-kpi-badge warning">⏳ In Escrow / Transit</span>
+          <span className="agrily-kpi-badge warning">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            In Escrow / Transit
+          </span>
           <span className="agrily-kpi-subtext">Awaiting inspection</span>
         </div>
       </div>
@@ -148,7 +159,12 @@ const RevenueCards = ({ email: propEmail, initialMetrics = null, activeListings 
           {totalUnitsSold.toLocaleString()} <small className="unit">units</small>
         </div>
         <div className="agrily-kpi-meta">
-          <span className="agrily-kpi-badge neutral">📦 Crates, Bags & Tons</span>
+          <span className="agrily-kpi-badge neutral">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+            Crates, Bags & Tons
+          </span>
           <span className="agrily-kpi-subtext">Cumulative dispatched</span>
         </div>
       </div>
@@ -167,7 +183,12 @@ const RevenueCards = ({ email: propEmail, initialMetrics = null, activeListings 
           {activeListingsCount.toLocaleString()} <small className="unit">batches</small>
         </div>
         <div className="agrily-kpi-meta">
-          <span className="agrily-kpi-badge info">🌾 Ready for Dispatch</span>
+          <span className="agrily-kpi-badge info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            Ready for Dispatch
+          </span>
           <span className="agrily-kpi-subtext">Listed on marketplace</span>
         </div>
       </div>

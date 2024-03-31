@@ -6,7 +6,7 @@ function EmailVerificationSuccess() {
   return (
     <div style={{ textAlign: 'center', padding: '1.5rem' }}>
       <h2 style={{ color: '#1b4332', fontWeight: 800, marginBottom: '0.75rem' }}>
-        Account Verified Successfully! 🎉
+        Account Verified Successfully!
       </h2>
       <p style={{ color: '#475569', fontSize: '1rem', marginBottom: '1.5rem' }}>
         Thank you for verifying your agricultural producer profile. Your account is now fully active.

@@ -126,7 +126,7 @@ function Home() {
               <h1 className="hero-greeting-title">
                 Good {moment},{' '}
                 <span className="hero-greeting-highlight">
-                  {firstName || 'Producer'} 🌾
+                  {firstName || 'Producer'}
                 </span>
               </h1>
 

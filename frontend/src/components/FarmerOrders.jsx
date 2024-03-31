@@ -286,7 +286,13 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
       {/* Error State */}
       {!loading && error && orders.length === 0 && (
         <div className="agrily-orders-error-state" role="alert">
-          <div className="agrily-error-icon">⚠️</div>
+          <div className="agrily-error-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </div>
           <h3>Unable to Load Orders</h3>
           <p>{error}</p>
           <button type="button" className="btn-agrily-harvest" onClick={fetchFarmerOrders}>
@@ -298,7 +304,14 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
       {/* Empty State */}
       {!loading && filteredOrders.length === 0 && (
         <div className="agrily-orders-empty-state" data-testid="orders-empty-state">
-          <div className="agrily-empty-icon" aria-hidden="true">📦</div>
+          <div className="agrily-empty-icon" aria-hidden="true">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21" />
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+          </div>
           <h3>No Orders Found</h3>
           <p>
             {searchQuery
@@ -403,7 +416,14 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
                               disabled={isProcessing}
                               aria-label={`Confirm order ${order.orderNumber}`}
                             >
-                              {isProcessing ? 'Updating...' : '✓ Confirm Order'}
+                              {isProcessing ? 'Updating...' : (
+                                <>
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+                                    <polyline points="20 6 9 17 4 12" />
+                                  </svg>
+                                  Confirm Order
+                                </>
+                              )}
                             </button>
                             <button
                               type="button"
@@ -412,7 +432,7 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
                               disabled={isProcessing}
                               aria-label={`Cancel order ${order.orderNumber}`}
                             >
-                              ✕ Cancel
+                              Cancel
                             </button>
                           </>
                         )}
@@ -425,7 +445,17 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
                             disabled={isProcessing}
                             aria-label={`Dispatch order ${order.orderNumber} into transit`}
                           >
-                            {isProcessing ? 'Updating...' : '🚚 Dispatch Freight'}
+                            {isProcessing ? 'Updating...' : (
+                              <>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+                                  <rect x="1" y="3" width="15" height="13" />
+                                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                  <circle cx="5.5" cy="18.5" r="2.5" />
+                                  <circle cx="18.5" cy="18.5" r="2.5" />
+                                </svg>
+                                Dispatch Freight
+                              </>
+                            )}
                           </button>
                         )}
 
@@ -437,12 +467,26 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
                             disabled={isProcessing}
                             aria-label={`Mark order ${order.orderNumber} as delivered`}
                           >
-                            {isProcessing ? 'Updating...' : '📦 Mark Delivered'}
+                            {isProcessing ? 'Updating...' : (
+                              <>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+                                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                                </svg>
+                                Mark Delivered
+                              </>
+                            )}
                           </button>
                         )}
 
                         {order.status === 'Delivered' && (
-                          <span className="agrily-completed-label">✓ Fulfilled & Settled</span>
+                          <span className="agrily-completed-label">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px', verticalAlign: '-1px' }} aria-hidden="true">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Fulfilled & Settled
+                          </span>
                         )}
 
                         {order.status === 'Cancelled' && (

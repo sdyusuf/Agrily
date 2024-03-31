@@ -6,7 +6,7 @@ function EmailVerificationFail() {
   return (
     <div style={{ textAlign: 'center', padding: '1.5rem' }}>
       <h2 style={{ color: '#bc6c25', fontWeight: 800, marginBottom: '0.75rem' }}>
-        Verification Notice ⚠️
+        Verification Notice
       </h2>
       <p style={{ color: '#475569', fontSize: '1rem', marginBottom: '1.5rem' }}>
         Something went wrong while verifying this link. It may have expired or already been used.
