@@ -1,16 +1,58 @@
 import React from 'react';
 import './CategoryBadge.css';
+import {
+  CategoryIcon,
+  WheatIcon,
+  RootIcon,
+  AppleIcon,
+  LeafIcon,
+  CowIcon,
+  EggIcon,
+  MilkIcon,
+  PackageIcon,
+  BasketIcon
+} from './Icons';
 
-// Supported agricultural taxonomy definitions
+// Supported agricultural taxonomy definitions with clean SVG icon renderers
 export const CATEGORY_META = {
-  grains: { label: 'Grains & Cereals', icon: '🌾' },
-  tubers: { label: 'Tubers & Roots', icon: '🥔' },
-  fruits: { label: 'Fresh Fruits', icon: '🍎' },
-  vegetables: { label: 'Vegetables & Greens', icon: '🥬' },
-  livestock: { label: 'Livestock', icon: '🐄' },
-  poultry: { label: 'Poultry & Eggs', icon: '🐔' },
-  dairy: { label: 'Dairy Produce', icon: '🥛' },
-  other: { label: 'Other Farm Produce', icon: '📦' }
+  grains: {
+    label: 'Grains & Cereals',
+    renderIcon: (size) => <WheatIcon size={size} />
+  },
+  tubers: {
+    label: 'Tubers & Roots',
+    renderIcon: (size) => <RootIcon size={size} />
+  },
+  fruits: {
+    label: 'Fresh Fruits',
+    renderIcon: (size) => <AppleIcon size={size} />
+  },
+  vegetables: {
+    label: 'Vegetables & Greens',
+    renderIcon: (size) => <LeafIcon size={size} />
+  },
+  livestock: {
+    label: 'Livestock',
+    renderIcon: (size) => <CowIcon size={size} />
+  },
+  poultry: {
+    label: 'Poultry & Eggs',
+    renderIcon: (size) => <EggIcon size={size} />
+  },
+  dairy: {
+    label: 'Dairy Produce',
+    renderIcon: (size) => <MilkIcon size={size} />
+  },
+  other: {
+    label: 'Other Farm Produce',
+    renderIcon: (size) => <PackageIcon size={size} />
+  }
+};
+
+const iconSizes = {
+  sm: 13,
+  md: 15,
+  lg: 18
 };
 
 /**
@@ -18,12 +60,20 @@ export const CATEGORY_META = {
  */
 export const CategoryBadge = ({ category = 'other', size = 'md', className = '', showIcon = true }) => {
   const normalizedKey = (category || 'other').toLowerCase();
-  const meta = CATEGORY_META[normalizedKey] || { label: category || 'Produce', icon: '🌱' };
+  const meta = CATEGORY_META[normalizedKey] || {
+    label: category || 'Produce',
+    renderIcon: (sz) => <PackageIcon size={sz} />
+  };
   const badgeClass = `badge-category-${normalizedKey in CATEGORY_META ? normalizedKey : 'other'}`;
+  const iconPixelSize = iconSizes[size] || iconSizes.md;
 
   return (
     <span className={`agrily-badge agrily-badge-${size} ${badgeClass} ${className}`.trim()}>
-      {showIcon && <span aria-hidden="true">{meta.icon}</span>}
+      {showIcon && (
+        <span className="d-inline-flex align-items-center" aria-hidden="true">
+          {meta.renderIcon ? meta.renderIcon(iconPixelSize) : <CategoryIcon category={normalizedKey} size={iconPixelSize} />}
+        </span>
+      )}
       <span>{meta.label}</span>
     </span>
   );
@@ -44,7 +94,14 @@ export const CategoryChip = ({
   const normalizedKey = (category || 'all').toLowerCase();
   const meta = CATEGORY_META[normalizedKey] || {};
   const displayLabel = label || meta.label || (normalizedKey === 'all' ? 'All Produce' : category);
-  const displayIcon = icon !== undefined ? icon : (meta.icon || (normalizedKey === 'all' ? '🧺' : '🌱'));
+  const iconPixelSize = iconSizes[size] || iconSizes.md;
+
+  const renderChipIcon = () => {
+    if (icon !== undefined) return icon;
+    if (normalizedKey === 'all') return <BasketIcon size={iconPixelSize} />;
+    if (meta.renderIcon) return meta.renderIcon(iconPixelSize);
+    return <CategoryIcon category={normalizedKey} size={iconPixelSize} />;
+  };
 
   const handleKeyDown = (e) => {
     if ((e.key === 'Enter' || e.key === ' ') && onClick) {
@@ -65,7 +122,9 @@ export const CategoryChip = ({
         isActive ? 'agrily-chip-active' : ''
       } ${className}`.trim()}
     >
-      {displayIcon && <span aria-hidden="true">{displayIcon}</span>}
+      <span className="d-inline-flex align-items-center" aria-hidden="true">
+        {renderChipIcon()}
+      </span>
       <span>{displayLabel}</span>
     </button>
   );

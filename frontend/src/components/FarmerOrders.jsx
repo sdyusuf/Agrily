@@ -26,6 +26,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useUser } from '../auth/useUser';
 import { useToken } from '../auth/useToken';
+import SearchBar from './SearchBar';
 import './FarmerOrders.css';
 
 /**
@@ -71,6 +72,7 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
   const [loading, setLoading] = useState(!initialOrders);
   const [error, setError] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [updatingOrderId, setUpdatingOrderId] = useState(null);
   const [actionNotice, setActionNotice] = useState(null);
 
@@ -85,11 +87,20 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/farmer/${encodeURIComponent(farmerEmail)}`, {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/orders/farmer/${encodeURIComponent(farmerEmail)}`, {
         headers: {
+          'Accept': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {})
         }
       });
+
+      const contentType = response.headers?.get ? (response.headers.get('content-type') || '') : 'application/json';
+      if (contentType && !contentType.includes('application/json')) {
+        console.warn('Non-JSON response received from orders API:', response.status);
+        setOrders([]);
+        return;
+      }
 
       const data = await response.json();
 
@@ -100,9 +111,11 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
       setOrders(data.orders || []);
     } catch (err) {
       console.warn('Farmer orders fetch error (using fallback state):', err.message);
-      // If error occurs and no orders exist, keep current state gracefully
       if (!initialOrders) {
-        setError(err.message);
+        const friendlyMessage = err.message.includes('Unexpected token')
+          ? 'Unable to connect to order fulfillment service. Please verify server connection.'
+          : err.message;
+        setError(friendlyMessage);
       }
     } finally {
       setLoading(false);
@@ -159,11 +172,36 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
     }
   };
 
-  // Filter orders according to active tab
+  // Filter orders according to active tab AND debounced search query
   const filteredOrders = useMemo(() => {
-    if (activeFilter === 'All') return orders;
-    return orders.filter(ord => ord.status === activeFilter);
-  }, [orders, activeFilter]);
+    let list = orders;
+    if (activeFilter !== 'All') {
+      list = list.filter(ord => ord.status === activeFilter);
+    }
+    if (searchQuery && searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(ord => {
+        const orderRef = (ord.orderNumber || ord._id || '').toLowerCase();
+        const buyerName = (ord.buyerName || '').toLowerCase();
+        const buyerEmail = (ord.buyerEmail || '').toLowerCase();
+        const buyerPhone = (ord.buyerPhone || '').toLowerCase();
+        const items = (ord.items || []).map(it => (it.name || '').toLowerCase()).join(' ');
+        const city = (ord.deliveryAddress?.city || '').toLowerCase();
+        const state = (ord.deliveryAddress?.state || '').toLowerCase();
+
+        return (
+          orderRef.includes(q) ||
+          buyerName.includes(q) ||
+          buyerEmail.includes(q) ||
+          buyerPhone.includes(q) ||
+          items.includes(q) ||
+          city.includes(q) ||
+          state.includes(q)
+        );
+      });
+    }
+    return list;
+  }, [orders, activeFilter, searchQuery]);
 
   // Compute status counts for filter tabs
   const counts = useMemo(() => {
@@ -227,6 +265,16 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
         ))}
       </div>
 
+      {/* Debounced Search Bar */}
+      <div className="agrily-order-search-bar-wrap mb-4">
+        <SearchBar
+          placeholder="Search orders by reference #, buyer, produce item, or drop-off location..."
+          ariaLabel="Search orders queue"
+          onSearch={(val) => setSearchQuery(val)}
+          debounceMs={300}
+        />
+      </div>
+
       {/* Loading State */}
       {loading && (
         <div className="agrily-orders-loading-state" data-testid="orders-loading">
@@ -253,7 +301,9 @@ const FarmerOrders = ({ initialOrders = null, farmerEmail: propEmail = null }) =
           <div className="agrily-empty-icon" aria-hidden="true">📦</div>
           <h3>No Orders Found</h3>
           <p>
-            {activeFilter === 'All'
+            {searchQuery
+              ? `No orders match your search "${searchQuery}". Try searching with a different order number or buyer detail.`
+              : activeFilter === 'All'
               ? 'You do not have any incoming buyer orders at this time. When buyers purchase your produce on the marketplace, requests will appear here.'
               : `You do not have any orders currently marked as "${activeFilter}".`}
           </p>

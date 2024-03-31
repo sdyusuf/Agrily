@@ -14,7 +14,7 @@
  */
 
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import FarmerOrders from './FarmerOrders';
 
 // Mock auth hooks
@@ -231,5 +231,41 @@ describe('FarmerOrders Component Unit Tests', () => {
         })
       );
     });
+  });
+
+  test('filters orders table dynamically using debounced search input', async () => {
+    jest.useFakeTimers();
+
+    render(<FarmerOrders initialOrders={mockOrders} />);
+
+    expect(screen.getByText('Northern Flour Mills')).toBeInTheDocument();
+    expect(screen.getByText('Danladi Foods Ltd')).toBeInTheDocument();
+
+    const searchInput = screen.getByRole('textbox', { name: /search orders queue/i });
+    fireEvent.change(searchInput, { target: { value: 'Flour' } });
+
+    // 100ms: not debounced yet
+    act(() => {
+      jest.advanceTimersByTime(100);
+    });
+    expect(screen.getByText('Danladi Foods Ltd')).toBeInTheDocument();
+
+    // 350ms: debounced!
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    expect(screen.getByText('Northern Flour Mills')).toBeInTheDocument();
+    expect(screen.queryByText('Danladi Foods Ltd')).not.toBeInTheDocument();
+
+    // Search for non-existent item
+    fireEvent.change(searchInput, { target: { value: 'NonExistentRef' } });
+    act(() => {
+      jest.advanceTimersByTime(350);
+    });
+
+    expect(screen.getByText(/no orders match your search "nonexistentref"/i)).toBeInTheDocument();
+
+    jest.useRealTimers();
   });
 });

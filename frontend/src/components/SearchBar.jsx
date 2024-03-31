@@ -1,8 +1,40 @@
-import React, { useState, useEffect, useRef } from 'react';
+/**
+ * ==============================================================================
+ * AGRILY AGRICULTURAL COMMERCE & PROVENANCE PLATFORM
+ * Universal Debounced SearchBar Component
+ * ==============================================================================
+ * 
+ * @module frontend/src/components/SearchBar
+ * @description
+ * High-fidelity, debounced search input with tactile Agrily styling, custom SVG
+ * magnifying glass and clear icons, and accessible ARIA attributes.
+ * 
+ * Architecture & Debounce Strategy:
+ * Utilizes the central `useDebounceSearch` hook to throttle input updates (default 300ms-350ms).
+ * Typing keystrokes update local visual text immediately while deferring parent `onSearch`
+ * invocations until the user pauses, preventing unneeded backend query dispatches and
+ * DOM re-render churn during fast typing.
+ * 
+ * Design Standards:
+ *  - Emerald focus ring: `rgba(45, 106, 79, 0.25)` with `#2d6a4f` border
+ *  - Subtle backdrop fill: `#f8faf9`
+ *  - Clear button with hover scale and tactile focus
+ * 
+ * @component SearchBar
+ * @requires react
+ * @requires ../hook/useDebounce
+ * @requires ./SearchBar.css
+ */
+
+import React from 'react';
+import { useDebounceSearch, DEFAULT_DEBOUNCE_DELAY_MS } from '../hook/useDebounce';
 import './SearchBar.css';
 
 /**
- * Search icon SVG component
+ * Search Icon SVG primitive
+ * @param {Object} props
+ * @param {number} [props.size=18] - Dimension in pixels
+ * @param {string} [props.color='currentColor'] - Stroke color
  */
 function SearchIcon({ size = 18, color = 'currentColor' }) {
   return (
@@ -24,7 +56,10 @@ function SearchIcon({ size = 18, color = 'currentColor' }) {
 }
 
 /**
- * Close / Clear icon SVG component
+ * Close / Clear icon SVG primitive
+ * @param {Object} props
+ * @param {number} [props.size=16] - Dimension in pixels
+ * @param {string} [props.color='currentColor'] - Stroke color
  */
 function CloseIcon({ size = 16, color = 'currentColor' }) {
   return (
@@ -46,61 +81,53 @@ function CloseIcon({ size = 16, color = 'currentColor' }) {
 }
 
 /**
- * Debounced search input component with clear button
+ * Debounced Search Bar with tactile focus state and instant clear button
+ * 
+ * @param {Object} props
+ * @param {string} [props.placeholder='Search produce by name or description...'] - Input placeholder
+ * @param {string} [props.initialValue=''] - Initial query string
+ * @param {Function} [props.onSearch] - Callback triggered with debounced string
+ * @param {number} [props.debounceMs=300] - Debounce delay in milliseconds
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @param {string} [props.ariaLabel='Search produce'] - Accessible name for input
  */
 function SearchBar({
   placeholder = 'Search produce by name or description...',
   initialValue = '',
   onSearch,
   debounceMs = 300,
-  className = ''
+  className = '',
+  ariaLabel = 'Search produce'
 }) {
-  const [query, setQuery] = useState(initialValue);
-  const isFirstRender = useRef(true);
-
-  // Sync with initialValue prop if it changes externally
-  useEffect(() => {
-    setQuery(initialValue || '');
-  }, [initialValue]);
-
-  // Handle debounced search invocation
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      if (onSearch) {
-        onSearch(query.trim());
-      }
-    }, debounceMs);
-
-    return () => clearTimeout(timer);
-  }, [query, debounceMs, onSearch]);
-
-  const handleClear = () => {
-    setQuery('');
-    if (onSearch) {
-      onSearch('');
-    }
-  };
+  const {
+    query,
+    setQuery,
+    handleClear,
+    isDebouncing
+  } = useDebounceSearch(initialValue, debounceMs || DEFAULT_DEBOUNCE_DELAY_MS, onSearch);
 
   return (
-    <div className={`agrily-search-container ${className}`.trim()}>
-      <div className="agrily-search-icon-left">
-        <SearchIcon size={18} />
+    <div
+      className={`agrily-search-container ${className} ${isDebouncing ? 'is-debouncing' : ''}`.trim()}
+    >
+      {/* Magnifying Glass Prefix Icon */}
+      <div className="agrily-search-icon-left" aria-hidden="true">
+        <SearchIcon size={18} color="#2d6a4f" />
       </div>
 
+      {/* Main Debounced Text Input */}
       <input
         type="text"
         className="agrily-search-input"
         placeholder={placeholder}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        aria-label="Search produce"
+        aria-label={ariaLabel}
+        autoComplete="off"
+        spellCheck="false"
       />
 
+      {/* Reset / Clear Input Button */}
       {query.length > 0 && (
         <button
           type="button"
