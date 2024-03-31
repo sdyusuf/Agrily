@@ -55,8 +55,8 @@ describe('EmailVerificationLandingPage Unit Tests', () => {
         verificationString: 'valid-token-uuid-123'
       });
       expect(mockSetToken).toHaveBeenCalledWith('new-jwt-token-verified');
-      expect(screen.getByText('Account Verified Successfully! 🎉')).toBeInTheDocument();
-      expect(screen.getByText('🌾 Producer Account Activated & Verified')).toBeInTheDocument();
+      expect(screen.getByText('Account Verified Successfully!')).toBeInTheDocument();
+      expect(screen.getByText('Producer Account Activated & Verified')).toBeInTheDocument();
     });
 
     // Check unlocked features

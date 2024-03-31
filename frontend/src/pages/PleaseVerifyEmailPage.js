@@ -62,6 +62,83 @@ function ShieldMailIcon({ size = 44 }) {
   );
 }
 
+function ShieldCheckIcon({ size = 15 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  );
+}
+
+function AwardTrustIcon({ size = 20 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="8" r="7" />
+      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+    </svg>
+  );
+}
+
+function ShieldLockIcon({ size = 20 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      <circle cx="12" cy="16" r="1" />
+    </svg>
+  );
+}
+
+function TrendingUpIcon({ size = 20 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+      <polyline points="17 6 23 6 23 12" />
+    </svg>
+  );
+}
+
 function PleaseVerifyEmailPage() {
   const user = useUser();
   const location = useLocation();
@@ -84,7 +161,8 @@ function PleaseVerifyEmailPage() {
 
           {/* Agricultural Security Pill Badge */}
           <div className="agrily-verify-badge-pill">
-            <span>🌾 Producer Security & Verification Portal</span>
+            <ShieldCheckIcon size={14} />
+            <span>Producer Security & Verification Portal</span>
           </div>
 
           {/* State When Already Verified */}
@@ -131,7 +209,9 @@ function PleaseVerifyEmailPage() {
               {/* Producer Verification Benefits */}
               <div className="agrily-verify-benefits" role="region" aria-label="Producer verification benefits">
                 <div className="agrily-verify-benefit-card">
-                  <span className="agrily-verify-benefit-icon">🏅</span>
+                  <div className="agrily-verify-benefit-icon" aria-hidden="true">
+                    <AwardTrustIcon size={20} />
+                  </div>
                   <div className="agrily-verify-benefit-title">Verified Producer Badge</div>
                   <p className="agrily-verify-benefit-desc">
                     Display verified trust checkmarks across all your catalog produce listings to attract top buyers.
@@ -139,7 +219,9 @@ function PleaseVerifyEmailPage() {
                 </div>
 
                 <div className="agrily-verify-benefit-card">
-                  <span className="agrily-verify-benefit-icon">🛡️</span>
+                  <div className="agrily-verify-benefit-icon" aria-hidden="true">
+                    <ShieldLockIcon size={20} />
+                  </div>
                   <div className="agrily-verify-benefit-title">Escrow Payout Settlement</div>
                   <p className="agrily-verify-benefit-desc">
                     Enable secure automated direct bank disbursements upon successful crop haulage delivery.
@@ -147,7 +229,9 @@ function PleaseVerifyEmailPage() {
                 </div>
 
                 <div className="agrily-verify-benefit-card">
-                  <span className="agrily-verify-benefit-icon">📈</span>
+                  <div className="agrily-verify-benefit-icon" aria-hidden="true">
+                    <TrendingUpIcon size={20} />
+                  </div>
                   <div className="agrily-verify-benefit-title">Wholesale Trade Access</div>
                   <p className="agrily-verify-benefit-desc">
                     Receive contract inquiries and bulk grain purchase orders from industrial food processors.
