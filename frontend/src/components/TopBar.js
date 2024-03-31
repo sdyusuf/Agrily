@@ -101,8 +101,8 @@ function TopBar({ logout }) {
               + List Produce
             </Nav.Link>
 
-            {/* Shopping Cart Trigger */}
-            {toggleCart && (
+            {/* Shopping Cart Trigger - Logged In Users Only */}
+            {user && toggleCart && (
               <button
                 type="button"
                 onClick={toggleCart}
@@ -151,81 +151,109 @@ function TopBar({ logout }) {
               </button>
             )}
 
-            {/* Notification Center Trigger */}
-            <NotificationCenter />
+            {/* Notification Center Trigger - Logged In Users Only */}
+            {user && <NotificationCenter />}
 
-            {/* Producer Profile Pill & Logout */}
-            <div
-              className="d-flex align-items-center"
-              style={{
-                gap: '0.85rem',
-                paddingLeft: '0.5rem',
-                borderLeft: '1px solid #e2e8f0'
-              }}
-            >
+            {/* Producer Profile Pill & Logout / Fallback */}
+            {user ? (
               <div
+                className="d-flex align-items-center"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem'
+                  gap: '0.85rem',
+                  paddingLeft: '0.5rem',
+                  borderLeft: '1px solid #e2e8f0'
                 }}
               >
                 <div
                   style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #1b4332, #2d6a4f)',
-                    color: '#ffffff',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: '700',
-                    fontSize: '0.875rem',
-                    boxShadow: '0 2px 6px rgba(27, 67, 50, 0.2)',
-                    flexShrink: 0
+                    gap: '0.65rem'
                   }}
-                  title={displayName}
                 >
-                  {initials}
-                </div>
-
-                <div className="d-none d-md-flex flex-column text-start">
-                  <span
+                  <div
                     style={{
-                      fontSize: '0.875rem',
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #1b4332, #2d6a4f)',
+                      color: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                       fontWeight: '700',
-                      color: '#0f172a',
-                      lineHeight: 1.2
+                      fontSize: '0.875rem',
+                      boxShadow: '0 2px 6px rgba(27, 67, 50, 0.2)',
+                      flexShrink: 0
                     }}
+                    title={displayName}
                   >
-                    {displayName}
-                  </span>
-                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
-                    {isVerified ? 'Verified Producer' : 'Producer Account'}
-                  </span>
-                </div>
-              </div>
+                    {initials}
+                  </div>
 
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="btn-agrily-outline"
-                style={{
-                  padding: '0.4rem 0.95rem',
-                  fontSize: '0.85rem',
-                  fontWeight: '600',
-                  color: '#475569',
-                  borderColor: '#cbd5e1',
-                  background: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                Logout
-              </button>
-            </div>
+                  <div className="d-none d-md-flex flex-column text-start">
+                    <span
+                      style={{
+                        fontSize: '0.875rem',
+                        fontWeight: '700',
+                        color: '#0f172a',
+                        lineHeight: 1.2
+                      }}
+                    >
+                      {displayName}
+                    </span>
+                    <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+                      {isVerified ? 'Verified Producer' : 'Producer Account'}
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="btn-agrily-outline"
+                  style={{
+                    padding: '0.4rem 0.95rem',
+                    fontSize: '0.85rem',
+                    fontWeight: '600',
+                    color: '#475569',
+                    borderColor: '#cbd5e1',
+                    background: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="d-flex align-items-center" style={{ gap: '0.75rem', marginLeft: '0.5rem' }}>
+                <Link
+                  to="/login"
+                  className="btn-agrily-outline"
+                  style={{
+                    textDecoration: 'none',
+                    padding: '0.45rem 1.1rem',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  Sign In
+                </Link>
+
+                <Link
+                  to="/register"
+                  className="btn-agrily-harvest"
+                  style={{
+                    textDecoration: 'none',
+                    padding: '0.45rem 1.15rem',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  Get Started
+                </Link>
+              </div>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

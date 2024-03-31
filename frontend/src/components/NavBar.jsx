@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { useCart } from '../state/CartContext';
 import NotificationCenter from './NotificationCenter';
+import { useUser } from '../auth/useUser';
 
 function NavBar() {
+  const user = useUser();
   let toggleCart = null;
   let totalItems = 0;
   try {
@@ -66,8 +68,8 @@ function NavBar() {
               Categories
             </Nav.Link>
 
-            {/* Cart Trigger Button */}
-            {toggleCart && (
+            {/* Cart Trigger Button - Logged In Users Only */}
+            {user && toggleCart && (
               <button
                 type="button"
                 onClick={toggleCart}
@@ -116,34 +118,50 @@ function NavBar() {
               </button>
             )}
 
-            {/* Notification Center Trigger */}
-            <NotificationCenter />
+            {/* Notification Center Trigger - Logged In Users Only */}
+            {user && <NotificationCenter />}
 
-            <div className="d-flex align-items-center" style={{ gap: '0.75rem', marginLeft: '0.5rem' }}>
-              <Link
-                to="/login"
-                className="btn-agrily-outline"
-                style={{
-                  textDecoration: 'none',
-                  padding: '0.45rem 1.1rem',
-                  fontSize: '0.9rem'
-                }}
-              >
-                Sign In
-              </Link>
+            {user ? (
+              <div className="d-flex align-items-center" style={{ gap: '0.75rem', marginLeft: '0.5rem' }}>
+                <Link
+                  to="/home"
+                  className="btn-agrily-harvest"
+                  style={{
+                    textDecoration: 'none',
+                    padding: '0.45rem 1.15rem',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  Dashboard &rarr;
+                </Link>
+              </div>
+            ) : (
+              <div className="d-flex align-items-center" style={{ gap: '0.75rem', marginLeft: '0.5rem' }}>
+                <Link
+                  to="/login"
+                  className="btn-agrily-outline"
+                  style={{
+                    textDecoration: 'none',
+                    padding: '0.45rem 1.1rem',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  Sign In
+                </Link>
 
-              <Link
-                to="/register"
-                className="btn-agrily-harvest"
-                style={{
-                  textDecoration: 'none',
-                  padding: '0.45rem 1.15rem',
-                  fontSize: '0.9rem'
-                }}
-              >
-                Get Started
-              </Link>
-            </div>
+                <Link
+                  to="/register"
+                  className="btn-agrily-harvest"
+                  style={{
+                    textDecoration: 'none',
+                    padding: '0.45rem 1.15rem',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  Get Started
+                </Link>
+              </div>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
