@@ -1,0 +1,329 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - EMAIL VERIFICATION LANDING STYLESHEET
+ * ==============================================================================
+ * 
+ * Aesthetic Architecture:
+ *  - Colors:
+ *      * Brand Emerald:  #1b4332, #2d6a4f, #52b788
+ *      * Harvest Ochre:  #bc6c25, #dda15e, #fefae0
+ *      * Neutral Slate:  #0f172a, #334155, #64748b, #cbd5e1
+ *      * Canvas Surface: #f8faf9, #ffffff
+ *  - Micro-interactions:
+ *      * Glowing emerald pulse ring, smooth button hover lifts, soft shadows
+ */
+
+.agrily-landing-verify-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8faf9;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(45, 106, 79, 0.05) 0px, transparent 50%),
+    radial-gradient(at 85% 85%, rgba(188, 108, 37, 0.05) 0px, transparent 50%);
+}
+
+.agrily-landing-verify-content {
+  flex: 1 0 auto;
+  padding: 3.5rem 1rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agrily-landing-verify-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 16px 48px rgba(27, 67, 50, 0.07);
+  padding: 3.25rem 2.5rem;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Elegant top gradient accent line */
+.agrily-landing-verify-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #1b4332, #2d6a4f, #52b788, #dda15e);
+}
+
+/* Glowing Icon Bubble */
+.agrily-landing-icon-wrap {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.agrily-landing-icon-wrap.success {
+  background: linear-gradient(135deg, rgba(82, 183, 136, 0.18), rgba(45, 106, 79, 0.22));
+  border: 2px solid rgba(45, 106, 79, 0.3);
+  color: #2d6a4f;
+  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.16);
+  animation: pulseEmerald 3s ease-in-out infinite;
+}
+
+.agrily-landing-icon-wrap.error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(188, 108, 37, 0.15));
+  border: 2px solid rgba(188, 108, 37, 0.35);
+  color: #bc6c25;
+  box-shadow: 0 8px 24px rgba(188, 108, 37, 0.14);
+}
+
+.agrily-landing-icon-wrap.loading {
+  background: linear-gradient(135deg, rgba(45, 106, 79, 0.1), rgba(82, 183, 136, 0.15));
+  border: 2px solid rgba(45, 106, 79, 0.2);
+  color: #2d6a4f;
+}
+
+@keyframes pulseEmerald {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 16px rgba(82, 183, 136, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(82, 183, 136, 0);
+  }
+}
+
+/* Badge Pill */
+.agrily-landing-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.agrily-landing-badge-pill.success {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.agrily-landing-badge-pill.error {
+  background-color: #fefae0;
+  color: #bc6c25;
+  border: 1px solid #dda15e;
+}
+
+.agrily-landing-badge-pill.loading {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+/* Title & Subtitle */
+.agrily-landing-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.agrily-landing-subtitle {
+  font-size: 1.02rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Benefits Grid */
+.agrily-landing-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.agrily-landing-benefit-card {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.15rem 1rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agrily-landing-benefit-card:hover {
+  transform: translateY(-2px);
+  border-color: #52b788;
+  box-shadow: 0 6px 16px rgba(45, 106, 79, 0.08);
+}
+
+.agrily-landing-benefit-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.agrily-landing-benefit-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin-bottom: 0.25rem;
+}
+
+.agrily-landing-benefit-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Action Button Group */
+.agrily-landing-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.agrily-landing-btn-primary {
+  background: linear-gradient(135deg, #1b4332, #2d6a4f);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(27, 67, 50, 0.2);
+}
+
+.agrily-landing-btn-primary:hover {
+  background: linear-gradient(135deg, #143326, #1b4332);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 67, 50, 0.3);
+}
+
+.agrily-landing-btn-secondary {
+  background-color: #ffffff;
+  color: #1b4332 !important;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agrily-landing-btn-secondary:hover {
+  border-color: #2d6a4f;
+  background-color: #f8faf9;
+  transform: translateY(-2px);
+}
+
+/* Error Checklist Box */
+.agrily-landing-error-box {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.agrily-landing-error-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #bc6c25;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agrily-landing-error-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+  color: #78350f;
+  line-height: 1.6;
+}
+
+/* Loading Pulse Spinner */
+.agrily-landing-spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(45, 106, 79, 0.15);
+  border-top-color: #2d6a4f;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .agrily-landing-verify-card {
+    padding: 2.25rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .agrily-landing-title {
+    font-size: 1.7rem;
+  }
+
+  .agrily-landing-benefits {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .agrily-landing-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .agrily-landing-btn-primary,
+  .agrily-landing-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
