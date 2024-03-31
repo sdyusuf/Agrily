@@ -70,6 +70,8 @@ function createEmailTransporter() {
   });
 }
 
+const { renderEmailShell } = require('./emailTemplate');
+
 /**
  * Pure template generator for agricultural notification emails.
  * Generates both HTML and fallback plain-text content.
@@ -80,6 +82,7 @@ function createEmailTransporter() {
  * @returns {{ subject: string, text: string, html: string }}
  */
 function buildOrderEmailContent(templateType, order = {}) {
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
   const orderRef = order.orderNumber || order._id || 'AGR-REF';
   const total = Number(order.totalAmount || 0).toLocaleString('en-NG', { style: 'currency', currency: 'NGN' });
   const buyerName = order.buyerName || 'Valued Commercial Buyer';
@@ -93,88 +96,201 @@ function buildOrderEmailContent(templateType, order = {}) {
 
   const itemsListHtml = (order.items || [])
     .map(it => `<tr>
-      <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">${it.name}</td>
-      <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; text-align: center;">${it.quantity} ${it.unit || 'unit'}</td>
-      <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; text-align: right;">NGN ${Number(it.price || 0).toLocaleString()}</td>
+      <td style="padding: 10px 14px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 600; color: #0f172a;">${it.name}</td>
+      <td style="padding: 10px 14px; border-bottom: 1px solid #e2e8f0; text-align: center; font-size: 14px; color: #475569;">${it.quantity} ${it.unit || 'unit'}</td>
+      <td style="padding: 10px 14px; border-bottom: 1px solid #e2e8f0; text-align: right; font-size: 14px; font-weight: 600; color: #1b4332;">NGN ${Number(it.price || 0).toLocaleString()}</td>
     </tr>`)
     .join('');
 
   switch (templateType) {
-    case 'NEW_ORDER_FARMER':
-      return {
-        subject: `[Agrily Action Required] New Produce Order Received: ${orderRef}`,
-        text: `Hello Producer,\n\nYou have received a new produce procurement order on Agrily!\n\nOrder Reference: ${orderRef}\nBuyer: ${buyerName}\nDrop-off Destination: ${street}, ${city}, ${state}\nTotal Value: ${total}\n\nProduce Items Requested:\n${itemsListText}\n\nPlease log in to your Agrily dashboard to confirm harvest allocation and initiate dispatch packaging.\n\nBest regards,\nAgrily Agricultural Operations Team`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a; line-height: 1.6;">
-            <div style="background-color: #1b4332; padding: 24px; border-radius: 12px 12px 0 0; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🌾 New Produce Order Received</h1>
-              <p style="color: #dda15e; margin: 8px 0 0 0; font-size: 14px;">Consignment Reference: <strong>${orderRef}</strong></p>
-            </div>
-            <div style="background-color: #ffffff; padding: 24px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 12px 12px;">
-              <p>Hello Producer,</p>
-              <p>A buyer has placed an agricultural procurement request for your listed harvest batches.</p>
-              <div style="background-color: #f8faf9; border-radius: 8px; padding: 16px; margin: 20px 0;">
-                <p style="margin: 0 0 8px 0;"><strong>Buyer:</strong> ${buyerName}</p>
-                <p style="margin: 0 0 8px 0;"><strong>Freight Drop-off:</strong> ${street}, ${city}, ${state}</p>
-                <p style="margin: 0;"><strong>Total Valuation:</strong> <span style="color: #2d6a4f; font-weight: bold;">${total}</span></p>
-              </div>
-              <h3 style="color: #1b4332; margin-bottom: 12px;">Produce Items:</h3>
-              <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-                <thead>
-                  <tr style="background-color: #f1f5f9; text-align: left;">
-                    <th style="padding: 8px 12px;">Crop</th>
-                    <th style="padding: 8px 12px; text-align: center;">Quantity</th>
-                    <th style="padding: 8px 12px; text-align: right;">Price</th>
-                  </tr>
-                </thead>
-                <tbody>${itemsListHtml}</tbody>
-              </table>
-              <p style="font-size: 14px; color: #64748b;">Please log in to your Agrily dashboard to review harvest availability and confirm order allocation.</p>
-            </div>
-          </div>
-        `
-      };
+    case 'NEW_ORDER_FARMER': {
+      const subject = `[Agrily Action Required] New Produce Order Received: ${orderRef}`;
+      const text = `Hello Producer,\n\nYou have received a new produce procurement order on Agrily!\n\nOrder Reference: ${orderRef}\nBuyer: ${buyerName}\nDrop-off Destination: ${street}, ${city}, ${state}\nTotal Value: ${total}\n\nProduce Items Requested:\n${itemsListText}\n\nPlease log in to your Agrily dashboard to confirm harvest allocation and initiate dispatch packaging.\n\nBest regards,\nAgrily Agricultural Operations Team`;
 
-    case 'ORDER_IN_TRANSIT':
-      return {
-        subject: `[Agrily Dispatch Alert] Your Produce is In Transit: ${orderRef}`,
-        text: `Hello ${buyerName},\n\nGreat news! Your agricultural produce consignment has been packed, verified, and loaded onto freight transit.\n\nOrder Reference: ${orderRef}\nDestination: ${street}, ${city}, ${state}\nExpected Delivery: 2 - 4 Business Days\n\nProduce Items In Transit:\n${itemsListText}\n\nYour payment remains safe in Agrily Escrow until you inspect produce quality upon delivery.\n\nBest regards,\nAgrily Agricultural Operations Team`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a; line-height: 1.6;">
-            <div style="background-color: #2d6a4f; padding: 24px; border-radius: 12px 12px 0 0; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🚚 Consignment Dispatched</h1>
-              <p style="color: #dda15e; margin: 8px 0 0 0; font-size: 14px;">Waybill Reference: <strong>${orderRef}</strong></p>
-            </div>
-            <div style="background-color: #ffffff; padding: 24px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 12px 12px;">
-              <p>Hello ${buyerName},</p>
-              <p>Your agricultural produce order has been verified at the farm gate and loaded onto dispatch transport.</p>
-              <div style="background-color: #f8faf9; border-radius: 8px; padding: 16px; margin: 20px 0;">
-                <p style="margin: 0 0 8px 0;"><strong>Drop-off Location:</strong> ${street}, ${city}, ${state}</p>
-                <p style="margin: 0;"><strong>Expected Delivery:</strong> <span style="color: #2d6a4f; font-weight: bold;">2 - 4 Business Days</span></p>
+      const graphicHtml = `
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: linear-gradient(135deg, #f0fdf4 0%, #d8f3dc 100%); border: 1px solid #bbf7d0; border-radius: 14px; padding: 22px; text-align: center;">
+          <tr>
+            <td align="center">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); border-radius: 50%; margin: 0 auto 12px auto; line-height: 60px; text-align: center; box-shadow: 0 4px 16px rgba(45, 106, 79, 0.25);">
+                <span style="font-size: 28px; line-height: 60px; display: inline-block;">🌾</span>
               </div>
-              <p style="font-size: 14px; color: #64748b;">🛡️ <strong>Agrily Escrow Protection:</strong> Your funds are held securely and will only be released to the producer once you inspect crop freshness at destination.</p>
-            </div>
-          </div>
-        `
-      };
+              <div style="font-size: 16px; font-weight: 800; color: #1b4332; margin-bottom: 4px;">
+                Produce Consignment Order Confirmed
+              </div>
+              <div style="font-size: 13px; color: #2d6a4f;">
+                Consignment Reference: <strong>${orderRef}</strong> &bull; Total Valuation: <strong>${total}</strong>
+              </div>
+            </td>
+          </tr>
+        </table>
+      `;
 
-    case 'ORDER_DELIVERED':
-      return {
-        subject: `[Agrily Completed] Produce Delivered & Accepted: ${orderRef}`,
-        text: `Hello,\n\nOrder ${orderRef} has been officially marked as Delivered and quality verified at destination.\n\nThank you for choosing Agrily for verified direct-from-farm procurement!\n\nBest regards,\nAgrily Team`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a; line-height: 1.6;">
-            <div style="background-color: #1b4332; padding: 24px; border-radius: 12px 12px 0 0; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">📦 Delivery Completed</h1>
-              <p style="color: #52b788; margin: 8px 0 0 0; font-size: 14px;">Order ${orderRef}</p>
-            </div>
-            <div style="background-color: #ffffff; padding: 24px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 12px 12px;">
-              <p>Produce consignment has been delivered and accepted.</p>
-              <p>Funds are now released to the producer from Agrily Escrow.</p>
-            </div>
-          </div>
-        `
-      };
+      const contentHtml = `
+        <p>Hello Producer,</p>
+        <p>A buyer has placed an agricultural procurement request for your listed harvest batches.</p>
+
+        <div style="background-color: #f8faf9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin: 20px 0;">
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td style="padding-bottom: 8px; font-size: 14px; color: #475569;">
+                <strong style="color: #0f172a;">Buyer:</strong> ${buyerName}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 8px; font-size: 14px; color: #475569;">
+                <strong style="color: #0f172a;">Freight Drop-off:</strong> ${street}, ${city}, ${state}
+              </td>
+            </tr>
+            <tr>
+              <td style="font-size: 14px; color: #475569;">
+                <strong style="color: #0f172a;">Total Valuation:</strong> <span style="color: #2d6a4f; font-weight: 800; font-size: 16px;">${total}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 style="color: #1b4332; font-size: 16px; font-weight: 700; margin: 24px 0 12px 0;">Produce Items:</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background-color: #f1f5f9; text-align: left;">
+              <th style="padding: 10px 14px; font-size: 13px; font-weight: 700; color: #1b4332; border-bottom: 1px solid #e2e8f0;">Crop</th>
+              <th style="padding: 10px 14px; font-size: 13px; font-weight: 700; color: #1b4332; text-align: center; border-bottom: 1px solid #e2e8f0;">Quantity</th>
+              <th style="padding: 10px 14px; font-size: 13px; font-weight: 700; color: #1b4332; text-align: right; border-bottom: 1px solid #e2e8f0;">Price</th>
+            </tr>
+          </thead>
+          <tbody>${itemsListHtml}</tbody>
+        </table>
+
+        <p style="font-size: 14px; color: #64748b; line-height: 1.5;">Please log in to your Agrily dashboard to review harvest availability and confirm order allocation.</p>
+      `;
+
+      const html = renderEmailShell({
+        preheader: `New Order ${orderRef} - ${total} from ${buyerName}`,
+        badge: '🌾 New Produce Order Received',
+        badgeColor: '#1b4332',
+        headline: `New Produce Order: ${orderRef}`,
+        subheadline: `A verified buyer has requested produce allocation from your harvest inventory.`,
+        graphicHtml,
+        contentHtml,
+        ctaText: 'Review Order in Dashboard',
+        ctaUrl: `${frontendUrl}/orders`,
+        showTrustPillars: true
+      });
+
+      return { subject, text, html };
+    }
+
+    case 'ORDER_IN_TRANSIT': {
+      const subject = `[Agrily Dispatch Alert] Your Produce is In Transit: ${orderRef}`;
+      const text = `Hello ${buyerName},\n\nGreat news! Your agricultural produce consignment has been packed, verified, and loaded onto freight transit.\n\nOrder Reference: ${orderRef}\nDestination: ${street}, ${city}, ${state}\nExpected Delivery: 2 - 4 Business Days\n\nProduce Items In Transit:\n${itemsListText}\n\nYour payment remains safe in Agrily Escrow until you inspect produce quality upon delivery.\n\nBest regards,\nAgrily Agricultural Operations Team`;
+
+      const graphicHtml = `
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1px solid #bfdbfe; border-radius: 14px; padding: 22px; text-align: center;">
+          <tr>
+            <td align="center">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); border-radius: 50%; margin: 0 auto 12px auto; line-height: 60px; text-align: center; box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);">
+                <span style="font-size: 28px; line-height: 60px; display: inline-block;">🚚</span>
+              </div>
+              <div style="font-size: 16px; font-weight: 800; color: #1e3a8a; margin-bottom: 4px;">
+                Consignment Loaded & In Transit
+              </div>
+              <div style="font-size: 13px; color: #1e40af;">
+                Waybill Reference: <strong>${orderRef}</strong> &bull; Expected Delivery: <strong>2 - 4 Business Days</strong>
+              </div>
+            </td>
+          </tr>
+        </table>
+      `;
+
+      const contentHtml = `
+        <p>Hello ${buyerName},</p>
+        <p>Your agricultural produce order has been verified at the farm gate and loaded onto dispatch transport.</p>
+
+        <div style="background-color: #f8faf9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin: 20px 0;">
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td style="padding-bottom: 8px; font-size: 14px; color: #475569;">
+                <strong style="color: #0f172a;">Drop-off Location:</strong> ${street}, ${city}, ${state}
+              </td>
+            </tr>
+            <tr>
+              <td style="font-size: 14px; color: #475569;">
+                <strong style="color: #0f172a;">Expected Delivery:</strong> <span style="color: #2d6a4f; font-weight: 800; font-size: 15px;">2 - 4 Business Days</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 14px 18px; border-radius: 6px; margin: 20px 0;">
+          <p style="margin: 0; font-size: 13px; color: #065f46; line-height: 1.5;">
+            🛡️ <strong>Agrily Escrow Protection:</strong> Your funds are held securely and will only be released to the producer once you inspect crop freshness at destination.
+          </p>
+        </div>
+      `;
+
+      const html = renderEmailShell({
+        preheader: `Consignment ${orderRef} is in transit to ${city}. Expected delivery in 2 - 4 Business Days.`,
+        badge: '🚚 Dispatch & Haulage Alert',
+        badgeColor: '#1d4ed8',
+        headline: `Consignment Dispatched: ${orderRef}`,
+        subheadline: `Produce has been verified at the farm gate and dispatched for delivery.`,
+        graphicHtml,
+        contentHtml,
+        ctaText: 'Track Consignment Waybill',
+        ctaUrl: `${frontendUrl}/orders`,
+        showTrustPillars: true
+      });
+
+      return { subject, text, html };
+    }
+
+    case 'ORDER_DELIVERED': {
+      const subject = `[Agrily Completed] Produce Delivered & Accepted: ${orderRef}`;
+      const text = `Hello,\n\nOrder ${orderRef} has been officially marked as Delivered and quality verified at destination.\n\nThank you for choosing Agrily for verified direct-from-farm procurement!\n\nBest regards,\nAgrily Team`;
+
+      const graphicHtml = `
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #86efac; border-radius: 14px; padding: 22px; text-align: center;">
+          <tr>
+            <td align="center">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); border-radius: 50%; margin: 0 auto 12px auto; line-height: 60px; text-align: center; box-shadow: 0 4px 16px rgba(45, 106, 79, 0.25);">
+                <span style="font-size: 28px; line-height: 60px; display: inline-block;">📦</span>
+              </div>
+              <div style="font-size: 16px; font-weight: 800; color: #14532d; margin-bottom: 4px;">
+                Delivery Confirmed & Quality Verified
+              </div>
+              <div style="font-size: 13px; color: #166534;">
+                Order: <strong>${orderRef}</strong> &bull; Escrow Settlement Complete
+              </div>
+            </td>
+          </tr>
+        </table>
+      `;
+
+      const contentHtml = `
+        <p>Produce consignment has been delivered and accepted.</p>
+        <p>Funds are now released to the producer from Agrily Escrow.</p>
+        <div style="background-color: #f8faf9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin: 20px 0;">
+          <p style="margin: 0; font-size: 14px; color: #334155; line-height: 1.6;">
+            Thank you for participating in Nigeria's trusted direct-from-farm supply chain. All consignment quality standards have been satisfied.
+          </p>
+        </div>
+      `;
+
+      const html = renderEmailShell({
+        preheader: `Order ${orderRef} has been delivered and accepted. Escrow settlement finalized.`,
+        badge: '📦 Delivery Completed & Settled',
+        badgeColor: '#166534',
+        headline: `Delivery Completed: ${orderRef}`,
+        subheadline: `Produce consignment has been verified at destination and escrow funds disbursed.`,
+        graphicHtml,
+        contentHtml,
+        ctaText: 'View Order Receipt',
+        ctaUrl: `${frontendUrl}/orders`,
+        showTrustPillars: true
+      });
+
+      return { subject, text, html };
+    }
 
     default:
       return {

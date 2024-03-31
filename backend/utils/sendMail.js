@@ -17,7 +17,8 @@
 
 const https = require('https');
 const nodemailer = require('nodemailer');
-require('dotenv/config');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 /**
  * Dispatches an email via Brevo REST API v3.
@@ -101,6 +102,12 @@ function sendViaBrevo({ to, name = 'Valued User', subject, text, html }) {
   });
 }
 
+const {
+  renderEmailShell,
+  buildVerificationEmail,
+  buildPasswordResetEmail
+} = require('./emailTemplate');
+
 /**
  * Sends an email verification link to a newly registered user.
  * 
@@ -113,24 +120,19 @@ async function sendMail(email, verificationString) {
   const verifyUrl = `${frontendUrl}/verify/${verificationString}`;
   const subject = 'Agrily - Verify your email address';
   const text = `
-    Welcome to Agrily!
-    Please verify your email address to activate your produce marketplace account:
-    ${verifyUrl}
-  `;
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px;">
-      <h2 style="color: #1b4332; margin-top: 0;">Welcome to Agrily!</h2>
-      <p style="color: #475569; font-size: 15px; line-height: 1.5;">
-        Thank you for joining Nigeria's verified agricultural marketplace and provenance platform.
-      </p>
-      <div style="margin: 28px 0; text-align: center;">
-        <a href="${verifyUrl}" style="background-color: #2d6a4f; color: #ffffff; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
-          Verify Email Address
-        </a>
-      </div>
-      <p style="color: #64748b; font-size: 13px;">Or copy and paste this link into your browser: <br/>${verifyUrl}</p>
-    </div>
-  `;
+Welcome to Agrily!
+
+Please verify your email address to activate your produce marketplace account:
+${verifyUrl}
+
+This link is valid for 48 hours. If you did not create an account, you can ignore this email.
+
+Best regards,
+The Agrily Team
+https://agrily.com
+`;
+
+  const html = buildVerificationEmail({ verifyUrl, email });
 
   if (process.env.BREVO_API_KEY) {
     try {
@@ -179,13 +181,40 @@ async function sendMail(email, verificationString) {
  * @returns {Promise<Object>}
  */
 async function sendMailFull(destination, subject, text, code = '') {
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
   const fullText = code ? `${text} ${code}` : text;
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px;">
-      <h2 style="color: #1b4332; margin-top: 0;">${subject}</h2>
-      <p style="color: #334155; font-size: 15px; line-height: 1.6;">${fullText}</p>
-    </div>
-  `;
+
+  const isPasswordReset = subject.toLowerCase().includes('password') || text.toLowerCase().includes('password');
+
+  let html;
+  if (isPasswordReset) {
+    let resetUrl = '';
+    if (code && code.length > 10) {
+      resetUrl = `${frontendUrl}/reset-password/${code}`;
+    } else {
+      const match = fullText.match(/https?:\/\/[^\s]+/);
+      resetUrl = match ? match[0] : `${frontendUrl}/reset-password`;
+    }
+    html = buildPasswordResetEmail({ resetUrl, email: destination });
+  } else {
+    html = renderEmailShell({
+      preheader: subject,
+      badge: '📢 Account Notification',
+      badgeColor: '#1b4332',
+      headline: subject,
+      subheadline: 'Official communication from the Agrily Agricultural Platform',
+      contentHtml: `
+        <div style="background-color: #f8faf9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin: 16px 0;">
+          <p style="margin: 0; color: #334155; font-size: 15px; line-height: 1.65;">
+            ${fullText.replace(/\n/g, '<br/>')}
+          </p>
+        </div>
+      `,
+      ctaText: 'Visit Agrily Marketplace',
+      ctaUrl: `${frontendUrl}/home`,
+      showTrustPillars: true
+    });
+  }
 
   if (process.env.BREVO_API_KEY) {
     try {

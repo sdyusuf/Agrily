@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/productModel.test.js && node tests/multerConfig.test.js && node tests/marketplace.test.js && node tests/orderModel.test.js && node tests/orderRoutes.test.js && node tests/analytics.test.js && node tests/emailService.test.js && node tests/userProfileModel.test.js && node tests/userRoutes.test.js",
+    "test": "node tests/productModel.test.js && node tests/multerConfig.test.js && node tests/marketplace.test.js && node tests/orderModel.test.js && node tests/orderRoutes.test.js && node tests/analytics.test.js && node tests/emailService.test.js && node tests/userProfileModel.test.js && node tests/userRoutes.test.js && node tests/emailTemplate.test.js",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
