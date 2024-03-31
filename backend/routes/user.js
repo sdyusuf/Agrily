@@ -391,10 +391,11 @@ router.put('/api/forgot-password/:email', async (req, res) => {
 
   if (result.modifiedCount > 0) {
     try {
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
       await sendMailFull(
         email,
         'Agrily - Reset your password',
-        `To reset your password click this link http://localhost:3000/reset-password/`,
+        `To reset your password click this link ${frontendUrl}/reset-password/`,
         passwordResetCode
       );
     } catch (e) {
