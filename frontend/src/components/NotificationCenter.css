@@ -1,0 +1,397 @@
+/**
+ * ============================================================================
+ * AGRILY AGRICULTURAL DESIGN SYSTEM
+ * Notification Center & Bell Stylesheet
+ * ============================================================================
+ * 
+ * Provides responsive floating dropdown styles, category bubbles,
+ * unread badges, filter tabs, and dismiss controls.
+ */
+
+:root {
+  --notif-emerald-dark: #1b4332;
+  --notif-emerald: #2d6a4f;
+  --notif-emerald-light: #52b788;
+  --notif-emerald-bg: #d8f3dc;
+  --notif-ochre: #bc6c25;
+  --notif-ochre-light: #dda15e;
+  --notif-ochre-bg: #fefae0;
+  --notif-slate-900: #0f172a;
+  --notif-slate-700: #334155;
+  --notif-slate-500: #64748b;
+  --notif-slate-200: #e2e8f0;
+  --notif-surface: #f8faf9;
+  --notif-white: #ffffff;
+  --notif-shadow: 0 10px 30px -5px rgba(27, 67, 50, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --notif-transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agrily-notification-wrapper {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   BELL TRIGGER BUTTON
+   ------------------------------------------------------------------------- */
+.notification-bell-btn {
+  background: none;
+  border: 1px solid var(--notif-slate-200);
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--notif-emerald-dark);
+  position: relative;
+  transition: var(--notif-transition);
+}
+
+.notification-bell-btn:hover {
+  background-color: var(--notif-surface);
+  border-color: var(--notif-emerald-light);
+  transform: translateY(-1px);
+}
+
+.notification-bell-btn.bell-active {
+  background-color: var(--notif-emerald-bg);
+  border-color: var(--notif-emerald);
+  color: var(--notif-emerald-dark);
+}
+
+.bell-icon {
+  transition: transform 0.2s ease;
+}
+
+.notification-bell-btn:hover .bell-icon {
+  transform: rotate(12deg);
+}
+
+/* Unread Counter Badge */
+.notification-badge-counter {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--notif-ochre);
+  color: var(--notif-white);
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(188, 108, 37, 0.35);
+  animation: pulseBadge 2s infinite;
+}
+
+@keyframes pulseBadge {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   FLOATING NOTIFICATION PANEL
+   ------------------------------------------------------------------------- */
+.notification-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 380px;
+  max-width: 90vw;
+  background-color: var(--notif-white);
+  border: 1px solid var(--notif-slate-200);
+  border-radius: 14px;
+  box-shadow: var(--notif-shadow);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: dropdownFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   HEADER & FILTER TABS
+   ------------------------------------------------------------------------- */
+.notification-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--notif-slate-200);
+  background-color: var(--notif-surface);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--notif-emerald-dark);
+  margin: 0;
+}
+
+.unread-pill-indicator {
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  background-color: var(--notif-ochre-bg);
+  color: var(--notif-ochre);
+  border: 1px solid var(--notif-ochre-light);
+  border-radius: 9999px;
+}
+
+.btn-mark-all-read {
+  background: none;
+  border: none;
+  color: var(--notif-emerald);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--notif-transition);
+}
+
+.btn-mark-all-read:hover {
+  color: var(--notif-emerald-dark);
+  text-decoration: underline;
+}
+
+/* Filter Tabs */
+.notification-filter-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background-color: var(--notif-white);
+  border-bottom: 1px solid var(--notif-slate-200);
+  overflow-x: auto;
+}
+
+.filter-tab-btn {
+  background: none;
+  border: 1px solid transparent;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--notif-slate-500);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--notif-transition);
+}
+
+.filter-tab-btn:hover {
+  background-color: var(--notif-surface);
+  color: var(--notif-slate-700);
+}
+
+.filter-tab-btn.tab-active {
+  background-color: var(--notif-emerald-bg);
+  color: var(--notif-emerald-dark);
+  font-weight: 700;
+  border-color: rgba(45, 106, 79, 0.2);
+}
+
+/* -------------------------------------------------------------------------
+   NOTIFICATION ITEMS LIST
+   ------------------------------------------------------------------------- */
+.notification-items-list {
+  max-height: 380px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.notification-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-title {
+  margin: 10px 0 4px 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--notif-slate-700);
+}
+
+.empty-desc {
+  margin: 0;
+  font-size: 0.825rem;
+  color: var(--notif-slate-500);
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: var(--notif-transition);
+  position: relative;
+}
+
+.notification-item:hover {
+  background-color: var(--notif-surface);
+}
+
+.notification-item.item-unread {
+  background-color: #f7fdf9;
+}
+
+.notification-item.item-unread::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  background-color: var(--notif-emerald);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Category Bubbles */
+.notif-icon-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--notif-transition);
+}
+
+.bubble-order {
+  background-color: var(--notif-emerald-bg);
+  color: var(--notif-emerald-dark);
+}
+
+.bubble-escrow {
+  background-color: var(--notif-ochre-bg);
+  color: var(--notif-ochre);
+}
+
+.bubble-verification {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.bubble-inventory {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.notif-content-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.notif-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--notif-slate-900);
+  line-height: 1.25;
+}
+
+.notif-time {
+  font-size: 0.725rem;
+  color: var(--notif-slate-500);
+  white-space: nowrap;
+}
+
+.notif-message {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--notif-slate-700);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notif-dismiss-btn {
+  background: none;
+  border: none;
+  color: var(--notif-slate-500);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  opacity: 0.6;
+  transition: var(--notif-transition);
+}
+
+.notif-dismiss-btn:hover {
+  opacity: 1;
+  color: #dc2626;
+  transform: scale(1.15);
+}
+
+/* -------------------------------------------------------------------------
+   FOOTER
+   ------------------------------------------------------------------------- */
+.notification-panel-footer {
+  padding: 8px 16px;
+  border-top: 1px solid var(--notif-slate-200);
+  background-color: var(--notif-surface);
+  text-align: center;
+}
+
+.footer-status-text {
+  font-size: 0.725rem;
+  color: var(--notif-slate-500);
+}
+
+/* -------------------------------------------------------------------------
+   RESPONSIVE MOBILE
+   ------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .notification-dropdown-panel {
+    position: fixed;
+    top: 60px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+  }
+}

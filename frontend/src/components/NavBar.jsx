@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { useCart } from '../state/CartContext';
+import NotificationCenter from './NotificationCenter';
 
 function NavBar() {
   let toggleCart = null;
@@ -114,6 +115,9 @@ function NavBar() {
                 )}
               </button>
             )}
+
+            {/* Notification Center Trigger */}
+            <NotificationCenter />
 
             <div className="d-flex align-items-center" style={{ gap: '0.75rem', marginLeft: '0.5rem' }}>
               <Link
