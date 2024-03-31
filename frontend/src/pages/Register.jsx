@@ -45,7 +45,7 @@ function Register() {
 
       const { token } = response.data;
       if (token) setToken(token);
-      navigate('/verify-email');
+      navigate('/verify-email', { state: { email } });
     } catch (err) {
       setIsSubmitting(false);
       const serverMessage =

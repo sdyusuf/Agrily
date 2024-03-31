@@ -345,6 +345,42 @@ router.put('/verify', async (req, res) => {
   });
 });
 
+/**
+ * Resend verification email endpoint
+ */
+router.post('/api/resend-verification', async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ success: false, message: 'Email address is required' });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'No account registered with this email address' });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({ success: false, message: 'This account has already been verified' });
+    }
+
+    let verificationString = user.verificationString;
+    if (!verificationString) {
+      verificationString = uuidv4();
+      user.verificationString = verificationString;
+      await user.save();
+    }
+
+    await sendMail(email, verificationString);
+    res.status(200).json({ success: true, message: 'Verification link has been sent to your email' });
+  } catch (err) {
+    console.error('Resend verification error:', err);
+    res.status(500).json({ success: false, message: 'Unable to resend email at this time. Please retry.' });
+  }
+});
+
 router.put('/api/forgot-password/:email', async (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   const { email } = req.params;

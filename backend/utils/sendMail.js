@@ -109,7 +109,8 @@ function sendViaBrevo({ to, name = 'Valued User', subject, text, html }) {
  * @returns {Promise<Object>}
  */
 async function sendMail(email, verificationString) {
-  const verifyUrl = `http://localhost:3000/verify/${verificationString}`;
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
+  const verifyUrl = `${frontendUrl}/verify/${verificationString}`;
   const subject = 'Agrily - Verify your email address';
   const text = `
     Welcome to Agrily!

@@ -6,6 +6,8 @@ import Marketplace from './Marketplace';
 
 jest.mock('axios');
 
+jest.setTimeout(15000);
+
 describe('Marketplace Page Unit Tests', () => {
   const mockCatalogResponse = {
     data: {

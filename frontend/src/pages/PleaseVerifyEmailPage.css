@@ -1,0 +1,338 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - EMAIL VERIFICATION PAGE STYLESHEET
+ * ==============================================================================
+ * 
+ * Aesthetic Architecture:
+ *  - Colors:
+ *      * Brand Emerald:  #1b4332, #2d6a4f, #52b788
+ *      * Harvest Ochre:  #bc6c25, #dda15e, #fefae0
+ *      * Neutral Slate:  #0f172a, #334155, #64748b, #cbd5e1
+ *      * Canvas Surface: #f8faf9, #ffffff
+ *  - Micro-interactions:
+ *      * Glowing emerald pulse ring, smooth hover lift, soft shadows
+ */
+
+.agrily-verify-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8faf9;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(45, 106, 79, 0.05) 0px, transparent 50%),
+    radial-gradient(at 85% 85%, rgba(188, 108, 37, 0.05) 0px, transparent 50%);
+}
+
+.agrily-verify-content {
+  flex: 1 0 auto;
+  padding: 3rem 1rem 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agrily-verify-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 16px 48px rgba(27, 67, 50, 0.07);
+  padding: 3rem 2.5rem;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Subtle top emerald accent line */
+.agrily-verify-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #1b4332, #2d6a4f, #52b788, #dda15e);
+}
+
+/* Floating Shield Icon with Pulse */
+.agrily-verify-icon-wrap {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(82, 183, 136, 0.15), rgba(45, 106, 79, 0.2));
+  border: 2px solid rgba(45, 106, 79, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d6a4f;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.15);
+  animation: pulseShield 3s ease-in-out infinite;
+}
+
+@keyframes pulseShield {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.4);
+  }
+  70% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 16px rgba(82, 183, 136, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(82, 183, 136, 0);
+  }
+}
+
+.agrily-verify-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #fefae0;
+  color: #bc6c25;
+  border: 1px solid #dda15e;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.agrily-verify-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.agrily-verify-subtitle {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.agrily-email-chip {
+  display: inline-block;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+  word-break: break-all;
+}
+
+/* Feature Benefits Row */
+.agrily-verify-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.agrily-verify-benefit-card {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.15rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.agrily-verify-benefit-card:hover {
+  transform: translateY(-2px);
+  border-color: #52b788;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.06);
+}
+
+.agrily-verify-benefit-icon {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.agrily-verify-benefit-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin-bottom: 0.25rem;
+}
+
+.agrily-verify-benefit-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Manual Code Verification Box */
+.agrily-verify-code-box {
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.75rem 0 1.25rem;
+  text-align: left;
+}
+
+.agrily-verify-code-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agrily-verify-code-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-bottom: 0.85rem;
+}
+
+.agrily-verify-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.agrily-verify-input {
+  flex: 1;
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  font-family: monospace;
+}
+
+.agrily-verify-input:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.agrily-verify-submit-btn {
+  background-color: #2d6a4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.agrily-verify-submit-btn:hover:not(:disabled) {
+  background-color: #1b4332;
+  transform: translateY(-1px);
+}
+
+.agrily-verify-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Resend Action Section */
+.agrily-verify-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.agrily-resend-btn {
+  background-color: transparent;
+  color: #2d6a4f;
+  border: 1.5px solid #2d6a4f;
+  border-radius: 10px;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agrily-resend-btn:hover:not(:disabled) {
+  background-color: #2d6a4f;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+}
+
+.agrily-resend-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #cbd5e1;
+  color: #94a3b8;
+}
+
+/* Help Checklist */
+.agrily-verify-checklist {
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.agrily-verify-checklist-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.agrily-verify-checklist ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .agrily-verify-card {
+    padding: 2rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .agrily-verify-title {
+    font-size: 1.65rem;
+  }
+
+  .agrily-verify-benefits {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .agrily-verify-input-group {
+    flex-direction: column;
+  }
+
+  .agrily-verify-submit-btn {
+    width: 100%;
+  }
+}
