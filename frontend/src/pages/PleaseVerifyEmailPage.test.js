@@ -60,7 +60,7 @@ describe('PleaseVerifyEmailPage Component Unit Tests', () => {
 
     // Verify checklist instructions
     expect(screen.getByText(/didn't receive your verification email\?/i)).toBeInTheDocument();
-    expect(screen.getByText(/yusuf7samaila@gmail\.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/yusuf\.hilside@gmail\.com/i)).toBeInTheDocument();
 
     // Ensure it does not redirect after 5 seconds
     act(() => {

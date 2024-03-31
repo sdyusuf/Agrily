@@ -11,7 +11,7 @@
  * 
  * Sourced configuration:
  *  - Provider: Brevo (api.brevo.com/v3/smtp/email)
- *  - Verified Sender Email: yusuf7samaila@gmail.com
+ *  - Verified Sender Email: yusuf.hilside@gmail.com
  *  - Sender Name: Agrily
  */
 
@@ -33,7 +33,7 @@ require('dotenv/config');
 function sendViaBrevo({ to, name = 'Valued User', subject, text, html }) {
   return new Promise((resolve, reject) => {
     const apiKey = process.env.BREVO_API_KEY;
-    const senderEmail = process.env.BREVO_SENDER_EMAIL || 'yusuf7samaila@gmail.com';
+    const senderEmail = process.env.BREVO_SENDER_EMAIL || 'yusuf.hilside@gmail.com';
     const senderName = process.env.BREVO_SENDER_NAME || 'Agrily';
 
     if (!apiKey) {
@@ -151,7 +151,7 @@ async function sendMail(email, verificationString) {
     });
 
     const mailOptions = {
-      from: process.env.BREVO_SENDER_EMAIL || 'yusuf7samaila@gmail.com',
+      from: process.env.BREVO_SENDER_EMAIL || 'yusuf.hilside@gmail.com',
       to: email,
       subject,
       text,
@@ -205,7 +205,7 @@ async function sendMailFull(destination, subject, text, code = '') {
     });
 
     const mailOptions = {
-      from: process.env.BREVO_SENDER_EMAIL || 'yusuf7samaila@gmail.com',
+      from: process.env.BREVO_SENDER_EMAIL || 'yusuf.hilside@gmail.com',
       to: destination,
       subject,
       text: fullText,

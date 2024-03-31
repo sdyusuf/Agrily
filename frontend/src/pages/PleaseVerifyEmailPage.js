@@ -164,7 +164,7 @@ function PleaseVerifyEmailPage() {
                   <li>Wait 1–2 minutes for the delivery dispatch to reach your mail server.</li>
                   <li>Check your <strong>Spam</strong>, <strong>Junk</strong>, or <strong>Promotions</strong> folders.</li>
                   <li>Ensure your email address was spelled correctly during registration.</li>
-                  <li>Add <strong>yusuf7samaila@gmail.com</strong> (Agrily verified sender) to your contacts or safe sender list.</li>
+                  <li>Add <strong>yusuf.hilside@gmail.com</strong> (Agrily verified sender) to your contacts or safe sender list.</li>
                 </ul>
               </div>
             </>
