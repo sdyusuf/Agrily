@@ -179,113 +179,7 @@
   margin: 0;
 }
 
-/* Manual Code Verification Box */
-.agrily-verify-code-box {
-  background: #f8fafc;
-  border: 1.5px dashed #cbd5e1;
-  border-radius: 16px;
-  padding: 1.5rem;
-  margin: 1.75rem 0 1.25rem;
-  text-align: left;
-}
 
-.agrily-verify-code-title {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.35rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.agrily-verify-code-desc {
-  font-size: 0.82rem;
-  color: #64748b;
-  margin-bottom: 0.85rem;
-}
-
-.agrily-verify-input-group {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.agrily-verify-input {
-  flex: 1;
-  padding: 0.55rem 0.9rem;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.2s ease;
-  font-family: monospace;
-}
-
-.agrily-verify-input:focus {
-  border-color: #2d6a4f;
-  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
-}
-
-.agrily-verify-submit-btn {
-  background-color: #2d6a4f;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.55rem 1.1rem;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.agrily-verify-submit-btn:hover:not(:disabled) {
-  background-color: #1b4332;
-  transform: translateY(-1px);
-}
-
-.agrily-verify-submit-btn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-/* Resend Action Section */
-.agrily-verify-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 1.5rem;
-  align-items: center;
-}
-
-.agrily-resend-btn {
-  background-color: transparent;
-  color: #2d6a4f;
-  border: 1.5px solid #2d6a4f;
-  border-radius: 10px;
-  padding: 0.65rem 1.35rem;
-  font-size: 0.92rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.agrily-resend-btn:hover:not(:disabled) {
-  background-color: #2d6a4f;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
-}
-
-.agrily-resend-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  border-color: #cbd5e1;
-  color: #94a3b8;
-}
 
 /* Help Checklist */
 .agrily-verify-checklist {
@@ -326,13 +220,5 @@
   .agrily-verify-benefits {
     grid-template-columns: 1fr;
     gap: 0.75rem;
-  }
-
-  .agrily-verify-input-group {
-    flex-direction: column;
-  }
-
-  .agrily-verify-submit-btn {
-    width: 100%;
   }
 }
