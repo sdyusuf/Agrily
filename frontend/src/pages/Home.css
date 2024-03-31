@@ -1,4 +1,388 @@
-.welcome{
-    margin: 10px auto;
-    width:50%
+/**
+ * ============================================================================
+ * AGRILY AGRICULTURAL DESIGN SYSTEM
+ * Farmer Operations Dashboard (Home.css)
+ * ============================================================================
+ * 
+ * Implements the executive Agrily dashboard aesthetics matching the landing page:
+ *  - Emerald gradient operations hero banner
+ *  - Tactile action buttons and glassmorphic pill indicators
+ *  - Responsive grid layouts with 24px/32px spacing scales
+ *  - Modern modal overlays for FarmProfileEditor
+ */
+
+:root {
+  --home-emerald-darkest: #081c15;
+  --home-emerald-dark: #1b4332;
+  --home-emerald-primary: #2d6a4f;
+  --home-emerald-medium: #40916c;
+  --home-emerald-light: #52b788;
+  --home-emerald-pale: #d8f3dc;
+  --home-ochre-earth: #bc6c25;
+  --home-ochre-harvest: #dda15e;
+  --home-cornsilk: #fefae0;
+  --home-surface: #f8faf9;
+  --home-white: #ffffff;
+  --home-slate-900: #0f172a;
+  --home-slate-700: #334155;
+  --home-slate-500: #64748b;
+  --home-slate-200: #e2e8f0;
+  --home-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --home-shadow-md: 0 4px 16px rgba(27, 67, 50, 0.08);
+  --home-shadow-lg: 0 10px 30px rgba(27, 67, 50, 0.14);
+  --home-transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agrily-home-dashboard {
+  min-height: 100vh;
+  background-color: var(--home-surface);
+  color: var(--home-slate-900);
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------------------------------------------------------
+   OPERATIONS WELCOME HERO BANNER (MATCHING LANDING JUMBOTRON)
+   ------------------------------------------------------------------------- */
+.dashboard-hero-banner {
+  background: linear-gradient(135deg, rgba(8, 28, 21, 0.95) 0%, rgba(27, 67, 50, 0.98) 100%);
+  color: var(--home-white);
+  padding: 3.5rem 0 3rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(8, 28, 21, 0.2);
+}
+
+.dashboard-hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(221, 161, 94, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(254, 250, 224, 0.15);
+  border: 1px solid rgba(254, 250, 224, 0.3);
+  color: var(--home-cornsilk);
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.hero-greeting-title {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--home-white);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.hero-greeting-highlight {
+  color: var(--home-ochre-harvest);
+}
+
+.hero-lead-text {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  max-width: 650px;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.hero-action-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--home-ochre-earth);
+  color: var(--home-white);
+  padding: 0.75rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(188, 108, 37, 0.35);
+  transition: var(--home-transition);
+}
+
+.btn-hero-primary:hover {
+  background-color: #a05a1d;
+  color: var(--home-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(188, 108, 37, 0.45);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--home-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: var(--home-transition);
+}
+
+.btn-hero-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: var(--home-white);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Hero Stats Bar */
+.hero-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.stat-metric-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-metric-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--home-emerald-light);
+  line-height: 1.2;
+}
+
+.stat-metric-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   ALERT & STATUS BANNERS
+   ------------------------------------------------------------------------- */
+.dashboard-alert-banner {
+  border-radius: 12px;
+  border: 1px solid #fde68a;
+  background-color: #fefce8;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: -1.25rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.alert-banner-text {
+  font-size: 0.925rem;
+  color: #854d0e;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.btn-verify-now {
+  background-color: var(--home-ochre-earth);
+  color: var(--home-white);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--home-transition);
+}
+
+.btn-verify-now:hover {
+  background-color: #a05a1d;
+  transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------------------------
+   SECTION CARD HEADINGS & DIVIDERS
+   ------------------------------------------------------------------------- */
+.dashboard-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.section-headline-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--home-emerald-pale);
+  color: var(--home-emerald-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-main-heading {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--home-emerald-dark);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.section-subtext {
+  font-size: 0.85rem;
+  color: var(--home-slate-500);
+  margin-top: 2px;
+}
+
+.btn-section-action {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--home-emerald-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--home-transition);
+}
+
+.btn-section-action:hover {
+  color: var(--home-emerald-dark);
+  transform: translateX(2px);
+}
+
+/* -------------------------------------------------------------------------
+   MODAL OVERLAY FOR FARM PROFILE EDITOR
+   ------------------------------------------------------------------------- */
+.profile-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(8, 28, 21, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.profile-modal-dialog {
+  width: 100%;
+  max-width: 920px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--home-slate-700);
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--home-transition);
+}
+
+.profile-modal-close-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   RESPONSIVE MOBILE BREAKPOINTS
+   ------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .dashboard-hero-banner {
+    padding: 2.5rem 0 2rem 0;
+  }
+
+  .hero-action-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .dashboard-alert-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-verify-now {
+    width: 100%;
+  }
 }

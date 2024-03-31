@@ -1,13 +1,151 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+:root {
+  /* Brand Primary: Lush Forest & Growth */
+  --color-primary-900: #081c15;
+  --color-primary-800: #1b4332;
+  --color-primary-700: #2d6a4f;
+  --color-primary-600: #40916c;
+  --color-primary-500: #52b788;
+  --color-primary-100: #d8f3dc;
+  --color-primary-50:  #f0fdf4;
+
+  /* Brand Secondary: Earth, Harvest & Warm Ochre */
+  --color-harvest-900: #7f3b08;
+  --color-harvest-700: #bc6c25;
+  --color-harvest-500: #dda15e;
+  --color-harvest-200: #fefae0;
+  --color-harvest-100: #fffdf5;
+
+  /* Neutrals: Rich Slate & Paper Cream */
+  --color-surface-bg:    #f8faf9;
+  --color-surface-card:  #ffffff;
+  --color-border-subtle: #e5e7eb;
+  --color-border-hover:  #cbd5e1;
+  --color-text-main:     #0f172a;
+  --color-text-muted:    #475569;
+  --color-text-subtle:   #94a3b8;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md:  0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg:  0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+  --shadow-xl:  0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  --shadow-glow-primary: 0 0 16px -2px rgba(45, 106, 79, 0.25);
+  --shadow-glow-harvest: 0 0 16px -2px rgba(188, 108, 37, 0.25);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-surface-bg);
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .brand-font {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Button Utilities adhering to DESIGN_SYSTEM.md */
+.btn-agrily-primary {
+  background-color: var(--color-primary-700) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--color-primary-800) !important;
+  border-radius: 10px !important;
+  padding: 0.65rem 1.4rem !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-agrily-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-800) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.btn-agrily-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-agrily-harvest {
+  background-color: var(--color-harvest-700) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--color-harvest-900) !important;
+  border-radius: 10px !important;
+  padding: 0.65rem 1.4rem !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-agrily-harvest:hover:not(:disabled) {
+  background-color: var(--color-harvest-900) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-harvest);
+}
+
+.btn-agrily-outline {
+  background-color: transparent !important;
+  color: var(--color-text-main) !important;
+  font-weight: 600 !important;
+  border: 1.5px solid var(--color-border-subtle) !important;
+  border-radius: 10px !important;
+  padding: 0.65rem 1.35rem !important;
+  transition: all var(--transition-normal) !important;
+}
+
+.btn-agrily-outline:hover:not(:disabled) {
+  background-color: var(--color-primary-50) !important;
+  border-color: var(--color-primary-600) !important;
+  color: var(--color-primary-700) !important;
+  transform: translateY(-2px);
+}
+
+/* Card Elevation */
+.agrily-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.agrily-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-500);
+}
+
+/* Input Form Controls */
+.agrily-input {
+  border: 1.5px solid var(--color-border-subtle) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 0.95rem !important;
+  color: var(--color-text-main) !important;
+  background-color: #ffffff !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.agrily-input:focus {
+  border-color: var(--color-primary-600) !important;
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25) !important;
+  outline: none !important;
 }

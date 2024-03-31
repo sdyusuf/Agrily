@@ -277,6 +277,11 @@ export default function FarmProfileEditor({
         body: JSON.stringify(payload)
       });
 
+      const contentType = response.headers?.get ? (response.headers.get('content-type') || '') : 'application/json';
+      if (contentType && !contentType.includes('application/json')) {
+        throw new Error('Server returned unexpected non-JSON response.');
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
