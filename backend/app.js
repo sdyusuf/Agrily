@@ -5,11 +5,28 @@ const path = require('path');
 require('dotenv/config')
 //const userRoute = require('./routes/user')
 const cors = require('cors')
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const multer = require('./middleware/multer-config.js')
+
+// Inject defensive HTTP security headers with cross-origin access for uploaded media
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
 
 app.use(cors())
 
-
+// Express rate limiter for authentication & credential recovery endpoints (100 req / 15 mins)
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: 'Too many authentication attempts from this IP, please try again after 15 minutes.'
+  }
+});
 
 const userRouter = require('./routes/user');
 const productRouter = require('./routes/myProducts');
@@ -22,6 +39,13 @@ const auth = require('./middleware/auth');
 
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
+
+// Apply rate limiting to sensitive authentication routes
+app.use('/api/signup', authLimiter);
+app.use('/api/login', authLimiter);
+app.use('/api/resend-verification', authLimiter);
+app.use('/verify', authLimiter);
+app.use('/api/forgot-password', authLimiter);
 
 
 app.use(express.static('public'))
