@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const multer = require('../middleware/multer-config.js');
 const { validateProductInput } = require('../middleware/productValidator.js');
+const { validate, productCreateSchema, productUpdateSchema } = require('../middleware/validator');
 
 /**
  * GET /api/products
@@ -70,7 +71,7 @@ router.get('/products/:email', async (req, res) => {
  * POST /api/product
  * Create new produce listing with validation
  */
-router.post('/product', validateProductInput, async (req, res) => {
+router.post('/product', validate(productCreateSchema), validateProductInput, async (req, res) => {
   try {
     const imageURL = req.file
       ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -112,7 +113,7 @@ router.post('/product', validateProductInput, async (req, res) => {
  * PUT /api/product/:id
  * Update existing produce details (price, quantity, status, description)
  */
-router.put('/product/:id', multer, validateProductInput, async (req, res) => {
+router.put('/product/:id', multer, validate(productUpdateSchema), validateProductInput, async (req, res) => {
   try {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {

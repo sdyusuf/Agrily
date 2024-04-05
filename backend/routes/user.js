@@ -26,6 +26,14 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const { sendMail, sendMailFull } = require('../utils/sendMail');
 const { v4: uuidv4 } = require('uuid');
+const {
+  validate,
+  signupSchema,
+  loginSchema,
+  resendVerificationSchema,
+  resetPasswordSchema,
+  profileUpdateSchema
+} = require('../middleware/validator');
 
 /**
  * Controller helper: Sanitizes and validates farm profile update payload.
@@ -225,7 +233,7 @@ async function updateUserProfileController(req, res, UserClass = User) {
 // EXISTING AUTHENTICATION ROUTE HANDLERS
 // ----------------------------------------------------------------------------
 
-router.post('/api/signup', async (req, res) => {
+router.post('/api/signup', validate(signupSchema), async (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
 
   try {
@@ -281,7 +289,7 @@ router.post('/api/signup', async (req, res) => {
   }
 });
 
-router.post('/api/login', async (req, res) => {
+router.post('/api/login', validate(loginSchema), async (req, res) => {
   try {
     res.header('Access-Control-Allow-Origin', '*');
     const { email, password } = req.body;
@@ -348,7 +356,7 @@ router.put('/verify', async (req, res) => {
 /**
  * Resend verification email endpoint
  */
-router.post('/api/resend-verification', async (req, res) => {
+router.post('/api/resend-verification', validate(resendVerificationSchema), async (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   const { email } = req.body;
 
@@ -406,7 +414,7 @@ router.put('/api/forgot-password/:email', async (req, res) => {
   return res.sendStatus(404);
 });
 
-router.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
+router.put('/api/users/:passwordResetCode/reset-password', validate(resetPasswordSchema), async (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
 
   try {
@@ -445,7 +453,7 @@ router.get('/api/users/profile/:email', (req, res) => getUserProfileController(r
  * PUT /api/users/profile
  * Farmer profile update endpoint for editing biography, geolocation, and crops.
  */
-router.put('/api/users/profile', (req, res) => updateUserProfileController(req, res));
+router.put('/api/users/profile', validate(profileUpdateSchema), (req, res) => updateUserProfileController(req, res));
 
 module.exports = router;
 module.exports.validateProfilePayload = validateProfilePayload;
