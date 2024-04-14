@@ -92,6 +92,15 @@ async function runSuite() {
     assert.ok(res.body.errors.some((e) => e.toLowerCase().includes('password')));
   });
 
+  // Wait for MongoDB connection if currently connecting
+  const mongoose = require('mongoose');
+  if (mongoose.connection && mongoose.connection.readyState === 2) {
+    await new Promise((resolve) => {
+      mongoose.connection.once('open', resolve);
+      setTimeout(resolve, 3000); // timeout fallback
+    });
+  }
+
   // --------------------------------------------------------------------------
   // TEST 5: POST /api/login with non-existent user returns 401
   // --------------------------------------------------------------------------

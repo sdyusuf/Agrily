@@ -78,6 +78,16 @@ async function runSuite() {
     assert.ok(Array.isArray(res.body.data.units));
   });
 
+  // Wait for MongoDB connection if currently connecting
+  const mongoose = require('mongoose');
+  if (mongoose.connection && mongoose.connection.readyState !== 1) {
+    await new Promise((resolve) => {
+      if (mongoose.connection.readyState === 1) return resolve();
+      mongoose.connection.once('open', resolve);
+      setTimeout(resolve, 3000);
+    });
+  }
+
   // --------------------------------------------------------------------------
   // TEST 3: GET /api/marketplace
   // --------------------------------------------------------------------------

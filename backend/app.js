@@ -37,8 +37,13 @@ const analyticsRouter = require('./routes/analytics');
 const auth = require('./middleware/auth');
 
 
+const mongoSanitize = require('./middleware/mongoSanitize');
+
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
+
+// Sanitize MongoDB queries against NoSQL injection
+app.use(mongoSanitize);
 
 // Apply rate limiting to sensitive authentication routes
 app.use('/api/signup', authLimiter);
