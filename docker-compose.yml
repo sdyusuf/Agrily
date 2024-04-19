@@ -1,0 +1,87 @@
+version: '3.8'
+
+# Agrily Full-Stack Multi-Container Orchestration
+# Services: MongoDB 6.0 Database, Node.js API Service, Nginx Web Client
+
+services:
+  # MongoDB persistent document datastore
+  mongo:
+    image: mongo:6.0
+    container_name: agrily-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: agrily
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - agrily-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # Backend Node.js Express REST API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agrily-backend
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/agrily
+      JWT_SECRET: agrily_production_secure_token_secret_key_2024
+      NODE_ENV: production
+      BASE_URL: http://localhost:5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - backend-uploads:/usr/src/app/public/images
+    networks:
+      - agrily-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/categories"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  # Frontend Nginx SPA Web Server
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agrily-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "80:80"
+      - "3000:80"
+    networks:
+      - agrily-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+# Managed persistent storage volumes
+volumes:
+  mongo-data:
+    driver: local
+  backend-uploads:
+    driver: local
+
+# Bridged internal application network
+networks:
+  agrily-network:
+    driver: bridge

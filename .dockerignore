@@ -1,0 +1,47 @@
+# Agrily Docker Build Ignore Rules
+# Excludes dependencies, test output, temporary caches, and local secrets
+
+# Dependencies
+node_modules
+*/node_modules
+**/node_modules
+
+# Production build artifacts
+build/
+dist/
+*/build
+*/dist
+
+# Local environment & secret credentials
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+tokens.json
+.tokens.json
+
+# Version control & OS artifacts
+.git
+.gitignore
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs & coverage
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.nyc_output/
+
+# Planning & tracking markdown
+Sprints.md
+sprints.md
+SPRINT_LOC_TRACKER.md
+COMMITS.md
+DESIGN_SYSTEM.md
+UI_DESIGN_SYSTEM.md
+*.local.md
