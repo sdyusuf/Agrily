@@ -1,0 +1,105 @@
+name: Agrily Continuous Integration (CI)
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # =========================================================================
+  # Backend Testing & Health Verification Job
+  # =========================================================================
+  backend-test:
+    name: Backend Tests (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    services:
+      mongodb:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: backend/package.json
+
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Execute Backend Test Suites (15 Suites)
+        working-directory: ./backend
+        env:
+          PORT: 5000
+          MONGO_URI: mongodb://localhost:27017/agrily_ci
+          JWT_SECRET: test_ci_jwt_secret_token_12345
+          BASE_URL: http://localhost:5000
+        run: npm test
+
+  # =========================================================================
+  # Frontend Testing & Production Build Verification Job
+  # =========================================================================
+  frontend-test-and-build:
+    name: Frontend Tests & Production Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+          cache-dependency-path: frontend/package.json
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run React Testing Library Test Suites
+        working-directory: ./frontend
+        env:
+          CI: true
+        run: npm test -- --watchAll=false --maxWorkers=2
+
+      - name: Compile Optimized Production Build
+        working-directory: ./frontend
+        env:
+          CI: false
+          NODE_OPTIONS: "--openssl-legacy-provider"
+        run: npm run build
+
+  # =========================================================================
+  # Docker Compose & Architecture Linting Job
+  # =========================================================================
+  docker-validation:
+    name: Validate Docker Compose Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Validate Docker Compose Configuration
+        run: docker compose config
