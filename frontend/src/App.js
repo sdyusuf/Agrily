@@ -24,6 +24,8 @@ const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const EmailVerificationLandingPage = lazy(() => import('./pages/EmailVerificationLandingPage'));
 const PleaseVerifyEmailPage = lazy(() => import('./pages/PleaseVerifyEmailPage'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const DriverRegistration = lazy(() => import('./pages/DriverRegistration'));
+const DriverDashboard = lazy(() => import('./pages/DriverDashboard'));
 
 /**
  * Route loading fallback component adhering to Agrily design tokens
@@ -104,6 +106,8 @@ function App() {
                 <Route path="/marketplace" element={<Marketplace />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/order-confirmation" element={<OrderConfirmation />} />
+                <Route path="/driver/register" element={<DriverRegistration />} />
+                <Route path="/driver/dashboard" element={<DriverDashboard />} />
 
                 <Route exact path="/home" element={<PrivateRoute />}>
                   <Route exact path="/home" element={<Home />} />

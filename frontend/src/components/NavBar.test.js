@@ -49,6 +49,7 @@ describe('NavBar Component Unit Tests', () => {
     // Verify brand logo and public links exist
     expect(screen.getByText(/Home/i)).toBeInTheDocument();
     expect(screen.getByText(/Marketplace/i)).toBeInTheDocument();
+    expect(screen.getByText(/Fleet Drivers/i)).toBeInTheDocument();
 
     // Verify Cart trigger is NOT rendered for logged-out visitors
     expect(screen.queryByRole('button', { name: /open shopping cart/i })).not.toBeInTheDocument();

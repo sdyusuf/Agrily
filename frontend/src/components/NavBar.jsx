@@ -56,6 +56,14 @@ function NavBar() {
               Marketplace
             </Nav.Link>
             <Nav.Link
+              as={Link}
+              to="/driver/register"
+              style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
+              data-testid="nav-driver-portal"
+            >
+              Fleet Drivers
+            </Nav.Link>
+            <Nav.Link
               href="#about"
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >
