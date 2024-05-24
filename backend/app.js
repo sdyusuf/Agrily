@@ -35,6 +35,7 @@ const marketplaceRouter = require('./routes/marketplace');
 const ordersRouter = require('./routes/orders');
 const analyticsRouter = require('./routes/analytics');
 const driversRouter = require('./routes/drivers').router;
+const telemetryRouter = require('./routes/telemetry').router;
 const auth = require('./middleware/auth');
 
 
@@ -81,6 +82,7 @@ app.use((req, res, next) => { //allowing request from any source
   app.use('/api', ordersRouter);
   app.use('/api', analyticsRouter);
   app.use('/api', driversRouter);
+  app.use('/api/telemetry', telemetryRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
