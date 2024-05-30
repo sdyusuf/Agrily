@@ -1,0 +1,450 @@
+/**
+ * ConsignmentTracking Page Styles
+ * Adheres strictly to DESIGN_SYSTEM.md ("Earth & Innovation")
+ */
+
+.consignment-tracking-page {
+  min-height: calc(100vh - 80px);
+  background-color: var(--color-surface-bg, #f8faf9);
+  padding: 32px 24px 64px 24px;
+}
+
+.tracking-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Breadcrumbs Navigation */
+.tracking-nav-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #475569);
+  margin-bottom: 20px;
+}
+
+.breadcrumb-link {
+  color: var(--color-text-muted, #475569);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--color-primary-700, #2d6a4f);
+}
+
+.breadcrumb-separator {
+  color: var(--color-text-subtle, #94a3b8);
+}
+
+.breadcrumb-active {
+  font-weight: 600;
+  color: var(--color-primary-700, #2d6a4f);
+}
+
+/* Header Section */
+.tracking-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.tracking-header-titles h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text-main, #0f172a);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.tracking-header-titles p {
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #475569);
+  margin: 0;
+}
+
+/* Order Quick Switcher */
+.tracking-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 6px 6px 6px 14px;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.tracking-input {
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-main, #0f172a);
+  width: 180px;
+}
+
+.tracking-input::placeholder {
+  color: var(--color-text-subtle, #94a3b8);
+  font-weight: 400;
+}
+
+.track-btn {
+  background: var(--color-primary-700, #2d6a4f);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.track-btn:hover {
+  background: var(--color-primary-800, #1b4332);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+}
+
+/* Progress Stepper */
+.transit-stepper-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+}
+
+.stepper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.stepper-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+  margin: 0;
+}
+
+.stepper-eta-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-harvest-700, #bc6c25);
+  background: var(--color-harvest-200, #fefae0);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(188, 108, 37, 0.2);
+}
+
+.stepper-track-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 10px;
+}
+
+.stepper-track-line {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  right: 20px;
+  height: 4px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.stepper-track-progress {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  height: 4px;
+  background: var(--color-primary-500, #52b788);
+  z-index: 2;
+  transition: width 0.4s ease;
+}
+
+.stepper-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  width: 120px;
+  text-align: center;
+}
+
+.step-node {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stepper-step.completed .step-node {
+  background: var(--color-primary-700, #2d6a4f);
+  border-color: var(--color-primary-700, #2d6a4f);
+  color: #ffffff;
+}
+
+.stepper-step.active .step-node {
+  background: #ffffff;
+  border-color: var(--color-primary-500, #52b788);
+  color: var(--color-primary-700, #2d6a4f);
+  box-shadow: 0 0 0 4px var(--color-primary-100, #d8f3dc);
+}
+
+.step-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-main, #0f172a);
+}
+
+.step-time {
+  font-size: 0.74rem;
+  color: var(--color-text-muted, #475569);
+  margin-top: 2px;
+}
+
+/* Two-Column Tracking Dashboard Grid */
+.tracking-dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+/* Telemetry Cards Deck */
+.telemetry-cards-deck {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.telemetry-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.telemetry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+.card-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--color-primary-50, #f0fdf4);
+  color: var(--color-primary-700, #2d6a4f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-icon-badge.harvest {
+  background: var(--color-harvest-200, #fefae0);
+  color: var(--color-harvest-700, #bc6c25);
+}
+
+.card-icon-badge.blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.card-content h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card-metric-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+  margin: 0 0 2px 0;
+}
+
+.card-subtext {
+  font-size: 0.78rem;
+  color: var(--color-text-subtle, #94a3b8);
+  margin: 0;
+}
+
+/* Sidebar Info Cards */
+.tracking-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+}
+
+.sidebar-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Driver Profile Info */
+.driver-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.driver-avatar-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-primary-700, #2d6a4f);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.driver-identity h4 {
+  margin: 0 0 2px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.driver-identity p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.driver-detail-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+  margin-bottom: 18px;
+}
+
+.spec-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.spec-line span:first-child {
+  color: var(--color-text-muted, #475569);
+}
+
+.spec-line span:last-child {
+  font-weight: 600;
+  color: var(--color-text-main, #0f172a);
+}
+
+/* Action Buttons */
+.sidebar-action-btn {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 10px;
+}
+
+.sidebar-action-btn.primary {
+  background: var(--color-primary-700, #2d6a4f);
+  color: #ffffff;
+  border: none;
+}
+
+.sidebar-action-btn.primary:hover {
+  background: var(--color-primary-800, #1b4332);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+}
+
+.sidebar-action-btn.outline {
+  background: transparent;
+  color: var(--color-text-main, #0f172a);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+}
+
+.sidebar-action-btn.outline:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .tracking-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .consignment-tracking-page {
+    padding: 20px 14px 40px 14px;
+  }
+  .telemetry-cards-deck {
+    grid-template-columns: 1fr;
+  }
+  .stepper-step {
+    width: 60px;
+  }
+  .step-label {
+    font-size: 0.7rem;
+  }
+  .step-time {
+    display: none;
+  }
+}
