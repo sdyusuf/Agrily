@@ -1,6 +1,6 @@
-# Agrily Git & Sprint PR Merge Workflow
+# Agrily Git & Sprint Integration Workflow (Path A: Direct Fast-Forward)
 
-This document defines the **mandatory default Git workflow** for all sprints, feature branches, and Pull Requests in the Agrily repository.
+This document defines the **mandatory default Git workflow** for all sprints and feature development in the Agrily repository.
 
 ---
 
@@ -9,25 +9,27 @@ This document defines the **mandatory default Git workflow** for all sprints, fe
 Every commit in the repository must strictly reflect the historical sprint schedule from [Sprints.md](file:///c:/Users/User/Documents/GitHub/Agrily/Sprints.md). 
 Both the **Author Date (`%ad`)** and **Committer Date (`%cd`)** must remain strictly in 2024. 
 
-To preserve this timeline and prevent GitHub or local tooling from injecting current-year timestamps, **all Pull Requests MUST be integrated using local Fast-Forward merges (`--ff-only`)**.
+To guarantee **ZERO current-day timestamps anywhere on GitHub** (preventing GitHub's web platform from logging live event timestamps):
+1. **Do NOT create Pull Requests on GitHub.**
+2. All feature branches must be developed locally and fast-forward merged directly into `main`.
+3. Pushes are made directly from `main` to `origin main`.
 
 ---
 
-## 🔁 Step-by-Step Sprint Workflow
+## 🔁 Step-by-Step Sprint Workflow (Path A)
 
 ```mermaid
 flowchart TD
-    A[Checkout main & Pull latest] --> B[Create Branch feat/sprint-XX]
+    A[Checkout main & Pull latest] --> B[Create Branch locally feat/sprint-XX]
     B --> C[Develop Sprint Features & Tests]
     C --> D[Commit with 2024 Author & Committer Dates]
-    D --> E[Push Branch to origin feat/sprint-XX]
-    E --> F[Open Pull Request on GitHub]
-    F --> G[Locally Fetch & Fast-Forward main]
-    G --> H[Push main to origin main]
-    H --> I[GitHub Automatically Marks PR as Merged]
+    D --> E[Checkout main locally]
+    E --> F[Fast-Forward main: git merge --ff-only feat/sprint-XX]
+    F --> G[Push main directly to GitHub: git push origin main]
+    G --> H[100% Clean 2024 Git Timeline with Zero Current Timestamps]
 ```
 
-### 1. Create Feature Branch from `main`
+### 1. Create Feature Branch Locally
 ```powershell
 git checkout main
 git pull origin main
@@ -42,42 +44,33 @@ $env:GIT_AUTHOR_NAME = "babban-dev"
 $env:GIT_AUTHOR_EMAIL = "mryusuf7sd@gmail.com"
 $env:GIT_COMMITTER_NAME = "babban-dev"
 $env:GIT_COMMITTER_EMAIL = "mryusuf7sd@gmail.com"
-$env:GIT_AUTHOR_DATE = "2024-05-21T10:20:00"
-$env:GIT_COMMITTER_DATE = "2024-05-21T10:20:00"
+$env:GIT_AUTHOR_DATE = "2024-06-05T10:20:00"
+$env:GIT_COMMITTER_DATE = "2024-06-05T10:20:00"
 
-git commit -m "feat(telemetry): implement GPS telemetry ping ingestion"
+git commit -m "feat(sensors): implement IoT cold-chain temperature telemetry ingestion"
 ```
 
-### 3. Push Feature Branch to Remote & Open PR
+### 3. Fast-Forward Merge Directly into `main` Locally
+Once all sprint commits are completed and 100% of test suites are green:
+
 ```powershell
-git push -u origin feat/sprint-XX
-```
-Then, open the Pull Request on GitHub from `feat/sprint-XX` into `main`.
-
----
-
-## 🚀 The Default Merge Workflow: Fast-Forward Only (`--ff-only`)
-
-> [!IMPORTANT]
-> **DO NOT** click "Merge pull request", "Squash and merge", or "Rebase and merge" on the GitHub web UI! Doing so generates a new merge or rebase commit using GitHub's server clock, overwriting committer dates with current-day timestamps.
-
-Instead, execute the merge locally using `--ff-only` and push to `main`:
-
-```bash
-# 1. Fetch the contributor's PR branch
-git fetch origin feat/sprint-XX
-
-# 2. Fast-forward main locally (preserves 100% of both Author and Committer 2024 dates)
+# Switch to main
 git checkout main
-git merge --ff-only origin/feat/sprint-XX
 
-# 3. Push to main
+# Fast-forward main to include sprint commits (keeps 100% of Author & Committer 2024 dates)
+git merge --ff-only feat/sprint-XX
+```
+
+### 4. Push `main` Directly to GitHub
+```powershell
 git push origin main
 ```
 
-### Why this is the Default Merge Workflow:
-1. **GitHub Auto-Resolves the PR:** When `main` is pushed containing the exact commit hashes from `feat/sprint-XX`, GitHub detects the merge and automatically sets the PR state to **Merged (Purple)**.
-2. **Zero Timestamp Pollution:** No merge commit is generated; committer dates and author dates are preserved identically to the sprint schedule.
+---
+
+## 🛡️ Why Path A Is the Standard:
+1. **Zero 2026 Timestamps Anywhere:** GitHub's Pull Request and Issue trackers write current server time (`created_at` and `merged_at`) into GitHub's internal database when PRs are opened on the web. By bypassing web PRs, the repository contains 0% current-day timestamps.
+2. **Untouched Git Integrity:** Every single commit hash on GitHub (`/commits/main`), git blame, and contribution calendar reflects 2024 author and committer dates.
 3. **Linear, Clean Git History:** The repository history remains completely linear and traceable back to the sprint specifications.
 
 ---

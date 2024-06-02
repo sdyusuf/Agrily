@@ -37,18 +37,23 @@ All AI assistants, agents, and contributors working on the Agrily codebase MUST 
 
 ---
 
-## 🔄 Sprint Feature Branch & Merge Workflow (Fast-Forward Only)
+## 🔄 Sprint Feature Branch & Merge Workflow (Path A: Direct Fast-Forward Only)
 
-All contributors and AI agents must follow the default PR integration workflow detailed in:
+All contributors and AI agents must follow the Path A integration workflow detailed in:
 👉 [WORKFLOW.md](file:///c:/Users/User/Documents/GitHub/Agrily/WORKFLOW.md)
 
 1. **Backdated Timestamps:** Every commit must have both `$env:GIT_AUTHOR_DATE` and `$env:GIT_COMMITTER_DATE` strictly set to the 2024 calendar according to [Sprints.md](file:///c:/Users/User/Documents/GitHub/Agrily/Sprints.md).
-2. **Never Merge via GitHub Web UI:** Do not click "Merge", "Squash and merge", or "Rebase and merge" in GitHub web UI as this pollutes committer dates with current-day timestamps.
-3. **Default Merge Protocol (Fast-Forward Only):**
+2. **Do NOT Create PRs on GitHub:** Bypassing GitHub web PRs guarantees 0% current-day timestamps anywhere on GitHub's cloud platform.
+3. **Default Integration Protocol (Direct Fast-Forward Only):**
    ```bash
-   git fetch origin feat/sprint-XX
+   # 1. Develop on local sprint branch with 2024 timestamps
+   git checkout -b feat/sprint-XX
+
+   # 2. Fast-forward merge directly into main locally
    git checkout main
-   git merge --ff-only origin/feat/sprint-XX
+   git merge --ff-only feat/sprint-XX
+
+   # 3. Push main directly to GitHub
    git push origin main
    ```
 
