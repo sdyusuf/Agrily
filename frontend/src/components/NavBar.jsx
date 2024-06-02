@@ -64,6 +64,14 @@ function NavBar() {
               Fleet Drivers
             </Nav.Link>
             <Nav.Link
+              as={Link}
+              to="/tracking"
+              style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
+              data-testid="nav-tracking-link"
+            >
+              Live Radar
+            </Nav.Link>
+            <Nav.Link
               href="#about"
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >

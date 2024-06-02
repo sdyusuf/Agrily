@@ -34,3 +34,21 @@ All AI assistants, agents, and contributors working on the Agrily codebase MUST 
    - Image uploads must use Multer with file type validation (JPEG/PNG/WebP only) and maximum file size limits (5MB).
 3. **Database Operations:**
    - Validate required fields on Mongoose models before database mutations.
+
+---
+
+## 🔄 Sprint Feature Branch & Merge Workflow (Fast-Forward Only)
+
+All contributors and AI agents must follow the default PR integration workflow detailed in:
+👉 [WORKFLOW.md](file:///c:/Users/User/Documents/GitHub/Agrily/WORKFLOW.md)
+
+1. **Backdated Timestamps:** Every commit must have both `$env:GIT_AUTHOR_DATE` and `$env:GIT_COMMITTER_DATE` strictly set to the 2024 calendar according to [Sprints.md](file:///c:/Users/User/Documents/GitHub/Agrily/Sprints.md).
+2. **Never Merge via GitHub Web UI:** Do not click "Merge", "Squash and merge", or "Rebase and merge" in GitHub web UI as this pollutes committer dates with current-day timestamps.
+3. **Default Merge Protocol (Fast-Forward Only):**
+   ```bash
+   git fetch origin feat/sprint-XX
+   git checkout main
+   git merge --ff-only origin/feat/sprint-XX
+   git push origin main
+   ```
+
