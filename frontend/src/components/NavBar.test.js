@@ -51,6 +51,7 @@ describe('NavBar Component Unit Tests', () => {
     expect(screen.getByText(/Marketplace/i)).toBeInTheDocument();
     expect(screen.getByText(/Fleet Drivers/i)).toBeInTheDocument();
     expect(screen.getByText(/Live Radar/i)).toBeInTheDocument();
+    expect(screen.getByText(/Cold-Chain/i)).toBeInTheDocument();
 
     // Verify Cart trigger is NOT rendered for logged-out visitors
     expect(screen.queryByRole('button', { name: /open shopping cart/i })).not.toBeInTheDocument();

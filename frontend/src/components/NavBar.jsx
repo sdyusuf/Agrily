@@ -72,6 +72,14 @@ function NavBar() {
               Live Radar
             </Nav.Link>
             <Nav.Link
+              as={Link}
+              to="/cold-chain"
+              style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
+              data-testid="nav-coldchain-link"
+            >
+              Cold-Chain
+            </Nav.Link>
+            <Nav.Link
               href="#about"
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >

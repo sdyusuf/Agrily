@@ -27,6 +27,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const DriverRegistration = lazy(() => import('./pages/DriverRegistration'));
 const DriverDashboard = lazy(() => import('./pages/DriverDashboard'));
 const ConsignmentTracking = lazy(() => import('./pages/ConsignmentTracking'));
+const ColdChainMonitor = lazy(() => import('./pages/ColdChainMonitor'));
 
 /**
  * Route loading fallback component adhering to Agrily design tokens
@@ -111,6 +112,8 @@ function App() {
                 <Route path="/driver/dashboard" element={<DriverDashboard />} />
                 <Route path="/tracking" element={<ConsignmentTracking />} />
                 <Route path="/logistics/tracking" element={<ConsignmentTracking />} />
+                <Route path="/cold-chain" element={<ColdChainMonitor />} />
+                <Route path="/logistics/cold-chain" element={<ColdChainMonitor />} />
 
                 <Route exact path="/home" element={<PrivateRoute />}>
                   <Route exact path="/home" element={<Home />} />
