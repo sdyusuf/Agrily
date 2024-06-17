@@ -35,7 +35,7 @@ function NavBar() {
       }}
     >
       <Container>
-        <Logo size="md" linkTo="/" />
+        <Logo size="md" linkTo={user ? "/home" : "/"} />
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ border: 'none' }} />
 
@@ -43,7 +43,7 @@ function NavBar() {
           <Nav className="ms-auto align-items-center" style={{ gap: '1.25rem' }}>
             <Nav.Link
               as={Link}
-              to="/"
+              to={user ? "/home" : "/"}
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >
               Home

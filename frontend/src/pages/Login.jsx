@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,8 +11,10 @@ import Footer from '../components/Footer';
 import Logo from '../components/Logo';
 import { AlertCircleIcon, ArrowRightIcon } from '../components/Icons';
 import { useToken } from '../auth/useToken';
+import { useUser } from '../auth/useUser';
 
 function Login() {
+  const user = useUser();
   const [, setToken] = useToken();
   const [errorMessage, setErrorMessage] = useState(null);
   const [email, setEmail] = useState('');
@@ -21,6 +23,16 @@ function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/home', { replace: true });
+    }
+  }, [user, navigate]);
+
+  if (user) {
+    return null;
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
