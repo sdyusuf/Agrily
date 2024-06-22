@@ -37,6 +37,7 @@ const analyticsRouter = require('./routes/analytics');
 const driversRouter = require('./routes/drivers').router;
 const telemetryRouter = require('./routes/telemetry').router;
 const sensorsRouter = require('./routes/sensors').router;
+const escrowRouter = require('./routes/escrow').router;
 const auth = require('./middleware/auth');
 
 
@@ -85,6 +86,7 @@ app.use((req, res, next) => { //allowing request from any source
   app.use('/api', driversRouter);
   app.use('/api/telemetry', telemetryRouter);
   app.use('/api/sensors', sensorsRouter);
+  app.use('/api/escrow', escrowRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
