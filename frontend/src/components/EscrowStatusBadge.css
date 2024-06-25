@@ -1,0 +1,182 @@
+/* ==========================================================================
+   EscrowStatusBadge.css - Agrily Multi-Tier Escrow Component
+   Adheres strictly to DESIGN_SYSTEM.md tokens
+   ========================================================================== */
+
+.agrily-escrow-badge-container {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.escrow-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  width: fit-content;
+}
+
+.badge-pulse-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.badge-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Status Variations */
+.escrow-badge-init {
+  background: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+.escrow-badge-init .badge-pulse-indicator {
+  background: #94a3b8;
+}
+
+.escrow-badge-locked {
+  background: #e8f5e9;
+  color: #1b4332;
+  border-color: #c8e6c9;
+}
+.escrow-badge-locked .badge-pulse-indicator {
+  background: #2d6a4f;
+  animation: escrow-pulse 2s infinite;
+}
+
+.escrow-badge-transit {
+  background: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+.escrow-badge-transit .badge-pulse-indicator {
+  background: #3b82f6;
+  animation: escrow-pulse 1.8s infinite;
+}
+
+.escrow-badge-inspection {
+  background: #fefae0;
+  color: #92400e;
+  border-color: #fde68a;
+}
+.escrow-badge-inspection .badge-pulse-indicator {
+  background: #d97706;
+  animation: escrow-pulse 1.5s infinite;
+}
+
+.escrow-badge-released {
+  background: #d8f3dc;
+  color: #1b4332;
+  border-color: #95d5b2;
+}
+.escrow-badge-released .badge-pulse-indicator {
+  background: #2d6a4f;
+}
+
+.escrow-badge-disputed {
+  background: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+.escrow-badge-disputed .badge-pulse-indicator {
+  background: #dc2626;
+  animation: escrow-pulse 1s infinite;
+}
+
+.escrow-badge-refunded {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+.escrow-badge-refunded .badge-pulse-indicator {
+  background: #64748b;
+}
+
+@keyframes escrow-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Stepper Track */
+.escrow-stepper-track {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.65rem 0.95rem;
+  overflow-x: auto;
+}
+
+.stepper-node {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.stepper-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.stepper-node.active {
+  color: #1b4332;
+  font-weight: 700;
+}
+.stepper-node.active .stepper-dot {
+  background: #1b4332;
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+}
+
+.stepper-node.completed {
+  color: #2d6a4f;
+  font-weight: 600;
+}
+.stepper-node.completed .stepper-dot {
+  background: #52b788;
+  color: #ffffff;
+}
+
+/* Micro Amount Bar */
+.escrow-amount-micro-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+.amount-locked-text strong {
+  color: #1b4332;
+}
+
+.amount-released-tag {
+  color: #2d6a4f;
+  font-size: 0.72rem;
+  font-weight: 600;
+}

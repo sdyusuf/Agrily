@@ -1,0 +1,297 @@
+/* ==========================================================================
+   EscrowReleaseModal.css - Agrily Escrow Authorization Dialog
+   Adheres to DESIGN_SYSTEM.md tokens
+   ========================================================================== */
+
+.escrow-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 10000;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.escrow-modal-card {
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  animation: modalScaleUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #0f172a;
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.escrow-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.6rem;
+  background: #f8faf9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.modal-icon-shield {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #e8f5e9;
+  color: #1b4332;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.modal-subtitle {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0.15rem 0 0;
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.15rem;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.escrow-modal-body {
+  padding: 1.6rem;
+}
+
+.escrow-modal-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+/* Summary Card */
+.release-summary-card {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.35rem;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.45rem;
+}
+
+.summary-row.highlight {
+  margin-bottom: 0;
+  padding-top: 0.45rem;
+}
+
+.summary-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.summary-val {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.summary-amount {
+  color: #1b4332;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.summary-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0.5rem 0;
+}
+
+/* Inspection Checkbox Group */
+.inspection-check-group {
+  margin-bottom: 1.35rem;
+}
+
+.check-group-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+  margin: 0 0 0.65rem;
+}
+
+.inspection-checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 0.55rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inspection-checkbox-item:hover {
+  border-color: #52b788;
+  background: #f1f9f5;
+}
+
+.inspection-checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #1b4332;
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
+
+.check-text {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.check-text strong {
+  color: #0f172a;
+}
+
+/* Auth Signature Key */
+.auth-signature-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.65rem 0.95rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+}
+
+.auth-hint {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Modal Footer */
+.escrow-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btn-escrow-cancel {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-escrow-cancel:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.btn-escrow-confirm {
+  background: #1b4332;
+  border: none;
+  color: #ffffff;
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-escrow-confirm:hover:not(:disabled) {
+  background: #2d6a4f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 67, 50, 0.28);
+}
+
+.btn-escrow-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
