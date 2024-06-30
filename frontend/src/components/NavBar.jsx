@@ -80,6 +80,14 @@ function NavBar() {
               Cold-Chain
             </Nav.Link>
             <Nav.Link
+              as={Link}
+              to="/escrow"
+              style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
+              data-testid="nav-escrow-link"
+            >
+              Escrow Vault
+            </Nav.Link>
+            <Nav.Link
               href="#about"
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >

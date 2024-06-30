@@ -28,6 +28,7 @@ const DriverRegistration = lazy(() => import('./pages/DriverRegistration'));
 const DriverDashboard = lazy(() => import('./pages/DriverDashboard'));
 const ConsignmentTracking = lazy(() => import('./pages/ConsignmentTracking'));
 const ColdChainMonitor = lazy(() => import('./pages/ColdChainMonitor'));
+const EscrowManagement = lazy(() => import('./pages/EscrowManagement'));
 
 /**
  * Route loading fallback component adhering to Agrily design tokens
@@ -114,6 +115,8 @@ function App() {
                 <Route path="/logistics/tracking" element={<ConsignmentTracking />} />
                 <Route path="/cold-chain" element={<ColdChainMonitor />} />
                 <Route path="/logistics/cold-chain" element={<ColdChainMonitor />} />
+                <Route path="/escrow" element={<EscrowManagement />} />
+                <Route path="/finance/escrow" element={<EscrowManagement />} />
 
                 <Route exact path="/home" element={<PrivateRoute />}>
                   <Route exact path="/home" element={<Home />} />
