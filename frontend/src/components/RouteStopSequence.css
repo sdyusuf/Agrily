@@ -1,0 +1,382 @@
+/**
+ * ==============================================================================
+ * AGRILY AGRICULTURAL LOGISTICS - ROUTE STOP SEQUENCE STYLESHEET
+ * ==============================================================================
+ * Follows Agrily Design System tokens and tactile card standards.
+ */
+
+.route-stop-sequence-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  position: relative;
+  font-family: inherit;
+}
+
+/* Connecting stem between stops */
+.sequence-connector-stem {
+  width: 3px;
+  height: 24px;
+  background: linear-gradient(180deg, #52b788 0%, #2d6a4f 100%);
+  margin-left: 28px;
+  opacity: 0.6;
+}
+
+/* Stop Card Base */
+.stop-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.stop-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(27, 67, 50, 0.09);
+  border-color: #52b788;
+}
+
+.stop-card.selected-card {
+  border-color: #2d6a4f;
+  background: #fdfefd;
+  box-shadow: 0 0 0 2px rgba(45, 106, 79, 0.2), 0 8px 20px rgba(27, 67, 50, 0.08);
+}
+
+/* Depot and Terminal Card Accents */
+.stop-card.depot-card {
+  background: #f8faf9;
+  border-style: dashed;
+  border-width: 1.5px;
+}
+
+.stop-card.origin-card {
+  border-color: #2d6a4f;
+}
+
+.stop-card.destination-card {
+  border-color: #bc6c25;
+}
+
+/* Markers */
+.stop-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+.depot-marker {
+  background: #1b4332;
+  color: #ffffff;
+}
+
+.depot-marker .marker-code {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.destination-marker {
+  background: #bc6c25;
+  color: #ffffff;
+}
+
+.destination-marker .marker-code {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.farm-marker {
+  background: #e8f5e9;
+  color: #1b4332;
+  border: 1.5px solid #2d6a4f;
+}
+
+.farm-marker .marker-number {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.farm-marker .marker-type-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+/* Main Content */
+.stop-main-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.stop-header-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.facility-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1b4332;
+  background: #d8f3dc;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.terminal-badge {
+  color: #78350f;
+  background: #fefae0;
+}
+
+.stop-facility-code {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  font-family: monospace;
+}
+
+.stop-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.stop-address {
+  font-size: 0.86rem;
+  color: #475569;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+/* Produce Payload Ribbon */
+.produce-payload-ribbon {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #f8faf9;
+  border: 1px solid #edf2f7;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.cargo-item-name {
+  font-weight: 600;
+  color: #1b4332;
+  font-size: 0.88rem;
+}
+
+.cargo-item-stat {
+  font-size: 0.82rem;
+  color: #334155;
+  background: #ffffff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.cold-req-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Status & Perishability Pills */
+.perishability-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.tier-high {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.tier-medium {
+  background: #fefae0;
+  color: #92400e;
+  border: 1px solid #dda15e;
+}
+
+.tier-low {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.stop-status-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+
+.pill-pending {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.pill-en_route {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.pill-collected, .pill-delivered {
+  background: #d8f3dc;
+  color: #1b4332;
+}
+
+.pill-skipped, .pill-failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.road-surface-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* Meta Chips */
+.stop-meta-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meta-chip {
+  font-size: 0.78rem;
+  color: #64748b;
+  background: #f8fafc;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.time-chip {
+  font-weight: 600;
+  color: #1b4332;
+  background: #e8f5e9;
+}
+
+.delay-alert-chip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b91c1c;
+  background: #fee2e2;
+  padding: 2px 8px;
+  border-radius: 6px;
+  animation: pulse-soft 2s infinite ease-in-out;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Reorder Action Controls */
+.stop-reorder-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-self: center;
+}
+
+.reorder-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reorder-btn:hover:not(:disabled) {
+  background: #2d6a4f;
+  color: #ffffff;
+  border-color: #2d6a4f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(45, 106, 79, 0.2);
+}
+
+.reorder-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: #f8fafc;
+}
+
+/* Empty Placeholder */
+.empty-stops-placeholder {
+  padding: 36px 24px;
+  text-align: center;
+  background: #f8faf9;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  margin: 8px 0;
+}
+
+.empty-stops-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin: 0 0 6px 0;
+}
+
+.empty-stops-sub {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stop-card {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .stop-marker {
+    width: 40px;
+    height: 40px;
+  }
+  .produce-payload-ribbon {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

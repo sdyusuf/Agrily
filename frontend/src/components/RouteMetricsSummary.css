@@ -1,0 +1,126 @@
+/**
+ * ==============================================================================
+ * AGRILY AGRICULTURAL LOGISTICS - ROUTE METRICS SUMMARY STYLESHEET
+ * ==============================================================================
+ * Follows Agrily Design System tokens, card styling, and grid responsiveness.
+ */
+
+.route-metrics-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+.metric-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+}
+
+.metric-kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.07);
+  border-color: #52b788;
+}
+
+/* Icon Wrappers */
+.kpi-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-emerald {
+  background: #d8f3dc;
+  color: #1b4332;
+}
+
+.icon-ochre {
+  background: #fefae0;
+  color: #bc6c25;
+}
+
+.icon-green {
+  background: #e8f5e9;
+  color: #2d6a4f;
+}
+
+.icon-amber {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.icon-slate {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Body */
+.kpi-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.kpi-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.kpi-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.kpi-unit {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.kpi-subtext {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .route-metrics-summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .route-metrics-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .route-metrics-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

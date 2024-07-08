@@ -1,0 +1,231 @@
+/**
+ * ==============================================================================
+ * AGRILY AGRICULTURAL LOGISTICS - PAYLOAD CAPACITY BAR STYLESHEET
+ * ==============================================================================
+ * Follows Agrily Design System tokens and tactile card standards.
+ */
+
+.payload-capacity-gauge-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.payload-capacity-gauge-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.payload-capacity-gauge-card.tier-overloaded {
+  border-color: #fca5a5;
+  background: #fffafa;
+}
+
+/* Header */
+.gauge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gauge-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gauge-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1b4332;
+  background: #d8f3dc;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.gauge-vehicle-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reg-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: monospace;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #334155;
+}
+
+.gauge-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-optimal {
+  background: #2d6a4f;
+  box-shadow: 0 0 0 2px rgba(45, 106, 79, 0.2);
+}
+
+.dot-near-capacity {
+  background: #bc6c25;
+  box-shadow: 0 0 0 2px rgba(188, 108, 37, 0.2);
+}
+
+.dot-overloaded {
+  background: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.2);
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Progress Track & Fill */
+.progress-track-wrapper {
+  width: 100%;
+}
+
+.progress-track-bar {
+  width: 100%;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.fill-optimal {
+  background: linear-gradient(90deg, #52b788 0%, #2d6a4f 100%);
+}
+
+.fill-near-capacity {
+  background: linear-gradient(90deg, #dda15e 0%, #bc6c25 100%);
+}
+
+.fill-overloaded {
+  background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%);
+}
+
+/* Stats Grid */
+.gauge-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.gauge-stat-box {
+  background: #f8faf9;
+  border: 1px solid #edf2f7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-label {
+  font-size: 0.74rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.stat-value .unit {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.stat-value.stat-optimal {
+  color: #1b4332;
+}
+
+.stat-value.stat-near-capacity {
+  color: #bc6c25;
+}
+
+.stat-value.stat-overloaded {
+  color: #b91c1c;
+}
+
+/* Alert Banners */
+.capacity-warning-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+.alert-safe {
+  background: #edf7ed;
+  color: #1e4620;
+  border: 1px solid #c8e6c9;
+}
+
+.alert-critical {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  animation: shake-subtle 0.5s ease;
+}
+
+@keyframes shake-subtle {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@media (max-width: 768px) {
+  .gauge-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
