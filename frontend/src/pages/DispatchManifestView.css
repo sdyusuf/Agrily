@@ -1,0 +1,552 @@
+/**
+ * ==============================================================================
+ * AGRILY AGRICULTURAL LOGISTICS - DISPATCH MANIFEST VIEW STYLESHEET
+ * ==============================================================================
+ * High-contrast print-ready styling adhering to official logistics bill of lading standards.
+ */
+
+.dispatch-manifest-page {
+  padding: 24px 32px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: inherit;
+  color: #0f172a;
+}
+
+/* Page Top Navigation Bar */
+.manifest-page-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.back-link {
+  color: #2d6a4f;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #1b4332;
+  text-decoration: underline;
+}
+
+.manifest-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-print {
+  background: #1b4332;
+  color: #ffffff;
+}
+
+.btn-print:hover {
+  background: #2d6a4f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
+}
+
+/* Official Document Paper Container */
+.waybill-paper-container {
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 4px;
+  padding: 40px 48px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Document Header */
+.waybill-doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 20px;
+  gap: 24px;
+}
+
+.waybill-authority-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.republic-stamp {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #1b4332;
+}
+
+.board-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.waybill-main-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 6px 0 2px 0;
+  letter-spacing: -0.01em;
+}
+
+.statute-cite {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.waybill-serial-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+}
+
+.serial-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8faf9;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.serial-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.serial-number {
+  font-size: 0.95rem;
+  font-family: monospace;
+  color: #1b4332;
+}
+
+.route-code {
+  font-size: 0.85rem;
+  font-family: monospace;
+  color: #0f172a;
+}
+
+.manifest-status-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #d8f3dc;
+  color: #1b4332;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Phytosanitary Permit Banner */
+.phyto-permit-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #166534;
+}
+
+.phyto-icon {
+  flex-shrink: 0;
+  color: #15803d;
+}
+
+.phyto-text code {
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Sections */
+.waybill-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-heading {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #0f172a;
+  border-bottom: 1.5px solid #cbd5e1;
+  padding-bottom: 6px;
+  margin: 0;
+}
+
+/* Grids */
+.waybill-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.waybill-grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.waybill-data-field {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-caption {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.field-val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.vehicle-plate {
+  font-family: monospace;
+  color: #1b4332;
+}
+
+.field-sub {
+  font-size: 0.76rem;
+  color: #64748b;
+}
+
+.facility-box {
+  background: #f8faf9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.facility-role-pill {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1b4332;
+  background: #d8f3dc;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.facility-role-pill.dest-pill {
+  color: #92400e;
+  background: #fefae0;
+}
+
+.facility-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 2px 0 0 0;
+  color: #0f172a;
+}
+
+.facility-addr, .facility-state {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0;
+}
+
+.facility-officer {
+  font-size: 0.78rem;
+  color: #334155;
+  margin-top: 4px;
+}
+
+/* Security Seals */
+.seals-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.seal-token-card {
+  background: #fff8f8;
+  border: 1.5px solid #fca5a5;
+  border-radius: 6px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.seal-tag-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #991b1b;
+  text-transform: uppercase;
+}
+
+.seal-code {
+  font-size: 1.05rem;
+  font-family: monospace;
+  color: #b91c1c;
+}
+
+.seal-verification-status {
+  font-size: 0.72rem;
+  color: #166534;
+  font-weight: 600;
+}
+
+/* Consignments Table */
+.table-responsive-wrapper {
+  overflow-x: auto;
+}
+
+.consignments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.consignments-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  text-align: left;
+}
+
+.consignments-table td {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.center-cell {
+  text-align: center;
+}
+
+.numeric-cell {
+  text-align: right;
+  font-family: monospace;
+}
+
+.farm-info-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.farmer-tel {
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+.category-sub {
+  display: block;
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+.manifest-perishability-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.verified-check {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.totals-row td {
+  background: #f8faf9;
+  font-weight: 700;
+  border-top: 2px solid #0f172a;
+}
+
+.totals-label {
+  text-align: right;
+  letter-spacing: 0.03em;
+  color: #0f172a;
+}
+
+.totals-stops-note {
+  font-size: 0.76rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Legal Endorsements Signatures */
+.endorsement-legal-text {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.signatures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.signature-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sig-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-transform: uppercase;
+}
+
+.sig-line-area {
+  min-height: 60px;
+  border-bottom: 1.5px dashed #94a3b8;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 6px;
+}
+
+.electronic-sign-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #1b4332;
+  font-family: monospace;
+}
+
+.sig-timestamp {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.sig-caption {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.verify-dock-btn {
+  background: #2d6a4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.verify-dock-btn:hover:not(:disabled) {
+  background: #1b4332;
+}
+
+.verify-dock-btn:disabled {
+  background: #d8f3dc;
+  color: #1b4332;
+  cursor: default;
+}
+
+/* Document Footer */
+.waybill-doc-footer {
+  border-top: 2px solid #0f172a;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.barcode-mock {
+  font-family: monospace;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* Print Stylesheet Overrides */
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .waybill-paper-container {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .waybill-paper-container {
+    padding: 20px 18px;
+  }
+  .waybill-grid-3col, .signatures-grid {
+    grid-template-columns: 1fr;
+  }
+  .waybill-grid-2col {
+    grid-template-columns: 1fr;
+  }
+  .waybill-doc-header {
+    flex-direction: column;
+  }
+}

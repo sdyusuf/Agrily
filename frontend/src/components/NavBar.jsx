@@ -88,6 +88,14 @@ function NavBar() {
               Escrow Vault
             </Nav.Link>
             <Nav.Link
+              as={Link}
+              to="/route-planner"
+              style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
+              data-testid="nav-routes-link"
+            >
+              Route Dispatch
+            </Nav.Link>
+            <Nav.Link
               href="#about"
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >

@@ -132,4 +132,55 @@ describe('RoutePlanner Cockpit Page', () => {
     fireEvent.click(simBtn);
     expect(simBtn).toHaveTextContent('Simulate Tour');
   });
+
+  test('updates origin depot and destination hub from dropdowns', () => {
+    render(<RoutePlanner />);
+
+    const originSelect = screen.getByTestId('origin-depot-select');
+    fireEvent.change(originSelect, { target: { value: 'KAN-DWN-01' } });
+    expect(originSelect.value).toBe('KAN-DWN-01');
+
+    const destSelect = screen.getByTestId('destination-hub-select');
+    fireEvent.change(destSelect, { target: { value: 'JOS-PLT-01' } });
+    expect(destSelect.value).toBe('JOS-PLT-01');
+  });
+
+  test('updates assigned vehicle and recalculates capacity bar limits', () => {
+    render(<RoutePlanner />);
+
+    const vehicleSelect = screen.getByTestId('vehicle-select');
+    fireEvent.change(vehicleSelect, { target: { value: 'veh-02' } }); // 7.5T Medium Cargo Truck
+    expect(vehicleSelect.value).toBe('veh-02');
+    expect(screen.getAllByText(/7.5T Medium Cargo Truck/).length).toBeGreaterThan(0);
+  });
+
+  test('handles optimizer network failure with resilient local fallback', async () => {
+    axios.post.mockRejectedValueOnce(new Error('Network error connecting to optimizer'));
+
+    render(<RoutePlanner />);
+
+    const optimizeBtn = screen.getByTestId('optimize-btn');
+    fireEvent.click(optimizeBtn);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('alert-banner')).toHaveTextContent(/Local 2-Opt TSP heuristic evaluated/);
+    });
+  });
+
+  test('allows toggling order in and out of the harvest pool', () => {
+    render(<RoutePlanner />);
+
+    const poolTab = screen.getByTestId('tab-pool');
+    fireEvent.click(poolTab);
+
+    // Click Kudan Habanero Pepper Farm to add to route
+    const kudanFarm = screen.getByText('Kudan Habanero Pepper Farm');
+    fireEvent.click(kudanFarm);
+
+    // Switch back to itinerary to verify inclusion
+    const itineraryTab = screen.getByTestId('tab-itinerary');
+    fireEvent.click(itineraryTab);
+
+    expect(screen.getByText('Kudan Habanero Pepper Farm')).toBeInTheDocument();
+  });
 });
