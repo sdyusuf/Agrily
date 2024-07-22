@@ -1,0 +1,346 @@
+/**
+ * ==============================================================================
+ * 🌾 AGRILY DESIGN SYSTEM: COMMERCIAL INVOICE PREVIEW MODAL STYLESHEET
+ * ==============================================================================
+ */
+
+.invoice-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1060;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.invoice-modal-container {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 820px;
+  max-height: 90vh;
+  box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Header Bar */
+.invoice-modal-header {
+  padding: 16px 24px;
+  background: #f8faf9;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.invoice-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1b4332;
+  background: #e8f5e9;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.invoice-number {
+  font-family: ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #bc6c25;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-print-invoice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #1b4332;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-print-invoice:hover {
+  background: #2d6a4f;
+  transform: translateY(-1px);
+}
+
+/* Printable Sheet Content */
+.invoice-sheet {
+  padding: 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #ffffff;
+}
+
+.invoice-sheet-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #1b4332;
+  padding-bottom: 20px;
+}
+
+.invoice-brand-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #1b4332;
+  letter-spacing: -0.02em;
+}
+
+.invoice-brand-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.invoice-meta-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+}
+
+.meta-row {
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.meta-label {
+  color: #64748b;
+}
+
+.meta-val {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Parties Grid */
+.invoice-parties-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.party-panel {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.panel-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.panel-name {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.panel-line {
+  margin: 0;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* Items Table */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th {
+  background: #f1f5f9;
+  padding: 10px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+  text-align: left;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.invoice-table td {
+  padding: 12px;
+  font-size: 13px;
+  color: #0f172a;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.item-sub {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Financial Totals Reconciliation */
+.invoice-financial-split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.financial-notes {
+  background: #fdfbf7;
+  border: 1px solid #faedcd;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notes-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: #bc6c25;
+  text-transform: uppercase;
+}
+
+.notes-body {
+  margin: 0;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.checksum-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.cs-label {
+  font-size: 10px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.cs-code {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  color: #1b4332;
+  word-break: break-all;
+}
+
+.totals-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #475569;
+}
+
+.grand-total-row {
+  border-top: 2px solid #1b4332;
+  padding-top: 10px;
+  margin-top: 4px;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.grand-total {
+  color: #1b4332;
+  font-size: 18px;
+}
+
+/* Modal Footer */
+.invoice-modal-footer {
+  padding: 16px 24px;
+  background: #f8faf9;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-status-text {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.btn-close-invoice {
+  padding: 8px 18px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-close-invoice:hover {
+  background: #f1f5f9;
+}
+
+@media print {
+  .invoice-modal-backdrop {
+    position: static;
+    background: transparent;
+    padding: 0;
+  }
+  .invoice-modal-container {
+    box-shadow: none;
+    max-width: 100%;
+  }
+  .invoice-modal-header,
+  .invoice-modal-footer {
+    display: none;
+  }
+}
