@@ -34,7 +34,7 @@ describe('NavBar Component Unit Tests', () => {
     jest.restoreAllMocks();
   });
 
-  test('hides Cart and Notification triggers when user is unauthenticated (logged out)', () => {
+  test('hides protected links (Logistics & Fleet, Escrow Vault, Cart, Notifications, Dashboard) when user is unauthenticated (logged out)', () => {
     // Mock user as null (not logged in)
     jest.spyOn(useUserModule, 'useUser').mockReturnValue(null);
 
@@ -46,15 +46,19 @@ describe('NavBar Component Unit Tests', () => {
       </BrowserRouter>
     );
 
-    // Verify brand logo and public links exist
+    // Verify public links exist
     expect(screen.getByText(/Home/i)).toBeInTheDocument();
     expect(screen.getByText(/Marketplace/i)).toBeInTheDocument();
-    expect(screen.getByText(/Fleet Drivers/i)).toBeInTheDocument();
-    expect(screen.getByText(/Live Radar/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cold-Chain/i)).toBeInTheDocument();
-    expect(screen.getByText(/Escrow Vault/i)).toBeInTheDocument();
-    expect(screen.getByText(/Route Dispatch/i)).toBeInTheDocument();
-    expect(screen.getByText(/Waybills/i)).toBeInTheDocument();
+    expect(screen.getByText(/Explore/i)).toBeInTheDocument();
+    expect(screen.getByTestId('guest-track-link')).toBeInTheDocument();
+    expect(screen.getByTestId('guest-driver-register')).toBeInTheDocument();
+
+    // Verify protected links requiring login are strictly HIDDEN
+    expect(screen.queryByText(/Escrow Vault/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Logistics & Fleet/i)).not.toBeInTheDocument();
+    expect(screen.queryByTestId('nav-routes-link')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('nav-waybills-link')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('nav-coldchain-link')).not.toBeInTheDocument();
 
     // Verify Cart trigger is NOT rendered for logged-out visitors
     expect(screen.queryByRole('button', { name: /open shopping cart/i })).not.toBeInTheDocument();
@@ -71,12 +75,13 @@ describe('NavBar Component Unit Tests', () => {
     expect(screen.queryByRole('link', { name: /dashboard/i })).not.toBeInTheDocument();
   });
 
-  test('renders Cart and Notification triggers when user is authenticated (logged in)', () => {
+  test('renders protected links (Logistics & Fleet, Escrow Vault, Cart, Notifications, Dashboard) when user is authenticated (logged in)', () => {
     // Mock user as logged-in farmer
     jest.spyOn(useUserModule, 'useUser').mockReturnValue({
       email: 'farmer.kaduna@agrily.com',
       firstName: 'Ibrahim',
       lastName: 'Kaduna',
+      role: 'FARMER',
       isVerified: true
     });
 
@@ -88,6 +93,16 @@ describe('NavBar Component Unit Tests', () => {
       </BrowserRouter>
     );
 
+    // Verify public and protected links are rendered
+    expect(screen.getByText(/Home/i)).toBeInTheDocument();
+    expect(screen.getByText(/Marketplace/i)).toBeInTheDocument();
+    expect(screen.getByText(/Logistics & Fleet/i)).toBeInTheDocument();
+    expect(screen.getByTestId('nav-routes-link')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-waybills-link')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-tracking-link')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-coldchain-link')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-escrow-link')).toBeInTheDocument();
+
     // Verify Cart trigger IS rendered with item count
     const cartButton = screen.getByRole('button', { name: /open shopping cart \(2 items\)/i });
     expect(cartButton).toBeInTheDocument();
@@ -97,10 +112,39 @@ describe('NavBar Component Unit Tests', () => {
     // Verify Notification bell trigger IS rendered
     expect(screen.getByTestId('notification-bell-button')).toBeInTheDocument();
 
-    // Verify Dashboard navigation CTA is displayed
-    expect(screen.getByRole('link', { name: /dashboard/i })).toBeInTheDocument();
+    // Verify Dashboard navigation CTA is displayed for farmer (points to /home)
+    const dashboardLink = screen.getByRole('link', { name: /dashboard/i });
+    expect(dashboardLink).toBeInTheDocument();
+    expect(dashboardLink).toHaveAttribute('href', '/home');
 
     // Verify guest sign-in link is hidden for authenticated sessions
     expect(screen.queryByRole('link', { name: /sign in/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /get started/i })).not.toBeInTheDocument();
+  });
+
+  test('renders driver-specific cockpit routing when user has driver role', () => {
+    // Mock user as driver
+    jest.spyOn(useUserModule, 'useUser').mockReturnValue({
+      email: 'driver.kofi@agrily.com',
+      firstName: 'Kofi',
+      lastName: 'Boateng',
+      role: 'PRIMARY_DRIVER',
+      isVerified: true
+    });
+
+    render(
+      <BrowserRouter>
+        <CartContext.Provider value={mockCartContextValue}>
+          <NavBar />
+        </CartContext.Provider>
+      </BrowserRouter>
+    );
+
+    // Verify Driver Cockpit item is in dropdown
+    expect(screen.getByText(/Driver Cockpit/i)).toBeInTheDocument();
+
+    // Verify Dashboard CTA directs to driver dashboard
+    const dashboardLink = screen.getByRole('link', { name: /dashboard/i });
+    expect(dashboardLink).toHaveAttribute('href', '/driver/dashboard');
   });
 });
