@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import background from '../images/bg.jpg';
 import { Link } from 'react-router-dom';
-import { WheatIcon } from './Icons';
+import { WheatIcon, ArrowRightIcon } from './Icons';
 
 function Jumbotron() {
   return (
@@ -97,17 +97,14 @@ function Jumbotron() {
 
               <Link
                 to="/login"
-                className="btn-agrily-outline"
+                className="btn-hero-signin"
                 style={{
-                  textDecoration: 'none',
                   fontSize: '1.05rem',
-                  padding: '0.85rem 1.8rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  color: '#ffffff',
-                  borderColor: 'rgba(255, 255, 255, 0.4)'
+                  padding: '0.85rem 1.8rem'
                 }}
               >
-                Sign In to Dashboard
+                <span>Sign In to Dashboard</span>
+                <ArrowRightIcon size={16} />
               </Link>
             </div>
 
