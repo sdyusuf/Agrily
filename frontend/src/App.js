@@ -31,6 +31,7 @@ const ColdChainMonitor = lazy(() => import('./pages/ColdChainMonitor'));
 const EscrowManagement = lazy(() => import('./pages/EscrowManagement'));
 const RoutePlanner = lazy(() => import('./pages/RoutePlanner'));
 const DispatchManifestView = lazy(() => import('./pages/DispatchManifestView'));
+const WaybillManagement = lazy(() => import('./pages/WaybillManagement'));
 
 /**
  * Route loading fallback component adhering to Agrily design tokens
@@ -124,6 +125,9 @@ function App() {
                 <Route path="/routes" element={<RoutePlanner />} />
                 <Route path="/manifest/:id" element={<DispatchManifestView />} />
                 <Route path="/manifest" element={<DispatchManifestView />} />
+                <Route path="/waybills" element={<WaybillManagement />} />
+                <Route path="/logistics/waybills" element={<WaybillManagement />} />
+                <Route path="/waybills/:id" element={<WaybillManagement />} />
 
                 <Route exact path="/home" element={<PrivateRoute />}>
                   <Route exact path="/home" element={<Home />} />

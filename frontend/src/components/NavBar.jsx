@@ -96,6 +96,14 @@ function NavBar() {
               Route Dispatch
             </Nav.Link>
             <Nav.Link
+              as={Link}
+              to="/waybills"
+              style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
+              data-testid="nav-waybills-link"
+            >
+              Waybills
+            </Nav.Link>
+            <Nav.Link
               href="#about"
               style={{ fontWeight: '500', color: '#475569', fontSize: '0.95rem' }}
             >
