@@ -1,0 +1,253 @@
+/**
+ * ==============================================================================
+ * 🌾 AGRILY DESIGN SYSTEM: MODERN EXECUTIVE NAVBAR STYLESHEET
+ * ==============================================================================
+ * 
+ * Provides responsive, uncluttered, frosted-glass header styling with
+ * structured dropdown menus, micro-interactions, and active navigation indicators.
+ * 
+ * Adheres strictly to DESIGN_SYSTEM.md tokens.
+ */
+
+.agrily-navbar {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+  padding: 0.75rem 0 !important;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 1040;
+}
+
+.agrily-nav-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.93rem !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 8px;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none !important;
+}
+
+.agrily-nav-link:hover {
+  color: #1b4332 !important;
+  background: #f1f8f5;
+  transform: translateY(-1px);
+}
+
+.agrily-nav-link.active-link {
+  color: #1b4332 !important;
+  font-weight: 700 !important;
+  background: #e8f5e9;
+}
+
+/* Dropdown Menu Container */
+.agrily-nav-dropdown .dropdown-toggle {
+  font-size: 0.93rem !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 180ms ease;
+  background: transparent !important;
+  border: none !important;
+}
+
+.agrily-nav-dropdown .dropdown-toggle:hover,
+.agrily-nav-dropdown.show .dropdown-toggle {
+  color: #1b4332 !important;
+  background: #f1f8f5 !important;
+}
+
+.agrily-nav-dropdown.active-dropdown .dropdown-toggle {
+  color: #1b4332 !important;
+  font-weight: 700 !important;
+  background: #e8f5e9 !important;
+}
+
+.dropdown-chevron {
+  display: inline-block;
+  transition: transform 200ms ease;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.agrily-nav-dropdown.show .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+/* Polished Dropdown Menu Overlay */
+.agrily-dropdown-menu {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(27, 67, 50, 0.06) !important;
+  padding: 0.6rem !important;
+  min-width: 290px !important;
+  margin-top: 0.5rem !important;
+  animation: dropdownSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-header-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  padding: 0.4rem 0.75rem 0.3rem;
+  margin: 0;
+}
+
+/* Dropdown Item Itemization */
+.agrily-dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.6rem 0.75rem !important;
+  border-radius: 9px !important;
+  color: #0f172a !important;
+  text-decoration: none !important;
+  transition: all 160ms ease !important;
+}
+
+.agrily-dropdown-item:hover,
+.agrily-dropdown-item:focus {
+  background: #f8faf9 !important;
+  color: #1b4332 !important;
+  transform: translateX(3px);
+}
+
+.dropdown-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-emerald { background: #e8f5e9; color: #1b4332; }
+.icon-ochre { background: #fefae0; color: #bc6c25; }
+.icon-blue { background: #eff6ff; color: #1d4ed8; }
+.icon-indigo { background: #e0e7ff; color: #4338ca; }
+.icon-slate { background: #f1f5f9; color: #475569; }
+
+.dropdown-item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+.agrily-dropdown-item:hover .dropdown-item-title {
+  color: #1b4332;
+}
+
+.dropdown-item-desc {
+  font-size: 0.74rem;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+/* Cart Trigger Button */
+.nav-cart-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 0.42rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  color: #1b4332;
+  font-weight: 600;
+  font-size: 0.88rem;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-cart-btn:hover {
+  background: #f1f8f5;
+  border-color: #52b788;
+  transform: translateY(-1px);
+}
+
+.cart-count-badge {
+  background-color: #bc6c25;
+  color: #ffffff;
+  border-radius: 999px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Action CTA Buttons */
+.nav-btn-signin {
+  text-decoration: none !important;
+  padding: 0.45rem 1.05rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1b4332;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.nav-btn-signin:hover {
+  background: #f1f8f5;
+  border-color: #52b788;
+  color: #1b4332;
+  transform: translateY(-1px);
+}
+
+.nav-btn-register {
+  text-decoration: none !important;
+  padding: 0.48rem 1.15rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 6px rgba(27, 67, 50, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn-register:hover {
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.3);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+@media (max-width: 991px) {
+  .agrily-dropdown-menu {
+    border: none !important;
+    box-shadow: none !important;
+    padding-left: 0.5rem !important;
+    background: #f8faf9 !important;
+  }
+}
