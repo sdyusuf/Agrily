@@ -72,15 +72,22 @@
   background: #e8f5e9 !important;
 }
 
+/* Suppress default Bootstrap caret pseudo-element to prevent duplicate caret arrows */
+.agrily-nav-dropdown .dropdown-toggle::after {
+  display: none !important;
+}
+
 .dropdown-chevron {
   display: inline-block;
-  transition: transform 200ms ease;
-  font-size: 0.75rem;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
   color: #64748b;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .agrily-nav-dropdown.show .dropdown-chevron {
   transform: rotate(180deg);
+  color: #1b4332;
 }
 
 /* Polished Dropdown Menu Overlay */

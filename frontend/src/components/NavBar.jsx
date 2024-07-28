@@ -100,8 +100,11 @@ function NavBar() {
             {/* 3. Logistics & Fleet (Refined Dropdown Hub) */}
             <NavDropdown
               title={
-                <span>
-                  Logistics &amp; Fleet <span className="dropdown-chevron">▼</span>
+                <span className="d-inline-flex align-items-center" style={{ gap: '0.35rem' }}>
+                  Logistics &amp; Fleet
+                  <svg className="dropdown-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
                 </span>
               }
               id="nav-logistics-dropdown"
@@ -224,8 +227,11 @@ function NavBar() {
             {/* 5. Explore (Subtle Dropdown for Secondary Links) */}
             <NavDropdown
               title={
-                <span>
-                  Explore <span className="dropdown-chevron">▼</span>
+                <span className="d-inline-flex align-items-center" style={{ gap: '0.35rem' }}>
+                  Explore
+                  <svg className="dropdown-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
                 </span>
               }
               id="nav-explore-dropdown"
