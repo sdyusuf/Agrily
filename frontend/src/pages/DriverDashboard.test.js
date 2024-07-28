@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import DriverDashboard from './DriverDashboard';
 
-const mockUser = { email: 'driver.kofi@agrily.com', fullName: 'Kofi Mensah Boateng' };
+const mockUser = { email: 'driver.ibrahim@agrily.com', fullName: 'Ibrahim Aliyu Bello' };
 jest.mock('../auth/useUser', () => ({
   useUser: () => mockUser
 }));
@@ -26,8 +26,8 @@ describe('DriverDashboard Component Tests', () => {
     renderComponent();
 
     expect(screen.getByTestId('driver-dashboard-page')).toBeInTheDocument();
-    expect(screen.getByTestId('driver-name-heading')).toHaveTextContent('Kofi Mensah Boateng');
-    expect(screen.getByTestId('driver-avatar')).toHaveTextContent('K');
+    expect(screen.getByTestId('driver-name-heading')).toHaveTextContent('Ibrahim Aliyu Bello');
+    expect(screen.getByTestId('driver-avatar')).toHaveTextContent('I');
     expect(screen.getByTestId('driver-verification-badge')).toHaveTextContent(/Verified Fleet Hauler/i);
   });
 

@@ -14,7 +14,7 @@ describe('ConsignmentTracking Page Tests', () => {
     expect(screen.getByRole('heading', { level: 1, name: /Live Consignment GPS Radar/i })).toBeInTheDocument();
     expect(screen.getByRole('search')).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Enter Consignment ID.../i)).toBeInTheDocument();
-    expect(screen.getByTestId('eta-badge')).toHaveTextContent(/ETA: Today, 18:45 GMT/i);
+    expect(screen.getByTestId('eta-badge')).toHaveTextContent(/ETA: Today, 18:45 WAT/i);
     expect(screen.getByText('Farm Loaded')).toBeInTheDocument();
     expect(screen.getByText('In Transit')).toBeInTheDocument();
     expect(screen.getByText('Delivered')).toBeInTheDocument();
@@ -32,9 +32,9 @@ describe('ConsignmentTracking Page Tests', () => {
   test('renders carrier driver profile and vehicle specs', () => {
     renderWithRouter(<ConsignmentTracking />);
 
-    expect(screen.getByText('Kofi Mensah Boateng')).toBeInTheDocument();
+    expect(screen.getByText('Ibrahim Aliyu Bello')).toBeInTheDocument();
     expect(screen.getByText(/Class C Heavy Freight/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/GT-4819-23/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/KAD-481-XA/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/4.95 \/ 5.0 Rating/i)).toBeInTheDocument();
     expect(screen.getByText(/142 Verified Hauls/i)).toBeInTheDocument();
   });

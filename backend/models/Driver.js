@@ -140,7 +140,7 @@ const DriverSchema = new mongoose.Schema({
   },
   operatingRegions: {
     type: [String],
-    default: ['Greater Accra'],
+    default: ['Lagos State'],
     validate: {
       validator: function(v) {
         return Array.isArray(v) && v.length > 0;
@@ -149,11 +149,11 @@ const DriverSchema = new mongoose.Schema({
     }
   },
   baseLocation: {
-    city: { type: String, default: 'Accra' },
-    state: { type: String, default: 'Greater Accra' },
+    city: { type: String, default: 'Lagos' },
+    state: { type: String, default: 'Lagos State' },
     coordinates: {
-      lat: { type: Number, min: -90, max: 90, default: 5.6037 },
-      lng: { type: Number, min: -180, max: 180, default: -0.1870 }
+      lat: { type: Number, min: -90, max: 90, default: 6.5244 },
+      lng: { type: Number, min: -180, max: 180, default: 3.3792 }
     }
   },
   verificationStatus: {

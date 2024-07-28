@@ -4,14 +4,14 @@ import { useUser } from '../auth/useUser';
 import './DriverRegistration.css';
 
 const AVAILABLE_REGIONS = [
-  'Greater Accra',
-  'Ashanti',
-  'Eastern',
-  'Central',
-  'Western',
-  'Volta',
-  'Bono',
-  'Northern'
+  'Lagos & South-West Hub',
+  'Kano & Northern Grain Belt',
+  'Kaduna Agro-Transit Hub',
+  'Oyo & Ibadan Food Gateway',
+  'Benue Food Basket Corridor',
+  'Plateau & Jos Vegetable Belt',
+  'Abuja FCT Central Supply',
+  'Ogun Industrial Hub'
 ];
 
 const VEHICLE_OPTIONS = [
@@ -95,9 +95,9 @@ export default function DriverRegistration() {
     payloadCapacityKg: 10000,
     maxVolumeCubicMeters: 35,
     hasRefrigeration: false,
-    operatingRegions: ['Greater Accra', 'Ashanti'],
-    city: 'Accra',
-    state: 'Greater Accra'
+    operatingRegions: ['Lagos & South-West Hub', 'Kano & Northern Grain Belt'],
+    city: 'Lagos',
+    state: 'Lagos State'
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -169,7 +169,7 @@ export default function DriverRegistration() {
       licenseNumber: formData.licenseNumber.trim(),
       licenseClass: formData.licenseClass,
       licenseExpiry: formData.licenseExpiry || '2028-12-31',
-      nationalIdNumber: formData.nationalIdNumber.trim() || 'GHA-000000000-0',
+      nationalIdNumber: formData.nationalIdNumber.trim() || '10000000000',
       vehicle: {
         vehicleType: formData.vehicleType,
         registrationNumber: formData.registrationNumber.trim().toUpperCase(),
@@ -253,7 +253,7 @@ export default function DriverRegistration() {
                   id="fullName"
                   name="fullName"
                   className="driver-form-input"
-                  placeholder="e.g. Kwame Mensah Boateng"
+                  placeholder="e.g. Ibrahim Aliyu Bello"
                   value={formData.fullName}
                   onChange={handleInputChange}
                   required
@@ -280,7 +280,7 @@ export default function DriverRegistration() {
                   id="phone"
                   name="phone"
                   className="driver-form-input"
-                  placeholder="+233 24 123 4567"
+                  placeholder="+234 803 123 4567"
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
@@ -288,12 +288,12 @@ export default function DriverRegistration() {
               </div>
 
               <div>
-                <label className="driver-form-label" htmlFor="nationalIdNumber">National Identity / Ghana Card</label>
+                <label className="driver-form-label" htmlFor="nationalIdNumber">National Identification Number (NIN)</label>
                 <input
                   id="nationalIdNumber"
                   name="nationalIdNumber"
                   className="driver-form-input"
-                  placeholder="GHA-123456789-0"
+                  placeholder="12345678901 (11 digits)"
                   value={formData.nationalIdNumber}
                   onChange={handleInputChange}
                   required
@@ -301,12 +301,12 @@ export default function DriverRegistration() {
               </div>
 
               <div>
-                <label className="driver-form-label" htmlFor="licenseNumber">Commercial License Number</label>
+                <label className="driver-form-label" htmlFor="licenseNumber">FRSC Commercial Driver's License</label>
                 <input
                   id="licenseNumber"
                   name="licenseNumber"
                   className="driver-form-input"
-                  placeholder="GH-COMM-88129"
+                  placeholder="FRSC-LAG-88129-A"
                   value={formData.licenseNumber}
                   onChange={handleInputChange}
                   required
@@ -506,7 +506,7 @@ export default function DriverRegistration() {
                   id="city"
                   name="city"
                   className="driver-form-input"
-                  placeholder="Accra"
+                  placeholder="Lagos (e.g. Mile 12 Hub)"
                   value={formData.city}
                   onChange={handleInputChange}
                 />
@@ -518,7 +518,7 @@ export default function DriverRegistration() {
                   id="state"
                   name="state"
                   className="driver-form-input"
-                  placeholder="Greater Accra"
+                  placeholder="Lagos State"
                   value={formData.state}
                   onChange={handleInputChange}
                 />

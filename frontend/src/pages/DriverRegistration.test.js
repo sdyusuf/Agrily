@@ -9,7 +9,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate
 }));
 
-const mockUser = { email: 'driver.kofi@agrily.com', fullName: 'Kofi Mensah Boateng' };
+const mockUser = { email: 'driver.ibrahim@agrily.com', fullName: 'Ibrahim Aliyu Bello' };
 jest.mock('../auth/useUser', () => ({
   useUser: () => mockUser
 }));
@@ -35,9 +35,9 @@ describe('DriverRegistration Component Tests', () => {
     expect(screen.getByTestId('driver-badge-pill')).toHaveTextContent(/Agrily Freight Network/i);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/Driver & Fleet Onboarding/i);
 
-    expect(screen.getByLabelText(/Full Name/i)).toHaveValue('Kofi Mensah Boateng');
-    expect(screen.getByLabelText(/Account Email/i)).toHaveValue('driver.kofi@agrily.com');
-    expect(screen.getByLabelText(/Commercial License Number/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Full Name/i)).toHaveValue('Ibrahim Aliyu Bello');
+    expect(screen.getByLabelText(/Account Email/i)).toHaveValue('driver.ibrahim@agrily.com');
+    expect(screen.getByLabelText(/Commercial Driver's License/i)).toBeInTheDocument();
   });
 
   it('renders interactive vehicle type selection cards and updates selection on click', () => {
@@ -57,14 +57,14 @@ describe('DriverRegistration Component Tests', () => {
   it('allows toggling regional operating corridor chips', () => {
     renderComponent();
 
-    const bonoChip = screen.getByTestId('region-chip-bono');
-    expect(bonoChip).not.toHaveClass('selected');
+    const kadunaChip = screen.getByTestId('region-chip-kaduna-agro-transit-hub');
+    expect(kadunaChip).not.toHaveClass('selected');
 
-    fireEvent.click(bonoChip);
-    expect(bonoChip).toHaveClass('selected');
+    fireEvent.click(kadunaChip);
+    expect(kadunaChip).toHaveClass('selected');
 
-    fireEvent.click(bonoChip);
-    expect(bonoChip).not.toHaveClass('selected');
+    fireEvent.click(kadunaChip);
+    expect(kadunaChip).not.toHaveClass('selected');
   });
 
   it('allows toggling cold-chain refrigeration option', () => {
@@ -103,13 +103,13 @@ describe('DriverRegistration Component Tests', () => {
 
     // Fill in required fields
     fireEvent.change(screen.getByLabelText(/Phone Number/i), {
-      target: { value: '+233241234567' }
+      target: { value: '+2348031234567' }
     });
-    fireEvent.change(screen.getByLabelText(/Commercial License Number/i), {
-      target: { value: 'GH-COMM-99120' }
+    fireEvent.change(screen.getByLabelText(/Commercial Driver's License/i), {
+      target: { value: 'FRSC-KAD-99120' }
     });
     fireEvent.change(screen.getByLabelText(/Vehicle Plate \/ Registration/i), {
-      target: { value: 'GT-8819-21' }
+      target: { value: 'KAD-881-XA' }
     });
     fireEvent.change(screen.getByLabelText(/Vehicle Make/i), {
       target: { value: 'Isuzu' }

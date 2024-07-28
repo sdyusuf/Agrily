@@ -74,61 +74,64 @@ const CheckIcon = () => (
   </svg>
 );
 
+const defaultConsignmentRecord = {
+  orderId: 'ORD-2024-NG-99812',
+  produce: 'Premium White Maize & Grain Lots (150 Bags / 7.5 MT)',
+  currentStep: 3,
+  estimatedArrival: 'Today, 18:45 WAT',
+  etaHoursRemaining: '3h 15m remaining',
+  distanceRemainingKm: 184,
+  totalDistanceKm: 780,
+  driver: {
+    name: 'Ibrahim Aliyu Bello',
+    phone: '+234 803 123 4567',
+    licenseClass: 'FRSC Class C Heavy Freight',
+    experienceYears: 8,
+    rating: 4.95,
+    completedTrips: 142
+  },
+  vehicle: {
+    make: 'Isuzu',
+    model: 'F-Series 15T Heavy Reefer',
+    plateNumber: 'KAD-481-XA',
+    hasReefer: true,
+    reeferSetpointC: 4.0
+  },
+  origin: {
+    name: 'Zaria Agro-Cooperative Farmgate Depot',
+    city: 'Zaria, Kaduna State',
+    coordinates: { lng: 7.7199, lat: 11.0855 }
+  },
+  destination: {
+    name: 'Mile 12 International Wholesale Agro Hub',
+    city: 'Ketu-Mile 12, Lagos State',
+    coordinates: { lng: 3.3942, lat: 6.6118 }
+  },
+  currentTelemetry: {
+    coordinates: { lng: 4.5418, lat: 8.4966 },
+    speedKmh: 68.4,
+    headingDegrees: 195,
+    altitudeMeters: 290,
+    batteryLevelPct: 89,
+    cargoTemperatureC: 3.8,
+    recordedAt: new Date().toISOString()
+  },
+  breadcrumbs: [
+    { coordinates: { lng: 7.7199, lat: 11.0855 } },
+    { coordinates: { lng: 6.5569, lat: 9.6177 } },
+    { coordinates: { lng: 5.0450, lat: 8.9500 } },
+    { coordinates: { lng: 4.5418, lat: 8.4966 } }
+  ]
+};
+
 const MOCK_CONSIGNMENT_DATABASE = {
-  'ORD-2024-GH-99812': {
-    orderId: 'ORD-2024-GH-99812',
-    produce: 'Premium White Maize & Grain Lots (150 Bags / 7.5 MT)',
-    currentStep: 3,
-    estimatedArrival: 'Today, 18:45 GMT',
-    etaHoursRemaining: '3h 15m remaining',
-    distanceRemainingKm: 184,
-    totalDistanceKm: 340,
-    driver: {
-      name: 'Kofi Mensah Boateng',
-      phone: '+233 24 123 4567',
-      licenseClass: 'Class C Heavy Freight',
-      experienceYears: 8,
-      rating: 4.95,
-      completedTrips: 142
-    },
-    vehicle: {
-      make: 'Isuzu',
-      model: 'F-Series 15T Heavy Reefer',
-      plateNumber: 'GT-4819-23',
-      hasReefer: true,
-      reeferSetpointC: 4.0
-    },
-    origin: {
-      name: 'Ejura Agro-Cooperative Farmgate',
-      city: 'Ejura, Ashanti Region',
-      coordinates: { lng: -1.3658, lat: 7.3789 }
-    },
-    destination: {
-      name: 'Tema Port Cold-Chain Agro Export Terminal',
-      city: 'Tema, Greater Accra',
-      coordinates: { lng: -0.0166, lat: 5.6698 }
-    },
-    currentTelemetry: {
-      coordinates: { lng: -0.7812, lat: 6.4251 },
-      speedKmh: 68.4,
-      headingDegrees: 152,
-      altitudeMeters: 142,
-      batteryLevelPct: 89,
-      cargoTemperatureC: 3.8,
-      recordedAt: new Date().toISOString()
-    },
-    breadcrumbs: [
-      { coordinates: { lng: -1.3658, lat: 7.3789 } },
-      { coordinates: { lng: -1.1850, lat: 7.0210 } },
-      { coordinates: { lng: -0.9950, lat: 6.7150 } },
-      { coordinates: { lng: -0.7812, lat: 6.4251 } }
-    ]
-  }
+  'ORD-2024-NG-99812': defaultConsignmentRecord,
+  'ORD-2024-GH-99812': defaultConsignmentRecord
 };
 
 export const ConsignmentTracking = () => {
-  const [searchQuery, setSearchQuery] = useState('ORD-2024-GH-99812');
-  const [activeOrder, setActiveOrder] = useState(MOCK_CONSIGNMENT_DATABASE['ORD-2024-GH-99812']);
+  const [searchQuery, setSearchQuery] = useState('ORD-2024-NG-99812');
+  const [activeOrder, setActiveOrder] = useState(defaultConsignmentRecord);
   const [copiedLink, setCopiedLink] = useState(false);
 
   const handleSearchSubmit = (e) => {
@@ -139,7 +142,7 @@ export const ConsignmentTracking = () => {
     } else {
       // Create fallback display representation for arbitrary query
       setActiveOrder({
-        ...MOCK_CONSIGNMENT_DATABASE['ORD-2024-GH-99812'],
+        ...defaultConsignmentRecord,
         orderId: query
       });
     }

@@ -75,33 +75,33 @@ const WarehouseIcon = () => (
  * and consignment transit progress on a responsive canvas.
  */
 export const LiveTransitMap = ({
-  consignmentOrderId = 'ORD-2024-GH-99812',
-  driverName = 'Kofi Mensah Boateng',
-  vehicleRegistration = 'GT-4819-23',
+  consignmentOrderId = 'ORD-2024-NG-99812',
+  driverName = 'Ibrahim Aliyu Bello',
+  vehicleRegistration = 'KAD-481-XA',
   origin = {
-    name: 'Ejura Maize & Grain Cooperative Farm',
-    city: 'Ejura, Ashanti',
-    coordinates: { lng: -1.3658, lat: 7.3789 }
+    name: 'Zaria Maize & Grain Farmgate Depot',
+    city: 'Zaria, Kaduna State',
+    coordinates: { lng: 7.7199, lat: 11.0855 }
   },
   destination = {
-    name: 'Tema Port Cold-Chain Terminal 2',
-    city: 'Tema, Greater Accra',
-    coordinates: { lng: -0.0166, lat: 5.6698 }
+    name: 'Mile 12 International Agro Wholesale Terminal',
+    city: 'Mile 12, Lagos State',
+    coordinates: { lng: 3.3942, lat: 6.6118 }
   },
   currentTelemetry = {
-    coordinates: { lng: -0.7812, lat: 6.4251 },
+    coordinates: { lng: 4.5418, lat: 8.4966 },
     speedKmh: 68.4,
-    headingDegrees: 152,
-    altitudeMeters: 142,
+    headingDegrees: 195,
+    altitudeMeters: 290,
     batteryLevelPct: 89,
     cargoTemperatureC: 3.8,
     recordedAt: new Date().toISOString()
   },
   breadcrumbs = [
-    { coordinates: { lng: -1.3658, lat: 7.3789 } },
-    { coordinates: { lng: -1.1850, lat: 7.0210 } },
-    { coordinates: { lng: -0.9950, lat: 6.7150 } },
-    { coordinates: { lng: -0.7812, lat: 6.4251 } }
+    { coordinates: { lng: 7.7199, lat: 11.0855 } },
+    { coordinates: { lng: 6.5569, lat: 9.6177 } },
+    { coordinates: { lng: 5.0450, lat: 8.9500 } },
+    { coordinates: { lng: 4.5418, lat: 8.4966 } }
   ],
   isLive = true
 }) => {

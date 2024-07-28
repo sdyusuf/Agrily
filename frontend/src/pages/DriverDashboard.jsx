@@ -41,10 +41,10 @@ const MOCK_CONSIGNMENTS = [
     crop: 'White Maize (Grade 1)',
     bags: 150,
     weightKg: 7500,
-    origin: 'Sunyani Rural Farmgate, Bono Region',
-    destination: 'Agbogbloshie Wholesale Market, Accra',
-    distanceKm: 380,
-    payout: 420.00,
+    origin: 'Zaria Farmgate Depot, Kaduna State',
+    destination: 'Mile 12 International Market, Lagos',
+    distanceKm: 780,
+    payout: 420000.00,
     status: 'Ready for Pickup'
   },
   {
@@ -52,22 +52,22 @@ const MOCK_CONSIGNMENTS = [
     crop: 'Pona Yams (Export Grade)',
     bags: 80,
     weightKg: 4000,
-    origin: 'Ejura Agro-Cooperative, Ashanti Region',
-    destination: 'Tema Harbor Cold Storage, Greater Accra',
-    distanceKm: 340,
-    payout: 350.00,
+    origin: 'Gboko Agro-Cooperative, Benue State',
+    destination: 'Dawanau Wholesale Market, Kano',
+    distanceKm: 640,
+    payout: 350000.00,
     status: 'Dispatched to Fleet'
   }
 ];
 
 export default function DriverDashboard() {
   const user = useUser();
-  const driverEmail = user?.email || 'driver.kofi@agrily.com';
+  const driverEmail = user?.email || 'driver.ibrahim@agrily.com';
 
   const [driver, setDriver] = useState({
-    fullName: user?.fullName || 'Kofi Mensah Boateng',
+    fullName: user?.fullName || 'Ibrahim Aliyu Bello',
     userEmail: driverEmail,
-    licenseNumber: 'GH-COMM-99281-B',
+    licenseNumber: 'FRSC-KAD-99281-B',
     licenseClass: 'heavy_duty',
     verificationStatus: 'verified',
     isAvailable: true,
@@ -76,7 +76,7 @@ export default function DriverDashboard() {
     totalDistanceKm: 8420,
     vehicle: {
       vehicleType: 'box_truck',
-      registrationNumber: 'GT-4819-23',
+      registrationNumber: 'KAD-481-XA',
       make: 'Isuzu',
       model: 'F-Series 15T',
       payloadCapacityKg: 15000,

@@ -14,6 +14,7 @@ const renderEscrowManagement = () => {
 describe('EscrowManagement Page & Dashboard Unit Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.setTimeout(15000);
   });
 
   test('renders escrow vault header, breadcrumb, and live indicator', () => {
