@@ -40,6 +40,7 @@ const sensorsRouter = require('./routes/sensors').router;
 const escrowRouter = require('./routes/escrow').router;
 const routesRouter = require('./routes/routes');
 const waybillRouter = require('./routes/waybillRoutes');
+const escrowTribunalRouter = require('./routes/escrowTribunalRoutes');
 const auth = require('./middleware/auth');
 
 
@@ -91,6 +92,7 @@ app.use((req, res, next) => { //allowing request from any source
   app.use('/api/escrow', escrowRouter);
   app.use('/api/routes', routesRouter);
   app.use('/api/waybills', waybillRouter);
+  app.use('/api/escrow-vault', escrowTribunalRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)

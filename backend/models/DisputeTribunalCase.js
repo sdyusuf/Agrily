@@ -104,6 +104,26 @@ const evidenceItemSchema = new mongoose.Schema({
 }, { _id: true });
 
 /**
+ * Arbitration Verdict Sub-Schema
+ */
+const arbitrationVerdictSchema = new mongoose.Schema({
+  outcome: { type: String, enum: VERDICT_OUTCOMES, required: true },
+  presidingArbitratorName: { type: String, default: 'Agrily Agricultural Dispute Tribunal Panel' },
+  presidingArbitratorId: { type: String, default: 'PANEL-AVIC-01' },
+  faultLiabilityParty: { type: String, enum: ['BUYER', 'FARMER', 'CARRIER', 'JOINT_LIABILITY', 'NONE'], default: 'NONE' },
+  verdictSummary: { type: String, default: null },
+  
+  // Financial Resolution Distribution
+  buyerRefundAmount: { type: Number, default: 0, min: 0 },
+  farmerPayoutAmount: { type: Number, default: 0, min: 0 },
+  carrierPayoutAmount: { type: Number, default: 0, min: 0 },
+  arbitrationFeeDeduction: { type: Number, default: 0, min: 0 },
+  
+  verdictTimestamp: { type: Date, default: Date.now },
+  verdictCryptographicSeal: { type: String, default: null }
+}, { _id: false });
+
+/**
  * Main Dispute Tribunal Case Schema
  */
 const disputeTribunalCaseSchema = new mongoose.Schema({
@@ -191,20 +211,8 @@ const disputeTribunalCaseSchema = new mongoose.Schema({
 
   // --- ARBITRATION PANEL & VERDICT ---
   arbitrationVerdict: {
-    outcome: { type: String, enum: VERDICT_OUTCOMES, default: null },
-    presidingArbitratorName: { type: String, default: 'Agrily Agricultural Dispute Tribunal Panel' },
-    presidingArbitratorId: { type: String, default: 'PANEL-AVIC-01' },
-    faultLiabilityParty: { type: String, enum: ['BUYER', 'FARMER', 'CARRIER', 'JOINT_LIABILITY', 'NONE'], default: 'NONE' },
-    verdictSummary: { type: String, default: null },
-    
-    // Financial Resolution Distribution
-    buyerRefundAmount: { type: Number, default: 0, min: 0 },
-    farmerPayoutAmount: { type: Number, default: 0, min: 0 },
-    carrierPayoutAmount: { type: Number, default: 0, min: 0 },
-    arbitrationFeeDeduction: { type: Number, default: 0, min: 0 },
-    
-    verdictTimestamp: { type: Date, default: null },
-    verdictCryptographicSeal: { type: String, default: null }
+    type: arbitrationVerdictSchema,
+    default: null
   },
 
   // --- TIMESTAMPS ---
