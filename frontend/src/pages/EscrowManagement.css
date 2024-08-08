@@ -530,3 +530,58 @@
     padding-bottom: 0.4rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   View Mode Switcher Bar & Vault Cards Grid (Sprint 15)
+   -------------------------------------------------------------------------- */
+.view-mode-switcher-bar {
+  margin-bottom: 1.5rem;
+}
+
+.view-mode-tabs {
+  display: inline-flex;
+  background: #f1f5f9;
+  padding: 0.25rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  gap: 0.25rem;
+}
+
+.view-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm, 6px);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.view-mode-btn:hover {
+  color: var(--color-text-main, #0f172a);
+}
+
+.view-mode-btn.active {
+  background: #ffffff;
+  color: var(--color-primary-800, #1b4332);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.vault-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .vault-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
