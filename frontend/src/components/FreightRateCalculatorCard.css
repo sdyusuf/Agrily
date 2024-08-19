@@ -1,0 +1,301 @@
+/**
+ * @file FreightRateCalculatorCard.css
+ * @description Design System Styles for FreightRateCalculatorCard
+ * Adheres strictly to DESIGN_SYSTEM.md
+ */
+
+.freight-calculator-card {
+  background: #ffffff;
+  border: 1px solid rgba(45, 106, 79, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.freight-calculator-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(27, 67, 50, 0.12);
+  border-color: rgba(45, 106, 79, 0.35);
+}
+
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.calc-title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calc-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #bc6c25;
+  background: rgba(221, 161, 94, 0.15);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calc-heading {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.2rem 0 0;
+  letter-spacing: -0.02em;
+}
+
+.calc-live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  background: rgba(82, 183, 136, 0.15);
+  padding: 0.3rem 0.65rem;
+  border-radius: 20px;
+}
+
+.pulsing-radar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2d6a4f;
+  box-shadow: 0 0 6px #52b788;
+  animation: pulseRadar 2s infinite ease-in-out;
+}
+
+@keyframes pulseRadar {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Inputs Grid */
+.calc-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.input-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.calc-select,
+.calc-text-input {
+  background: #f8faf9;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calc-select:focus,
+.calc-text-input:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+  background: #ffffff;
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-value-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #1b4332;
+  background: rgba(82, 183, 136, 0.15);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+}
+
+.calc-range-slider {
+  width: 100%;
+  accent-color: #2d6a4f;
+  cursor: pointer;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.diesel-delta-subtext {
+  font-size: 0.72rem;
+  color: #bc6c25;
+  font-weight: 600;
+}
+
+/* Reefer Toggle Button */
+.reefer-toggle-btn {
+  background: #f8faf9;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.reefer-toggle-btn.active-reefer {
+  background: rgba(82, 183, 136, 0.2);
+  border-color: #2d6a4f;
+  color: #1b4332;
+}
+
+/* Results Display */
+.quote-results-container {
+  background: #f8faf9;
+  border: 1px solid rgba(45, 106, 79, 0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.quote-main-total-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  padding-bottom: 0.85rem;
+}
+
+.tariff-primary-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-tariff-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.total-tariff-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1b4332;
+  letter-spacing: -0.02em;
+}
+
+.rate-per-tonkm {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.tonkm-label {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.tonkm-val {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #bc6c25;
+}
+
+/* Line items */
+.quote-line-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.line-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.surcharge-item {
+  color: #bc6c25;
+}
+
+.reefer-item {
+  color: #2d6a4f;
+}
+
+.security-item {
+  color: #b91c1c;
+}
+
+/* Actions */
+.calc-action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.btn-copy-quote {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-copy-quote:hover {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.3);
+}
+
+.btn-book-dispatch {
+  flex: 1.5;
+  background: #1b4332;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-book-dispatch:hover {
+  background: #2d6a4f;
+  transform: translateY(-1px);
+}
