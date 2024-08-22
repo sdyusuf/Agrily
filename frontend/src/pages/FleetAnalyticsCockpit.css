@@ -1,0 +1,355 @@
+/**
+ * @file FleetAnalyticsCockpit.css
+ * @description Design System Styles for FleetAnalyticsCockpit Page
+ * Adheres strictly to DESIGN_SYSTEM.md
+ */
+
+.fleet-cockpit-page {
+  padding: 2rem 2.5rem;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #f8faf9;
+  min-height: 100vh;
+}
+
+/* Toast */
+.cockpit-toast-banner {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: #1b4332;
+  color: #ffffff;
+  padding: 0.85rem 1.4rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(27, 67, 50, 0.25);
+  font-size: 0.875rem;
+  font-weight: 700;
+  z-index: 9999;
+  animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInToast {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Header */
+.cockpit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(45, 106, 79, 0.12);
+  padding-bottom: 1.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.cockpit-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cockpit-pill-tag {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #bc6c25;
+  background: rgba(221, 161, 94, 0.18);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.cockpit-heading {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.cockpit-subheading {
+  font-size: 1rem;
+  color: #475569;
+  margin: 0;
+  max-width: 680px;
+}
+
+.btn-refresh-cockpit {
+  background: #ffffff;
+  border: 1px solid rgba(45, 106, 79, 0.2);
+  border-radius: 10px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1b4332;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.btn-refresh-cockpit:hover {
+  background: #f1f5f9;
+  border-color: #2d6a4f;
+  transform: translateY(-2px);
+}
+
+/* Top-Line KPI Cards */
+.cockpit-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid rgba(45, 106, 79, 0.15);
+  border-radius: 14px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(27, 67, 50, 0.08);
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kpi-value {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #1b4332;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.kpi-trend {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.trend-positive {
+  color: #2d6a4f;
+}
+
+.trend-neutral {
+  color: #64748b;
+}
+
+/* Tabs Bar */
+.cockpit-tabs-bar {
+  display: flex;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  padding: 0.35rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: #1b4332;
+  background: #f8faf9;
+}
+
+.tab-btn.tab-active {
+  background: #1b4332;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(27, 67, 50, 0.2);
+}
+
+/* Content Area */
+.cockpit-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Turnaround Tab */
+.turnaround-tab-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title-row h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.active-logs-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  background: rgba(82, 183, 136, 0.15);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+}
+
+.turnaround-cards-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+/* Corridor Grid */
+.corridors-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.corridor-summary-card {
+  background: #ffffff;
+  border: 1px solid rgba(45, 106, 79, 0.15);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  transition: transform 0.2s ease;
+}
+
+.corridor-summary-card:hover {
+  transform: translateY(-3px);
+  border-color: #2d6a4f;
+}
+
+.corridor-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.corridor-code-pill {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  background: rgba(82, 183, 136, 0.15);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.corridor-security-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: capitalize;
+}
+
+.corridor-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.corridor-route-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.corridor-state-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1b4332;
+  background: #f8faf9;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.corridor-arrow {
+  color: #bc6c25;
+  font-weight: 800;
+}
+
+.corridor-stats-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  padding-top: 0.65rem;
+}
+
+.stat-pair {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.pair-lbl {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.pair-val {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .cockpit-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .turnaround-cards-list {
+    grid-template-columns: 1fr;
+  }
+  .corridors-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .fleet-cockpit-page {
+    padding: 1.25rem;
+  }
+  .cockpit-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .corridors-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -220,6 +220,26 @@ function NavBar() {
                       </span>
                     </div>
                   </NavDropdown.Item>
+
+                  {/* Fleet Analytics & Yield */}
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/fleet-analytics"
+                    className="agrily-dropdown-item"
+                    data-testid="nav-fleet-analytics-link"
+                  >
+                    <div className="dropdown-item-icon icon-emerald">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                      </svg>
+                    </div>
+                    <div className="dropdown-item-content">
+                      <span className="dropdown-item-title">Fleet Analytics</span>
+                      <span className="dropdown-item-desc">Turnaround, fuel &amp; freight yields</span>
+                    </div>
+                  </NavDropdown.Item>
                 </div>
               </NavDropdown>
             )}
