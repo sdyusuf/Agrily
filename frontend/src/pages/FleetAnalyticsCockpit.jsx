@@ -9,10 +9,15 @@ import React, { useState, useEffect } from 'react';
 import FleetTurnaroundCard from '../components/FleetTurnaroundCard';
 import FreightRateCalculatorCard from '../components/FreightRateCalculatorCard';
 import CarrierLeaderboardTable from '../components/CarrierLeaderboardTable';
+import FleetEcoRouteOptimizerCard from '../components/FleetEcoRouteOptimizerCard';
+import CorridorTollLevyBreakdownCard from '../components/CorridorTollLevyBreakdownCard';
+import FleetMaintenanceHealthCard from '../components/FleetMaintenanceHealthCard';
+import DemurrageDetentionCalculatorModal from '../components/DemurrageDetentionCalculatorModal';
 import './FleetAnalyticsCockpit.css';
 
 export default function FleetAnalyticsCockpit() {
   const [activeTab, setActiveTab] = useState('turnaround');
+  const [isDemurrageModalOpen, setIsDemurrageModalOpen] = useState(false);
   const [kpiMetrics, setKpiMetrics] = useState({
     avgTurnaroundHours: 35.2,
     fleetFuelEfficiencyKmL: 3.85,
@@ -249,6 +254,24 @@ export default function FleetAnalyticsCockpit() {
         >
           🗺️ Nigerian Trade Corridors
         </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeTab === 'eco'}
+          className={`tab-btn ${activeTab === 'eco' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('eco')}
+        >
+          🌱 Eco-Routing
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeTab === 'diagnostics'}
+          className={`tab-btn ${activeTab === 'diagnostics' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('diagnostics')}
+        >
+          🛠️ Maintenance & Tolls
+        </button>
       </div>
 
       {/* Tab Panels */}
@@ -256,8 +279,18 @@ export default function FleetAnalyticsCockpit() {
         {activeTab === 'turnaround' && (
           <div className="turnaround-tab-view">
             <div className="section-title-row">
-              <h3>Active Transit & Gate Dwell Logs</h3>
-              <span className="active-logs-count">{sampleTurnaroundTrips.length} active consignments</span>
+              <div>
+                <h3>Active Transit & Gate Dwell Logs</h3>
+                <span className="active-logs-count">{sampleTurnaroundTrips.length} active consignments</span>
+              </div>
+              <button
+                type="button"
+                className="demurrage-calc-btn"
+                onClick={() => setIsDemurrageModalOpen(true)}
+                data-testid="open-demurrage-modal-btn"
+              >
+                ⏳ Calculate Terminal Demurrage
+              </button>
             </div>
             <div className="turnaround-cards-list">
               {sampleTurnaroundTrips.map((trip) => (
@@ -332,7 +365,29 @@ export default function FleetAnalyticsCockpit() {
             </div>
           </div>
         )}
+
+        {activeTab === 'eco' && (
+          <div className="eco-tab-view" data-testid="eco-tab-view">
+            <FleetEcoRouteOptimizerCard
+              onSelectRoute={(route) => showNotification(`Selected optimal route: ${route.name}`)}
+            />
+          </div>
+        )}
+
+        {activeTab === 'diagnostics' && (
+          <div className="diagnostics-tab-view" data-testid="diagnostics-tab-view">
+            <FleetMaintenanceHealthCard />
+            <div style={{ marginTop: '24px' }}>
+              <CorridorTollLevyBreakdownCard />
+            </div>
+          </div>
+        )}
       </div>
+
+      <DemurrageDetentionCalculatorModal
+        isOpen={isDemurrageModalOpen}
+        onClose={() => setIsDemurrageModalOpen(false)}
+      />
     </div>
   );
 }

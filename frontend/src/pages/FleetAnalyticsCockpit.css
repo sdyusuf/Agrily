@@ -224,6 +224,25 @@
   border-radius: 20px;
 }
 
+.demurrage-calc-btn {
+  background: #fefae0;
+  color: #bc6c25;
+  border: 1px solid rgba(188, 108, 37, 0.3);
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.demurrage-calc-btn:hover {
+  background: #bc6c25;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(188, 108, 37, 0.2);
+}
+
 .turnaround-cards-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

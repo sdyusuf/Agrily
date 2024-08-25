@@ -99,6 +99,18 @@ describe('FleetAnalyticsCockpit Page Component', () => {
     await waitFor(() => {
       expect(screen.getByText('Kano-Kaduna-Abuja-Lagos Grain Expressway')).toBeInTheDocument();
     });
+
+    // Click eco-routing tab
+    const ecoTab = screen.getByRole('tab', { name: /eco-routing/i });
+    fireEvent.click(ecoTab);
+    expect(screen.getByTestId('eco-tab-view')).toBeInTheDocument();
+    expect(screen.getByText(/regional terrain & carbon minimizer/i)).toBeInTheDocument();
+
+    // Click maintenance & tolls tab
+    const diagTab = screen.getByRole('tab', { name: /maintenance & tolls/i });
+    fireEvent.click(diagTab);
+    expect(screen.getByTestId('diagnostics-tab-view')).toBeInTheDocument();
+    expect(screen.getByText(/vehicle roadworthiness & pre-trip health/i)).toBeInTheDocument();
   });
 
   test('triggers sync telemetry toast notification', async () => {

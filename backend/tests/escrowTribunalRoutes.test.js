@@ -14,6 +14,7 @@
  */
 
 const request = require('supertest');
+const mongoose = require('mongoose');
 const app = require('../app');
 const { EscrowSettlementVault } = require('../models/EscrowSettlementVault');
 const { QualityInspectionCertificate } = require('../models/QualityInspectionCertificate');
@@ -38,6 +39,14 @@ async function runEscrowTribunalRouteTests() {
   console.log('\n======================================================');
   console.log('    RUNNING ESCROW VAULT & TRIBUNAL REST ROUTE TESTS  ');
   console.log('======================================================\n');
+
+  if (mongoose.connection.readyState !== 1) {
+    await new Promise((resolve) => {
+      if (mongoose.connection.readyState === 1) return resolve();
+      mongoose.connection.once('open', resolve);
+      setTimeout(resolve, 2500);
+    });
+  }
 
   try {
     // -------------------------------------------------------------

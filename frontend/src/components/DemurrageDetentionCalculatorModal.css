@@ -1,0 +1,286 @@
+/* DemurrageDetentionCalculatorModal.css - Agrily Design System */
+
+.demurrage-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.demurrage-modal-dialog {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 680px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(27, 67, 50, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  position: relative;
+  border: 1px solid rgba(27, 67, 50, 0.12);
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.demurrage-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 16px;
+}
+
+.demurrage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fefae0;
+  color: #bc6c25;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(188, 108, 37, 0.2);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.modal-subtitle {
+  margin: 6px 0 0 0;
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.modal-close-btn {
+  background: #f1f5f9;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Controls Grid */
+.modal-controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #f8faf9;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.modal-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.modal-select {
+  font-family: inherit;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+}
+
+.modal-range {
+  accent-color: #2d6a4f;
+  cursor: pointer;
+}
+
+.checkbox-align {
+  margin-top: 4px;
+}
+
+.reefer-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.reefer-toggle-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2d6a4f;
+}
+
+/* Dwell Visual Bar */
+.dwell-visual-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dwell-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.825rem;
+  color: #475569;
+}
+
+.text-danger {
+  color: #d32f2f;
+}
+
+.text-success {
+  color: #2d6a4f;
+}
+
+.dwell-progress-track {
+  width: 100%;
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  display: flex;
+}
+
+.dwell-free-portion {
+  height: 100%;
+  background: #2d6a4f;
+}
+
+.dwell-billable-portion {
+  height: 100%;
+  background: #bc6c25;
+}
+
+/* Payout Summary Panel */
+.demurrage-payout-panel {
+  background: linear-gradient(180deg, #f8faf9 0%, #edf4f0 100%);
+  border: 1px solid rgba(27, 67, 50, 0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.payout-row strong {
+  color: #0f172a;
+}
+
+.payout-row.stayover {
+  color: #bc6c25;
+}
+
+.payout-row.reefer {
+  color: #2d6a4f;
+}
+
+.payout-row.total-row {
+  border-top: 2px solid #2d6a4f;
+  padding-top: 10px;
+  margin-top: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.invoice-total {
+  font-size: 1.25rem;
+  color: #1b4332;
+  font-weight: 800;
+}
+
+.carrier-share-banner {
+  background: #e8f5e9;
+  border: 1px solid #52b788;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #1b4332;
+}
+
+.carrier-payout-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #2d6a4f;
+}
+
+/* Modal Footer */
+.modal-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dismiss-btn {
+  background: #1b4332;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dismiss-btn:hover {
+  background: #2d6a4f;
+  transform: translateY(-2px);
+}

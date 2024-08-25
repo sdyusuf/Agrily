@@ -1,0 +1,339 @@
+/* FleetMaintenanceHealthCard.css - Agrily Design System */
+
+.maintenance-card-container {
+  background: #ffffff;
+  border: 1px solid rgba(27, 67, 50, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px -2px rgba(27, 67, 50, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: inherit;
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.maintenance-card-container:hover {
+  box-shadow: 0 10px 25px -4px rgba(27, 67, 50, 0.09);
+}
+
+.maintenance-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 18px;
+}
+
+.maintenance-badge-wrench {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e8f5e9;
+  color: #1b4332;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-bottom: 6px;
+}
+
+.maintenance-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.maintenance-subtitle {
+  margin: 6px 0 0 0;
+  font-size: 0.875rem;
+  color: #475569;
+  max-width: 650px;
+  line-height: 1.45;
+}
+
+.clearance-status-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 16px;
+  border-radius: 12px;
+  min-width: 220px;
+  border: 1px solid transparent;
+}
+
+.clearance-status-pill.approved {
+  background: #e8f5e9;
+  border-color: #2d6a4f;
+  color: #1b4332;
+}
+
+.clearance-status-pill.warning {
+  background: #fefae0;
+  border-color: #dda15e;
+  color: #bc6c25;
+}
+
+.clearance-status-pill.grounded {
+  background: #ffebee;
+  border-color: #d32f2f;
+  color: #b71c1c;
+}
+
+.clearance-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.clearance-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin: 2px 0;
+  text-align: right;
+}
+
+.clearance-score {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Vehicle Selector */
+.vehicle-selector-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8faf9;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.selector-label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.vehicle-dropdown {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+}
+
+.odometer-badge {
+  background: #2d6a4f;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Wear Grid */
+.component-wear-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.wear-card {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wear-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.wear-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.wear-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.wear-progress-fill.safe {
+  background: #2d6a4f;
+}
+
+.wear-progress-fill.warning {
+  background: #dda15e;
+}
+
+.wear-progress-fill.danger {
+  background: #d32f2f;
+}
+
+.wear-sub {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* Actions Panel */
+.maintenance-actions-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.actions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.actions-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.service-btn {
+  background: #2d6a4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.service-btn:hover {
+  background: #1b4332;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
+}
+
+.all-clear-banner {
+  background: #e8f5e9;
+  color: #1b4332;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #2d6a4f;
+}
+
+.actions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.action-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+}
+
+.action-item.critical {
+  border-left: 4px solid #d32f2f;
+}
+
+.action-item.high {
+  border-left: 4px solid #dda15e;
+}
+
+.action-item.medium {
+  border-left: 4px solid #64748b;
+}
+
+.action-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.urgency-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.urgency-badge.critical {
+  background: #ffebee;
+  color: #b71c1c;
+}
+
+.urgency-badge.high {
+  background: #fefae0;
+  color: #bc6c25;
+}
+
+.urgency-badge.medium {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.action-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.action-cost {
+  color: #bc6c25;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .maintenance-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .clearance-status-pill {
+    align-items: flex-start;
+  }
+  .vehicle-selector-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
