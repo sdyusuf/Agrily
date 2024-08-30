@@ -43,6 +43,7 @@ const waybillRouter = require('./routes/waybillRoutes');
 const escrowTribunalRouter = require('./routes/escrowTribunalRoutes');
 const fleetAnalyticsRouter = require('./routes/fleetAnalyticsRoutes');
 const fleetTelematicsRouter = require('./routes/fleetTelematicsRoutes');
+const agronomyVisionRouter = require('./routes/agronomyVisionRoutes');
 const auth = require('./middleware/auth');
 
 
@@ -97,6 +98,7 @@ app.use((req, res, next) => { //allowing request from any source
   app.use('/api/escrow-vault', escrowTribunalRouter);
   app.use('/api/fleet-analytics', fleetAnalyticsRouter);
   app.use('/api/fleet-telematics', fleetTelematicsRouter);
+  app.use('/api/agronomy-vision', agronomyVisionRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
