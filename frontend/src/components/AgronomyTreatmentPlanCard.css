@@ -1,0 +1,418 @@
+/**
+ * @file AgronomyTreatmentPlanCard.css
+ * @description Styling for Agronomy Treatment Plan Card adhering to Agrily Design System.
+ */
+
+.agronomy-treatment-plan-card {
+  background: var(--color-surface-card, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(15, 23, 42, 0.08));
+  transition: transform var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  margin-bottom: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.agronomy-treatment-plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(15, 23, 42, 0.08));
+}
+
+.rx-header {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+  padding-bottom: 1.25rem;
+}
+
+.rx-badge-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.rx-tag {
+  background: var(--color-harvest-200, #fefae0);
+  color: var(--color-harvest-900, #7f3b08);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full, 9999px);
+  text-transform: uppercase;
+}
+
+.nafdac-compliance-badge {
+  background: var(--color-primary-100, #d8f3dc);
+  color: var(--color-primary-800, #1b4332);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full, 9999px);
+}
+
+.rx-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-800, #1b4332);
+  margin: 0 0 0.35rem 0;
+}
+
+.rx-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #475569);
+  margin: 0;
+  max-width: 700px;
+}
+
+/* Dosage Adjuster */
+.rx-dosage-adjuster {
+  background: var(--color-surface-bg, #f8faf9);
+  padding: 1.15rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  margin-bottom: 1.5rem;
+}
+
+.adjuster-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.adjuster-label {
+  font-size: 0.875rem;
+  color: var(--color-text-main, #0f172a);
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.preset-btn {
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.preset-btn:hover, .preset-btn.active {
+  background: var(--color-primary-800, #1b4332);
+  color: #ffffff;
+  border-color: var(--color-primary-800, #1b4332);
+}
+
+.dosage-slider {
+  width: 100%;
+  accent-color: var(--color-primary-700, #2d6a4f);
+  cursor: pointer;
+}
+
+/* Tabs */
+.rx-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.rx-tab {
+  background: transparent;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.rx-tab:hover {
+  background: var(--color-surface-bg, #f8faf9);
+  color: var(--color-text-main, #0f172a);
+}
+
+.rx-tab.active {
+  background: var(--color-primary-800, #1b4332);
+  color: #ffffff;
+  border-color: var(--color-primary-800, #1b4332);
+}
+
+/* Treatments Grid */
+.treatments-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.treatment-card {
+  border-radius: var(--radius-md, 10px);
+  padding: 1.25rem;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.05));
+  transition: border-color var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.organic-card {
+  border-left: 5px solid var(--color-primary-500, #52b788);
+}
+
+.chemical-card {
+  border-left: 5px solid var(--color-harvest-700, #bc6c25);
+}
+
+.treatment-badge-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.treatment-type-pill {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full, 9999px);
+  letter-spacing: 0.04em;
+}
+
+.pill-organic {
+  background: var(--color-primary-100, #d8f3dc);
+  color: var(--color-primary-800, #1b4332);
+}
+
+.pill-chem {
+  background: var(--color-harvest-200, #fefae0);
+  color: var(--color-harvest-900, #7f3b08);
+}
+
+.efficacy-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full, 9999px);
+}
+
+.treatment-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+  margin: 0 0 0.25rem 0;
+}
+
+.active-ingredient {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #475569);
+  margin: 0 0 1rem 0;
+}
+
+/* Specs Box */
+.dosage-specs-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  background: var(--color-surface-bg, #f8faf9);
+  padding: 0.85rem;
+  border-radius: var(--radius-sm, 6px);
+  margin-bottom: 1rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-title {
+  font-size: 0.7rem;
+  color: var(--color-text-muted, #475569);
+  margin-bottom: 0.2rem;
+}
+
+.spec-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.cost-value {
+  color: var(--color-harvest-700, #bc6c25);
+}
+
+/* PHI Safety Banner */
+.phi-safety-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm, 6px);
+  margin-bottom: 1rem;
+}
+
+.phi-window {
+  background: var(--color-warning-bg, #fffbeb);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--color-warning-text, #92400e);
+}
+
+.phi-zero {
+  background: var(--color-success-bg, #ecfdf5);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-success-text, #065f46);
+}
+
+.phi-icon {
+  font-size: 1.35rem;
+}
+
+.phi-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: block;
+}
+
+.phi-dates {
+  font-size: 0.75rem;
+  margin: 0.15rem 0 0 0;
+}
+
+/* Instructions */
+.instructions-section {
+  margin-bottom: 0.85rem;
+}
+
+.instructions-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted, #475569);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.instructions-text {
+  font-size: 0.85rem;
+  color: var(--color-text-main, #0f172a);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* PPE Tags */
+.ppe-badges-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ppe-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted, #475569);
+}
+
+.ppe-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.ppe-tag, .nafdac-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm, 6px);
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.nafdac-tag {
+  background: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+/* Footer */
+.rx-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border-subtle, #e5e7eb);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.seal-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.seal-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+}
+
+.seal-code {
+  font-family: monospace;
+  font-size: 0.75rem;
+  background: #f1f5f9;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  color: var(--color-harvest-700, #bc6c25);
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-seal-btn {
+  background: transparent;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  color: var(--color-text-muted, #475569);
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.copy-seal-btn:hover {
+  background: #f8faf9;
+  color: var(--color-text-main, #0f172a);
+}
+
+.print-rx-btn {
+  background: var(--color-primary-800, #1b4332);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md, 10px);
+  padding: 0.65rem 1.15rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.print-rx-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.3);
+}
