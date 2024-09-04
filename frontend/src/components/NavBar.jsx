@@ -50,6 +50,7 @@ function NavBar() {
   // Determine active section states
   const pathname = location.pathname || '';
   const isMarketplaceActive = pathname === '/marketplace';
+  const isAgronomyActive = pathname.startsWith('/agronomy');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -99,6 +100,17 @@ function NavBar() {
               style={{ fontWeight: isMarketplaceActive ? '700' : '600' }}
             >
               Marketplace
+            </Nav.Link>
+
+            {/* 2.5 Agronomy AI (Public Pathology & Treatment Vision) */}
+            <Nav.Link
+              as={Link}
+              to="/agronomy"
+              className={`agrily-nav-link ${isAgronomyActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isAgronomyActive ? '700' : '600' }}
+              data-testid="nav-agronomy-link"
+            >
+              Agronomy AI
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}

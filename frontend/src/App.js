@@ -33,6 +33,7 @@ const RoutePlanner = lazy(() => import('./pages/RoutePlanner'));
 const DispatchManifestView = lazy(() => import('./pages/DispatchManifestView'));
 const WaybillManagement = lazy(() => import('./pages/WaybillManagement'));
 const FleetAnalyticsCockpit = lazy(() => import('./pages/FleetAnalyticsCockpit'));
+const AgronomyVisionCockpit = lazy(() => import('./pages/AgronomyVisionCockpit'));
 
 /**
  * Route loading fallback component adhering to Agrily design tokens
@@ -132,6 +133,8 @@ function App() {
                 <Route path="/fleet-analytics" element={<FleetAnalyticsCockpit />} />
                 <Route path="/logistics/fleet-analytics" element={<FleetAnalyticsCockpit />} />
                 <Route path="/fleet" element={<FleetAnalyticsCockpit />} />
+                <Route path="/agronomy" element={<AgronomyVisionCockpit />} />
+                <Route path="/agronomy-vision" element={<AgronomyVisionCockpit />} />
 
                 <Route exact path="/home" element={<PrivateRoute />}>
                   <Route exact path="/home" element={<Home />} />

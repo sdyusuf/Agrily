@@ -1,0 +1,248 @@
+/**
+ * @file AgronomyVisionCockpit.css
+ * @description Styling for Master Agronomy AI Vision & Crop Pathology Cockpit Page.
+ */
+
+.agronomy-cockpit-page {
+  min-height: 100vh;
+  background: var(--color-surface-bg, #f8faf9);
+  color: var(--color-text-main, #0f172a);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.cockpit-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+/* Hero Section */
+.cockpit-hero {
+  background: linear-gradient(135deg, #081c15 0%, #1b4332 50%, #2d6a4f 100%);
+  border-radius: var(--radius-lg, 16px);
+  padding: 2.5rem 2rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(8, 28, 21, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pill {
+  display: inline-block;
+  background: rgba(82, 183, 136, 0.25);
+  color: #d8f3dc;
+  border: 1px solid rgba(82, 183, 136, 0.4);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.hero-heading {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: 1rem;
+  color: #e2e8f0;
+  max-width: 780px;
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+.cockpit-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 1.5rem;
+}
+
+.cockpit-kpi-box {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md, 10px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-box-num {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.kpi-highlight-ochre {
+  color: #dda15e;
+}
+
+.kpi-highlight-green {
+  color: #52b788;
+}
+
+.kpi-box-label {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* Tabs Navigation */
+.cockpit-tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--color-border-subtle, #e5e7eb);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  cursor: pointer;
+  border-radius: var(--radius-md, 10px);
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  background: rgba(45, 106, 79, 0.08);
+  color: var(--color-primary-800, #1b4332);
+}
+
+.tab-btn.active-tab {
+  background: var(--color-primary-800, #1b4332);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.05));
+}
+
+/* History Card & Table */
+.history-table-card {
+  background: var(--color-surface-card, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(15, 23, 42, 0.08));
+}
+
+.history-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.table-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary-800, #1b4332);
+  margin: 0;
+}
+
+.refresh-btn {
+  background: transparent;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.refresh-btn:hover {
+  background: var(--color-surface-bg, #f8faf9);
+  color: var(--color-primary-800, #1b4332);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.diagnoses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.diagnoses-table th {
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  background: var(--color-surface-bg, #f8faf9);
+  color: var(--color-text-muted, #475569);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+}
+
+.diagnoses-table td {
+  padding: 0.85rem;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+  vertical-align: middle;
+}
+
+.diagnoses-table tbody tr:hover {
+  background: #f8faf9;
+}
+
+.empty-table-cell {
+  text-align: center;
+  padding: 2.5rem !important;
+  color: var(--color-text-muted, #475569);
+  font-style: italic;
+}
+
+.diag-id-pill {
+  background: #f1f5f9;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  font-family: monospace;
+  color: var(--color-primary-800, #1b4332);
+  font-weight: 600;
+}
+
+.table-severity-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-warning-bg, #fffbeb);
+  color: var(--color-warning-text, #92400e);
+  display: inline-block;
+}
+
+.seal-truncated {
+  font-family: monospace;
+  color: var(--color-harvest-700, #bc6c25);
+  font-size: 0.75rem;
+}
+
+.view-rx-action-btn {
+  background: var(--color-primary-100, #d8f3dc);
+  color: var(--color-primary-800, #1b4332);
+  border: 1px solid var(--color-primary-500, #52b788);
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.view-rx-action-btn:hover {
+  background: var(--color-primary-800, #1b4332);
+  color: #ffffff;
+}

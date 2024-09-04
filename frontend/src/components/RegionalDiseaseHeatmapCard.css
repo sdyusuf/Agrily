@@ -1,0 +1,356 @@
+/**
+ * @file RegionalDiseaseHeatmapCard.css
+ * @description Styling for Regional Disease Outbreak Heatmap Card.
+ */
+
+.regional-disease-heatmap-card {
+  background: var(--color-surface-card, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(15, 23, 42, 0.08));
+  transition: transform var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  margin-bottom: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.regional-disease-heatmap-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(15, 23, 42, 0.08));
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.heatmap-tag {
+  display: inline-block;
+  background: var(--color-harvest-200, #fefae0);
+  color: var(--color-harvest-900, #7f3b08);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full, 9999px);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.heatmap-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-800, #1b4332);
+  margin: 0 0 0.25rem 0;
+}
+
+.heatmap-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #475569);
+  margin: 0;
+  max-width: 650px;
+}
+
+.authority-seal {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-surface-bg, #f8faf9);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+}
+
+/* KPI Bar */
+.telemetry-kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-card {
+  background: var(--color-surface-bg, #f8faf9);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-size: 0.7rem;
+  color: var(--color-text-muted, #475569);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.kpi-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-main, #0f172a);
+}
+
+.kpi-warning {
+  color: var(--color-harvest-700, #bc6c25);
+}
+
+.kpi-danger {
+  color: var(--color-danger-text, #991b1b);
+}
+
+.kpi-surge {
+  color: #c2410c;
+}
+
+/* Corridor Checker Box */
+.corridor-checker-box {
+  background: #ffffff;
+  border: 2px solid var(--color-primary-100, #d8f3dc);
+  border-radius: var(--radius-md, 10px);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.checker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.checker-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary-800, #1b4332);
+}
+
+.checker-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.checker-controls {
+  margin-bottom: 0.85rem;
+}
+
+.checker-select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.875rem;
+  color: var(--color-text-main, #0f172a);
+  background: var(--color-surface-bg, #f8faf9);
+  font-weight: 600;
+}
+
+.clearance-result-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm, 6px);
+}
+
+.banner-prohibited {
+  background: var(--color-danger-bg, #fef2f2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: var(--color-danger-text, #991b1b);
+}
+
+.banner-cleared {
+  background: var(--color-success-bg, #ecfdf5);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: var(--color-success-text, #065f46);
+}
+
+.banner-icon {
+  font-size: 1.5rem;
+}
+
+.clearance-status-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.clearance-advisory {
+  font-size: 0.85rem;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.4;
+}
+
+.quarantine-buffer-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #ffffff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  display: inline-block;
+}
+
+/* Filters */
+.heatmap-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.85rem;
+}
+
+.status-filter-select {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  font-size: 0.85rem;
+  color: var(--color-text-main, #0f172a);
+}
+
+/* Clusters Grid */
+.clusters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cluster-tile {
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.cluster-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary-700, #2d6a4f);
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.05));
+}
+
+.tile-critical {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: #fffcfc;
+}
+
+.cluster-tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.state-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.outbreak-status-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full, 9999px);
+  text-transform: uppercase;
+}
+
+.badge-critical {
+  background: var(--color-danger-bg, #fef2f2);
+  color: var(--color-danger-text, #991b1b);
+}
+
+.badge-epidemic {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.badge-watch {
+  background: var(--color-warning-bg, #fffbeb);
+  color: var(--color-warning-text, #92400e);
+}
+
+.badge-sporadic {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.badge-normal {
+  background: var(--color-success-bg, #ecfdf5);
+  color: var(--color-success-text, #065f46);
+}
+
+.cluster-body {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.crop-label, .pathogen-label {
+  margin: 0 0 0.25rem 0;
+}
+
+.cluster-meta-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--color-border-subtle, #e5e7eb);
+  font-size: 0.75rem;
+}
+
+.quarantine-pill {
+  margin-top: 0.4rem;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Footer */
+.heatmap-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-subtle, #e5e7eb);
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #475569);
+  flex-wrap: wrap;
+}
+
+.footer-seal {
+  font-family: monospace;
+  background: var(--color-surface-bg, #f8faf9);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--color-harvest-700, #bc6c25);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

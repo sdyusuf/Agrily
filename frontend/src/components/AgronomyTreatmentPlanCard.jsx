@@ -20,33 +20,35 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
   const cropType = (diagnosisRecord && diagnosisRecord.cropType) || 'TOMATO';
 
   useEffect(() => {
-    fetchPrescription();
-  }, [diseaseCode, acreage]);
+    let isMounted = true;
+    const fetchPrescription = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch('/api/agronomy-vision/treatment-prescription', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            diseaseCode,
+            cropType,
+            fieldAcreageHectares: Number(acreage) || 1.0,
+            preferOrganicOnly: false
+          })
+        });
 
-  const fetchPrescription = async () => {
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/agronomy-vision/treatment-prescription', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          diseaseCode,
-          cropType,
-          fieldAcreageHectares: Number(acreage) || 1.0,
-          preferOrganicOnly: false
-        })
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setPrescriptionData(data);
+        const data = await res.json();
+        if (isMounted && data && data.success) {
+          setPrescriptionData(data);
+        }
+      } catch (err) {
+        if (isMounted) console.error('Failed to load prescription:', err);
+      } finally {
+        if (isMounted) setIsLoading(false);
       }
-    } catch (err) {
-      console.error('Failed to load prescription:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+
+    fetchPrescription();
+    return () => { isMounted = false; };
+  }, [diseaseCode, acreage]);
 
   const copySeal = () => {
     if (prescriptionData && prescriptionData.phytosanitaryClearanceSeal) {
@@ -111,7 +113,7 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
           className={`rx-tab ${activeTab === 'ALL' ? 'active' : ''}`}
           onClick={() => setActiveTab('ALL')}
         >
-          All Recommended Solutions ({prescriptionData ? prescriptionData.treatments.length : 0})
+          All Recommended Solutions ({prescriptionData && prescriptionData.treatments ? prescriptionData.treatments.length : 0})
         </button>
         <button
           type="button"
