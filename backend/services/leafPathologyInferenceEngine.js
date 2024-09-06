@@ -499,9 +499,14 @@ class LeafPathologyInferenceEngine {
 
     if (options.forcedDiseaseCode) {
       selectedDisease = cropDiseases.find(d => d.diseaseCode.toUpperCase() === options.forcedDiseaseCode.toUpperCase());
+      if (!selectedDisease && options.forcedDiseaseCode.toUpperCase().includes('HEALTHY')) {
+        selectedDisease = cropDiseases.find(d => d.pathogenType === 'NONE_HEALTHY' || d.diseaseCode.endsWith('HEALTHY'));
+      }
       if (!selectedDisease) {
         throw new Error(`Disease code "${options.forcedDiseaseCode}" not found for crop "${rawCrop}".`);
       }
+    } else if (options.severityLevel === 'HEALTHY') {
+      selectedDisease = cropDiseases.find(d => d.pathogenType === 'NONE_HEALTHY') || cropDiseases[cropDiseases.length - 1];
     } else {
       // Deterministic selection based on image URL hash or random pick
       if (options.imageUrl || options.imagePayload) {
