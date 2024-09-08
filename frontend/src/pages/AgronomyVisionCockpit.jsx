@@ -10,6 +10,7 @@ import NavBar from '../components/NavBar';
 import LeafPathologyScannerCard from '../components/LeafPathologyScannerCard';
 import AgronomyTreatmentPlanCard from '../components/AgronomyTreatmentPlanCard';
 import RegionalDiseaseHeatmapCard from '../components/RegionalDiseaseHeatmapCard';
+import PesticideWithdrawalCalculatorModal from '../components/PesticideWithdrawalCalculatorModal';
 import './AgronomyVisionCockpit.css';
 
 export default function AgronomyVisionCockpit() {
@@ -17,6 +18,7 @@ export default function AgronomyVisionCockpit() {
   const [currentDiagnosis, setCurrentDiagnosis] = useState(null);
   const [recentDiagnoses, setRecentDiagnoses] = useState([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+  const [showPhiModal, setShowPhiModal] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -133,6 +135,14 @@ export default function AgronomyVisionCockpit() {
           >
             📋 Diagnostic Audit Trail
           </button>
+          <button
+            type="button"
+            className="tab-btn phi-calculator-nav-trigger"
+            onClick={() => setShowPhiModal(true)}
+            data-testid="open-phi-modal-btn"
+          >
+            ⏱️ Residue &amp; PHI Calculator
+          </button>
         </nav>
 
         {/* Tab 1: Foliar Scanner */}
@@ -244,6 +254,14 @@ export default function AgronomyVisionCockpit() {
               </div>
             </div>
           </section>
+        )}
+
+        {showPhiModal && (
+          <PesticideWithdrawalCalculatorModal
+            isOpen={showPhiModal}
+            onClose={() => setShowPhiModal(false)}
+            defaultCrop={currentDiagnosis ? currentDiagnosis.cropName : 'TOMATO'}
+          />
         )}
       </main>
     </div>

@@ -18,31 +18,36 @@ export default function RegionalDiseaseHeatmapCard() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchOutbreakTelemetry();
-    checkClearance('PLATEAU');
-  }, []);
-
-  const fetchOutbreakTelemetry = async () => {
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/agronomy-vision/outbreak-telemetry');
-      const data = await res.json();
-      if (data.success) {
-        setTelemetryData(data);
+    let isMounted = true;
+    const fetchTelemetry = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch('/api/agronomy-vision/outbreak-telemetry');
+        const data = await res.json();
+        if (isMounted && data && data.success) {
+          setTelemetryData(data);
+        }
+      } catch (err) {
+        if (isMounted) console.error('Error fetching outbreak telemetry:', err);
+      } finally {
+        if (isMounted) setIsLoading(false);
       }
-    } catch (err) {
-      console.error('Error fetching outbreak telemetry:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+
+    fetchTelemetry();
+    checkClearance('PLATEAU');
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const checkClearance = async (state) => {
     setSelectedStateForClearance(state);
     try {
       const res = await fetch(`/api/agronomy-vision/corridor-clearance/${state}`);
       const data = await res.json();
-      if (data.success) {
+      if (data && data.success) {
         setClearanceResult(data.clearance);
       }
     } catch (err) {
@@ -68,9 +73,11 @@ export default function RegionalDiseaseHeatmapCard() {
 
   const filteredClusters = telemetryData && telemetryData.clusters
     ? telemetryData.clusters.filter((c) => {
-        const matchesSearch = c.state.toLowerCase().includes(searchFilter.toLowerCase()) ||
-                              c.primaryCrop.toLowerCase().includes(searchFilter.toLowerCase()) ||
-                              c.pathogenName.toLowerCase().includes(searchFilter.toLowerCase());
+        const search = (searchFilter || '').toLowerCase();
+        const stateStr = (c.state || '').toLowerCase();
+        const cropStr = (c.primaryCrop || c.targetCrop || '').toLowerCase();
+        const pathogenStr = (c.pathogenName || c.pathogenClass || '').toLowerCase();
+        const matchesSearch = stateStr.includes(search) || cropStr.includes(search) || pathogenStr.includes(search);
         const matchesStatus = statusFilter === 'ALL' || c.riskStatus === statusFilter;
         return matchesSearch && matchesStatus;
       })
@@ -105,15 +112,15 @@ export default function RegionalDiseaseHeatmapCard() {
           </div>
           <div className="kpi-card">
             <span className="kpi-label">Quarantine Lockdowns</span>
-            <span className="kpi-value kpi-danger">{telemetryData.summary.criticalLockdownsCount}</span>
+            <span className="kpi-value kpi-danger">{telemetryData.summary.criticalLockdownsCount || 0}</span>
           </div>
           <div className="kpi-card">
             <span className="kpi-label">Epidemic Surges</span>
-            <span className="kpi-value kpi-surge">{telemetryData.summary.epidemicSurgeWarningsCount}</span>
+            <span className="kpi-value kpi-surge">{telemetryData.summary.epidemicSurgeWarningsCount || 0}</span>
           </div>
           <div className="kpi-card">
             <span className="kpi-label">Hectares Under Quarantine</span>
-            <span className="kpi-value">{telemetryData.summary.totalHectaresUnderQuarantine.toLocaleString()} Ha</span>
+            <span className="kpi-value">{(telemetryData.summary.totalHectaresUnderQuarantine || 0).toLocaleString()} Ha</span>
           </div>
         </div>
       )}
@@ -198,13 +205,13 @@ export default function RegionalDiseaseHeatmapCard() {
               </span>
             </div>
             <div className="cluster-body">
-              <p className="crop-label">Primary Crop: <strong>{cluster.primaryCrop}</strong></p>
-              <p className="pathogen-label">Active: <span>{cluster.pathogenName}</span></p>
+              <p className="crop-label">Primary Crop: <strong>{cluster.primaryCrop || cluster.targetCrop || 'Unknown'}</strong></p>
+              <p className="pathogen-label">Active: <span>{cluster.pathogenName || cluster.pathogenClass || 'Unspecified'}</span></p>
               <div className="cluster-meta-row">
-                <span>Cases: <strong>{cluster.reportedCases}</strong></span>
-                <span>Acreage: <strong>{cluster.affectedAcreageHectares} Ha</strong></span>
+                <span>Cases: <strong>{cluster.reportedCases || 0}</strong></span>
+                <span>Acreage: <strong>{cluster.affectedAcreageHectares || cluster.estimatedLossTonnage || 0} Ha</strong></span>
               </div>
-              {cluster.quarantineRadiusKm > 0 && (
+              {(cluster.quarantineRadiusKm || 0) > 0 && (
                 <div className="quarantine-pill">
                   Quarantine Perimeter: {cluster.quarantineRadiusKm} KM
                 </div>

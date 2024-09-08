@@ -117,4 +117,25 @@ describe('AgronomyVisionCockpit Page Component Tests', () => {
     // Should switch to Treatment view
     expect(screen.getByTestId('tab-treatment-view')).toBeInTheDocument();
   });
+
+  test('opens and closes Pesticide Residue & PHI Calculator modal from cockpit button', async () => {
+    render(<AgronomyVisionCockpit />);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('open-phi-modal-btn')).toBeInTheDocument();
+    });
+
+    const openModalBtn = screen.getByTestId('open-phi-modal-btn');
+    fireEvent.click(openModalBtn);
+
+    // Modal should appear
+    expect(screen.getByTestId('pesticide-withdrawal-calculator-modal')).toBeInTheDocument();
+    expect(screen.getByText(/Pesticide Residue & Withdrawal Calculator/i)).toBeInTheDocument();
+
+    // Close modal
+    const closeBtn = screen.getByRole('button', { name: /close modal/i });
+    fireEvent.click(closeBtn);
+
+    expect(screen.queryByTestId('pesticide-withdrawal-calculator-modal')).not.toBeInTheDocument();
+  });
 });

@@ -130,6 +130,23 @@
   box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.05));
 }
 
+.tab-btn.phi-calculator-nav-trigger {
+  margin-left: auto;
+  background: rgba(188, 108, 37, 0.12);
+  border: 1px solid rgba(188, 108, 37, 0.35);
+  color: var(--color-earth-700, #bc6c25);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tab-btn.phi-calculator-nav-trigger:hover {
+  background: var(--color-earth-700, #bc6c25);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(188, 108, 37, 0.28);
+}
+
 /* History Card & Table */
 .history-table-card {
   background: var(--color-surface-card, #ffffff);

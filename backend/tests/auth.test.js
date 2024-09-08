@@ -92,12 +92,13 @@ async function runSuite() {
     assert.ok(res.body.errors.some((e) => e.toLowerCase().includes('password')));
   });
 
-  // Wait for MongoDB connection if currently connecting
+  // Wait for MongoDB connection if currently connecting or not ready
   const mongoose = require('mongoose');
-  if (mongoose.connection && mongoose.connection.readyState === 2) {
+  if (mongoose.connection && mongoose.connection.readyState !== 1) {
     await new Promise((resolve) => {
+      if (mongoose.connection.readyState === 1) return resolve();
       mongoose.connection.once('open', resolve);
-      setTimeout(resolve, 3000); // timeout fallback
+      setTimeout(resolve, 10000); // timeout fallback
     });
   }
 
