@@ -1,0 +1,325 @@
+/**
+ * ==============================================================================
+ * AGRILY AGRONOMY DOMAIN - SOIL TEXTURE TRIANGLE CANVAS STYLESHEET
+ * ==============================================================================
+ * Conforms strictly to DESIGN_SYSTEM.md ("Earth & Innovation")
+ */
+
+.soil-texture-card {
+  background: var(--color-surface-card, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 24px;
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(15, 23, 42, 0.08));
+  transition: transform var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.soil-texture-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(15, 23, 42, 0.08));
+}
+
+/* Header */
+.soil-texture-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.header-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md, 10px);
+  background: var(--color-primary-50, #f0fdf4);
+  border: 1px solid var(--color-primary-100, #d8f3dc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.header-text-block {
+  flex: 1;
+  min-width: 220px;
+}
+
+.texture-card-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-900, #081c15);
+  letter-spacing: -0.01em;
+}
+
+.texture-card-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.active-texture-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1.5px solid #2d6a4f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary-900, #081c15);
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.05));
+}
+
+.pill-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-primary-600, #40916c);
+}
+
+/* Body: Canvas & Controls Grid */
+.soil-texture-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .soil-texture-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 12px;
+}
+
+.soil-triangle-canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm, 6px);
+  background: #ffffff;
+}
+
+/* Controls Panel */
+.texture-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.controls-heading {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.fraction-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.fraction-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-main, #0f172a);
+}
+
+.fraction-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.sand-dot { background-color: #bc6c25; }
+.silt-dot { background-color: #52b788; }
+.clay-dot { background-color: #1b4332; }
+
+.fraction-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.sand-val { color: #bc6c25; }
+.silt-val { color: #2d6a4f; }
+.clay-val { color: #1b4332; }
+
+/* Range Input Styling */
+.fraction-range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  outline: none;
+  transition: background 150ms ease;
+}
+
+.sand-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #bc6c25;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.silt-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2d6a4f;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.clay-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1b4332;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Regional Presets */
+.preset-selector-block {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preset-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.preset-btn-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.preset-btn {
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  color: var(--color-text-muted, #475569);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+}
+
+.preset-btn:hover {
+  background: var(--color-primary-50, #f0fdf4);
+  border-color: var(--color-primary-500, #52b788);
+  color: var(--color-primary-800, #1b4332);
+}
+
+.preset-btn.active-preset {
+  background: var(--color-primary-800, #1b4332);
+  border-color: var(--color-primary-800, #1b4332);
+  color: #ffffff;
+}
+
+/* Diagnostics Footer */
+.texture-diagnostics-footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 14px;
+}
+
+@media (max-width: 768px) {
+  .texture-diagnostics-footer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.diagnostic-stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-subtle, #94a3b8);
+}
+
+.stat-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+/* Advisory Banner */
+.pedological-advisory-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--color-harvest-100, #fffdf5);
+  border: 1px solid var(--color-harvest-500, #dda15e);
+  border-radius: var(--radius-md, 10px);
+  padding: 14px 16px;
+}
+
+.advisory-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.advisory-text {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--color-harvest-900, #7f3b08);
+}

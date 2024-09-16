@@ -1,0 +1,428 @@
+/**
+ * ==============================================================================
+ * AGRILY AGRONOMY DOMAIN - SOIL NUTRIENT DEFICIENCY RADAR STYLESHEET
+ * ==============================================================================
+ * Conforms strictly to DESIGN_SYSTEM.md ("Earth & Innovation")
+ */
+
+.soil-nutrient-radar-card {
+  background: var(--color-surface-card, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 24px;
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(15, 23, 42, 0.08));
+  transition: transform var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow var(--transition-normal, 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.soil-nutrient-radar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(15, 23, 42, 0.08));
+}
+
+/* Header */
+.radar-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.header-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md, 10px);
+  background: var(--color-primary-50, #f0fdf4);
+  border: 1px solid var(--color-primary-100, #d8f3dc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.header-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.radar-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-900, #081c15);
+  letter-spacing: -0.01em;
+}
+
+.radar-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.crop-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.crop-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+}
+
+.radar-crop-select {
+  padding: 6px 12px;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  background: var(--color-surface-bg, #f8faf9);
+  color: var(--color-text-main, #0f172a);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast, 150ms ease);
+}
+
+.radar-crop-select:focus {
+  border-color: var(--color-primary-600, #40916c);
+}
+
+/* Card Body */
+.radar-card-body {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .radar-card-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SVG Radar Container */
+.radar-svg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 12px;
+}
+
+.nutrient-radar-svg {
+  width: 100%;
+  max-width: 290px;
+  height: auto;
+}
+
+.radar-grid-circle {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 1;
+}
+
+.radar-axis-line {
+  stroke: #cbd5e1;
+  stroke-width: 1;
+  stroke-dasharray: 2, 2;
+}
+
+.radar-optimal-polygon {
+  fill: rgba(82, 183, 136, 0.12);
+  stroke: #2d6a4f;
+  stroke-width: 1.8;
+  stroke-dasharray: 4, 3;
+}
+
+.radar-measured-polygon {
+  fill: rgba(188, 108, 37, 0.20);
+  stroke: #bc6c25;
+  stroke-width: 2.2;
+}
+
+.radar-axis-text {
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  fill: #1b4332;
+}
+
+.radar-legend-bar {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-chip {
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.opt-chip {
+  background-color: #2d6a4f;
+  border-top: 1px dashed #2d6a4f;
+}
+
+.meas-chip {
+  background-color: #bc6c25;
+}
+
+/* Nutrient Breakdown Panel */
+.nutrient-breakdown-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* SFI Score Card */
+.sfi-score-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 12px 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sfi-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.sfi-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text-subtle, #94a3b8);
+  letter-spacing: 0.03em;
+}
+
+.sfi-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-primary-900, #081c15);
+  font-family: ui-monospace, monospace;
+}
+
+.sfi-tier-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full, 9999px);
+  text-transform: uppercase;
+}
+
+.tier-high {
+  background: var(--color-success-bg, #ecfdf5);
+  color: var(--color-success-text, #065f46);
+  border: 1px solid #a7f3d0;
+}
+
+.tier-med {
+  background: var(--color-warning-bg, #fffbeb);
+  color: var(--color-warning-text, #92400e);
+  border: 1px solid #fde68a;
+}
+
+.tier-low {
+  background: var(--color-danger-bg, #fef2f2);
+  color: var(--color-danger-text, #991b1b);
+  border: 1px solid #fecaca;
+}
+
+/* Cation Row */
+.cation-property-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.prop-chip {
+  flex: 1;
+  min-width: 100px;
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-sm, 6px);
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.prop-name {
+  font-size: 0.72rem;
+  color: var(--color-text-subtle, #94a3b8);
+  font-weight: 600;
+}
+
+.prop-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+/* Nutrient Pill Grid */
+.nutrient-pill-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .nutrient-pill-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.nutrient-stat-pill {
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 8px 10px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-optimal {
+  border-color: #a7f3d0;
+  background: #f0fdf4;
+}
+
+.status-moderate_deficit {
+  border-color: #fed7aa;
+  background: #fffaf0;
+}
+
+.status-critical_deficit {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.status-high_surplus {
+  border-color: #e9d5ff;
+  background: #faf5ff;
+}
+
+.stat-pill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pill-nutrient-symbol {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.pill-pct {
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: ui-monospace, monospace;
+}
+
+.status-optimal .pill-pct { color: #065f46; }
+.status-moderate_deficit .pill-pct { color: #92400e; }
+.status-critical_deficit .pill-pct { color: #991b1b; }
+.status-high_surplus .pill-pct { color: #6b21a8; }
+
+.stat-pill-values {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #475569);
+}
+
+.opt-sub {
+  font-size: 0.70rem;
+  color: var(--color-text-subtle, #94a3b8);
+}
+
+/* Liebig Law of the Minimum Banner */
+.liebig-limiting-banner {
+  background: #fef7ed;
+  border: 1.5px solid #ea580c;
+  border-radius: var(--radius-md, 10px);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.liebig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #c2410c;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.barrel-icon {
+  font-size: 1.1rem;
+}
+
+.liebig-explanation {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #7c2d12;
+}
+
+/* Liming Alerts */
+.liming-alert-banner {
+  background: var(--color-danger-bg, #fef2f2);
+  border: 1px solid #f87171;
+  border-radius: var(--radius-md, 10px);
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.sulfur-alert {
+  background: var(--color-warning-bg, #fffbeb);
+  border-color: #f59e0b;
+}
+
+.alert-symbol {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.alert-text {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #7f1d1d;
+}
+
+.sulfur-alert .alert-text {
+  color: #78350f;
+}
