@@ -51,6 +51,7 @@ function NavBar() {
   const pathname = location.pathname || '';
   const isMarketplaceActive = pathname === '/marketplace';
   const isAgronomyActive = pathname.startsWith('/agronomy');
+  const isSoilActive = pathname.startsWith('/soil-nutrition');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -111,6 +112,17 @@ function NavBar() {
               data-testid="nav-agronomy-link"
             >
               Agronomy AI
+            </Nav.Link>
+
+            {/* 2.6 Soil Nutrition Engine */}
+            <Nav.Link
+              as={Link}
+              to="/soil-nutrition"
+              className={`agrily-nav-link ${isSoilActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isSoilActive ? '700' : '600' }}
+              data-testid="nav-soil-nutrition-link"
+            >
+              Soil Nutrition
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}
