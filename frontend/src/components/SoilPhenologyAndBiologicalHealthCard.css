@@ -1,0 +1,540 @@
+/**
+ * ==============================================================================
+ * AGRILY DESIGN SYSTEM - SOIL PHENOLOGY & BIOLOGICAL HEALTH STYLES
+ * ==============================================================================
+ * Strictly adheres to DESIGN_SYSTEM.md:
+ * - Brand Emerald: #1b4332, #2d6a4f, #52b788
+ * - Harvest Ochre: #bc6c25, #dda15e, #fefae0
+ * - Neutrals & Slate: #0f172a, #475569, #f8faf9
+ * - Tactile micro-interactions (translateY(-4px), cubic-bezier transitions)
+ */
+
+.soil-phenology-card {
+  background: var(--color-surface-card, #ffffff);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(15, 23, 42, 0.08));
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 1.5rem;
+}
+
+.soil-phenology-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(15, 23, 42, 0.08)), 0 0 16px -2px rgba(45, 106, 79, 0.15);
+}
+
+.card-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-border-subtle, #e5e7eb);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-icon {
+  font-size: 1.75rem;
+  background: var(--color-primary-50, #f0fdf4);
+  padding: 0.5rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid var(--color-primary-100, #d8f3dc);
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.card-subtitle {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #475569);
+}
+
+/* Tab Navigation */
+.tab-pill-group {
+  display: flex;
+  background: var(--color-surface-bg, #f8faf9);
+  padding: 0.25rem;
+  border-radius: var(--radius-full, 9999px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  gap: 0.25rem;
+}
+
+.tab-pill-btn {
+  background: transparent;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-pill-btn:hover {
+  color: var(--color-primary-800, #1b4332);
+}
+
+.tab-pill-btn.active {
+  background: var(--color-primary-700, #2d6a4f);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(45, 106, 79, 0.2);
+}
+
+/* Tab 1: Biology Panel */
+.biology-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-mini-card {
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.kpi-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted, #475569);
+}
+
+.kpi-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-main, #0f172a);
+}
+
+.kpi-value.emerald-accent {
+  color: var(--color-primary-700, #2d6a4f);
+}
+
+.kpi-value.ochre-accent {
+  color: var(--color-harvest-700, #bc6c25);
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full, 9999px);
+}
+
+.status-pill-success {
+  background: var(--color-success-bg, #ecfdf5);
+  color: var(--color-success-text, #065f46);
+  border: 1px solid #a7f3d0;
+}
+
+.status-pill-info {
+  background: var(--color-info-bg, #eff6ff);
+  color: var(--color-info-text, #1e40af);
+  border: 1px solid #bfdbfe;
+}
+
+.status-pill-neutral {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.section-subheading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+  margin: 1.25rem 0 0.75rem 0;
+}
+
+/* Enzyme Bars Grid */
+.enzyme-bars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 1.25rem;
+}
+
+.enzyme-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-main, #0f172a);
+  margin-bottom: 0.35rem;
+}
+
+.enzyme-stat {
+  color: var(--color-primary-700, #2d6a4f);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full, 9999px);
+  transition: width 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-emerald {
+  background: linear-gradient(90deg, var(--color-primary-600, #40916c), var(--color-primary-500, #52b788));
+}
+
+.progress-ochre {
+  background: linear-gradient(90deg, var(--color-harvest-700, #bc6c25), var(--color-harvest-500, #dda15e));
+}
+
+/* Bio-Inoculants Grid */
+.bio-inoculants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.bio-card {
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 1rem;
+  transition: transform 200ms ease;
+}
+
+.bio-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary-500, #52b788);
+}
+
+.bio-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.bio-code {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted, #475569);
+  background: #e2e8f0;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm, 6px);
+}
+
+.bio-strain-name {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-primary-900, #081c15);
+}
+
+.bio-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #475569);
+  margin: 0.4rem 0;
+  line-height: 1.4;
+}
+
+.bio-rate {
+  font-size: 0.8125rem;
+  color: var(--color-harvest-900, #7f3b08);
+  background: var(--color-harvest-200, #fefae0);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm, 6px);
+}
+
+/* Tab 2: Phenology Timeline */
+.phenology-header-banner {
+  background: linear-gradient(135deg, var(--color-primary-800, #1b4332), var(--color-primary-700, #2d6a4f));
+  color: #ffffff;
+  padding: 1.25rem;
+  border-radius: var(--radius-md, 10px);
+  margin-bottom: 1.5rem;
+}
+
+.banner-crop-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm, 6px);
+  margin-bottom: 0.25rem;
+}
+
+.banner-heading {
+  margin: 0.25rem 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.banner-desc {
+  margin: 0;
+  font-size: 0.8125rem;
+  opacity: 0.9;
+}
+
+.phenology-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.phenology-timeline::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: 0.75rem;
+  width: 2px;
+  background: var(--color-primary-100, #d8f3dc);
+}
+
+.timeline-node {
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--color-primary-700, #2d6a4f);
+  color: #ffffff;
+  border-radius: var(--radius-full, 9999px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--color-primary-500, #52b788);
+}
+
+.timeline-card {
+  background: var(--color-surface-bg, #f8faf9);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 1rem 1.25rem;
+  transition: transform 200ms ease;
+}
+
+.timeline-card:hover {
+  transform: translateX(4px);
+  border-color: var(--color-primary-500, #52b788);
+}
+
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.stage-title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+}
+
+.stage-days {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #475569);
+  background: #e2e8f0;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full, 9999px);
+}
+
+.stage-partition-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nutrient-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm, 6px);
+}
+
+.chip-n {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.chip-p {
+  background: #faf5ff;
+  color: #6b21a8;
+  border: 1px solid #e9d5ff;
+}
+
+.chip-k {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.stage-advisory {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #475569);
+  line-height: 1.4;
+}
+
+/* Tab 3: Visual Diagnostics */
+.panel-instruction {
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #475569);
+  margin-bottom: 1rem;
+}
+
+.symptom-button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.symptom-select-btn {
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.symptom-select-btn:hover {
+  border-color: var(--color-primary-500, #52b788);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.05));
+}
+
+.symptom-select-btn.selected {
+  border-color: var(--color-harvest-700, #bc6c25);
+  background: var(--color-harvest-100, #fffdf5);
+  box-shadow: 0 0 0 2px var(--color-harvest-500, #dda15e);
+}
+
+.symptom-element-bubble {
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-primary-100, #d8f3dc);
+  color: var(--color-primary-800, #1b4332);
+  border-radius: var(--radius-full, 9999px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.symptom-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-main, #0f172a);
+}
+
+.foliar-prescription-box {
+  background: #fffdf5;
+  border: 2px dashed var(--color-harvest-500, #dda15e);
+  border-radius: var(--radius-md, 10px);
+  padding: 1.25rem;
+  animation: fadeIn 250ms ease-in-out;
+}
+
+.prescription-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-harvest-900, #7f3b08);
+  margin-bottom: 0.5rem;
+}
+
+.recipe-target {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--color-text-main, #0f172a);
+}
+
+.recipe-details {
+  font-size: 0.9375rem;
+  color: var(--color-text-main, #0f172a);
+  margin: 0.5rem 0 1rem 0;
+}
+
+.spray-guidelines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #475569);
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--color-border-subtle, #e5e7eb);
+}
+
+.guideline-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.empty-symptom-prompt {
+  text-align: center;
+  padding: 2rem;
+  background: var(--color-surface-bg, #f8faf9);
+  border-radius: var(--radius-md, 10px);
+  border: 1px dashed var(--color-border-subtle, #e5e7eb);
+  color: var(--color-text-muted, #475569);
+  font-size: 0.875rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

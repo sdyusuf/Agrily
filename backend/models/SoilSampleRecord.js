@@ -271,6 +271,9 @@ SoilSampleRecordSchema.statics.classifySoilTexture = function (sand, silt, clay)
     return 'CLAY_LOAM';
   }
 
+  if (si + 1.5 * c < 15) return 'SAND';
+  if (si + 2 * c < 30) return 'LOAMY_SAND';
+
   if (c >= 20 && c < 27) {
     if (s >= 52) return 'SANDY_CLAY_LOAM';
     if (si >= 50) return 'SILT_LOAM';
@@ -280,10 +283,9 @@ SoilSampleRecordSchema.statics.classifySoilTexture = function (sand, silt, clay)
   // Clay < 20%
   if (si >= 80 && c < 12) return 'SILT';
   if ((si >= 50 && c < 20) || (si >= 50 && si < 80 && c < 12)) return 'SILT_LOAM';
+  if ((c >= 7 && c < 20) && (s > 52) && (si + 2 * c >= 30)) return 'SANDY_LOAM';
+  if (c < 7 && si < 50 && (si + 2 * c >= 30)) return 'SANDY_LOAM';
   if (s >= 43 && s < 52 && c >= 7 && c < 20) return 'LOAM';
-  if (s >= 52 && (silt + 1.5 * clay >= 15)) return 'SANDY_LOAM';
-  if (s >= 70 && s < 85 && (silt + 1.5 * clay < 15)) return 'LOAMY_SAND';
-  if (s >= 85) return 'SAND';
 
   return 'LOAM';
 };

@@ -37,6 +37,10 @@ const SoilPrescriptionPlan = require('../models/SoilPrescriptionPlan');
 const { SoilChemistryEvaluationEngine } = require('../services/soilChemistryEvaluationEngine');
 const { FertilizerOptimizationEngine, COMMERCIAL_PRODUCTS } = require('../services/fertilizerOptimizationEngine');
 const { RegionalAgroZoneSoilProfileService } = require('../services/regionalAgroZoneSoilProfileService');
+const { SoilCationBalanceService } = require('../services/soilCationBalanceService');
+const { SoilOrganicMatterDynamicsService } = require('../services/soilOrganicMatterDynamicsService');
+const { SoilMicrobiomeEnzymeActivityService } = require('../services/soilMicrobiomeEnzymeActivityService');
+const { CropSpecificFertilityAdvisoryService } = require('../services/cropSpecificFertilityAdvisoryService');
 
 /**
  * In-memory fallback caches for testing or when MongoDB is running in offline mode
@@ -534,6 +538,200 @@ router.post('/generate-prescription', async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * @route   POST /api/soil-nutrition/cation-balance
+ * @desc    Calculates Albrecht Base Cation Saturation Ratio (BCSR), dispersion risk, and gypsum reclamation
+ * @access  Public
+ */
+router.post('/cation-balance', async (req, res) => {
+  try {
+    const { exchangeableCations, exchangeableAcidity, fieldAcreageHectares } = req.body;
+    if (!exchangeableCations) {
+      return res.status(400).json({ success: false, error: 'exchangeableCations payload required.' });
+    }
+
+    const normalizedCations = {
+      calciumCa: exchangeableCations.calciumCa ?? exchangeableCations.calcium ?? 3.8,
+      magnesiumMg: exchangeableCations.magnesiumMg ?? exchangeableCations.magnesium ?? 1.2,
+      potassiumK: exchangeableCations.potassiumK ?? exchangeableCations.potassium ?? 0.35,
+      sodiumNa: exchangeableCations.sodiumNa ?? exchangeableCations.sodium ?? 0.05
+    };
+
+    const acidity = exchangeableAcidity ?? exchangeableCations.exchangeableAcidity ?? exchangeableCations.acidity ?? 0.15;
+    const balance = SoilCationBalanceService.evaluateCationBalance(normalizedCations, acidity);
+
+    let gypsumRec = null;
+    if (balance.sodicityAndDispersion && balance.sodicityAndDispersion.hazardTier !== 'NONE_NORMAL') {
+      gypsumRec = SoilCationBalanceService.calculateGypsumRequirement({
+        effectiveCec: balance.effectiveCec,
+        currentEspPct: balance.sodicityAndDispersion.exchangeableSodiumPercentage,
+        fieldAcreageHectares: fieldAcreageHectares || 1.0
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        ...balance,
+        effectiveCationExchangeCapacity: balance.effectiveCec,
+        cationSaturationPercentages: {
+          calciumPct: balance.albrechtSaturationPercentages.calcium.measuredPct,
+          magnesiumPct: balance.albrechtSaturationPercentages.magnesium.measuredPct,
+          potassiumPct: balance.albrechtSaturationPercentages.potassium.measuredPct,
+          sodiumPct: balance.albrechtSaturationPercentages.sodium.measuredPct,
+          ...balance.albrechtSaturationPercentages
+        },
+        dispersionRisk: {
+          riskLevel: balance.sodicityAndDispersion.hazardTier,
+          ...balance.sodicityAndDispersion
+        },
+        gypsumReclamation: gypsumRec
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * @route   POST /api/soil-nutrition/carbon-dynamics
+ * @desc    Simulates multi-year soil organic matter turnover kinetics and carbon sequestration
+ * @access  Public
+ */
+router.post('/carbon-dynamics', async (req, res) => {
+  try {
+    const { currentOrganicCarbonPct, baselineOrganicMatterPct, primaryRegenerativePractice, managementPractice, simulationYears, fieldAcreageHectares } = req.body;
+
+    const socPct = currentOrganicCarbonPct ?? (baselineOrganicMatterPct ? baselineOrganicMatterPct / 1.724 : 0.85);
+    const practice = primaryRegenerativePractice || managementPractice || 'ORGANIC_COMPOST_MANURE';
+
+    const trajectory = SoilOrganicMatterDynamicsService.simulateCarbonSequestrationTrajectory({
+      currentOrganicCarbonPct: socPct,
+      primaryRegenerativePractice: practice,
+      simulationYears: simulationYears || 5,
+      fieldAcreageHectares: fieldAcreageHectares || 2.0
+    });
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        ...trajectory,
+        simulationHorizonYears: trajectory.simulationMetadata.simulationHorizonYears,
+        annualTrajectory: trajectory.yearlyTrajectory,
+        summary: {
+          netCarbonSequestrationTonsPerHa: trajectory.economicAndClimateValuation.netSequestrationTonsCo2ePerHa,
+          ...trajectory.economicAndClimateValuation
+        }
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * @route   POST /api/soil-nutrition/microbial-enzymes
+ * @desc    Assesses biological soil health index (BFI) and prescribes targeted bio-inoculants
+ * @access  Public
+ */
+router.post('/microbial-enzymes', async (req, res) => {
+  try {
+    const { enzymaticAssays, soilOrganicCarbonPct, targetCrop } = req.body;
+
+    const evaluation = SoilMicrobiomeEnzymeActivityService.evaluateMicrobialFertility(
+      enzymaticAssays || {},
+      soilOrganicCarbonPct ?? 0.85,
+      targetCrop || 'MAIZE'
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: evaluation
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * @route   GET /api/soil-nutrition/crop-phenology/:crop
+ * @desc    Retrieves phenological stage-by-stage nutrient partition curves for staple crops
+ * @access  Public
+ */
+router.get('/crop-phenology/:crop', async (req, res) => {
+  try {
+    const { crop } = req.params;
+    const { stage } = req.query;
+
+    const uptakeCurve = CropSpecificFertilityAdvisoryService.getCropUptakeCurve(crop, stage || null);
+
+    return res.status(200).json({
+      success: true,
+      data: uptakeCurve
+    });
+  } catch (error) {
+    return res.status(400).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * @route   POST /api/soil-nutrition/diagnose-symptoms
+ * @desc    Diagnoses visual plant nutritional deficiency symptoms and returns foliar chelate recipes
+ * @access  Public
+ */
+router.post('/diagnose-symptoms', async (req, res) => {
+  try {
+    const { crop, observedKeywords, affectedCanopyPosition, fieldAcreageHectares } = req.body;
+
+    const diagnosis = CropSpecificFertilityAdvisoryService.diagnoseDeficiencySymptom(
+      crop || 'MAIZE',
+      Array.isArray(observedKeywords) ? observedKeywords : [],
+      affectedCanopyPosition || 'LOWER_OLD'
+    );
+
+    let foliarPrescription = null;
+    if (diagnosis.topDiagnosis) {
+      foliarPrescription = CropSpecificFertilityAdvisoryService.formulateFoliarRescuePrescription(
+        crop || 'MAIZE',
+        [diagnosis.topDiagnosis.deficiencyKey],
+        fieldAcreageHectares || 1.0
+      );
+    }
+
+    return res.status(200).json({
+      success: true,
+      diagnosis,
+      emergencyFoliarPrescription: foliarPrescription
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * @route   POST /api/soil-nutrition/nutrient-removal-budget
+ * @desc    Calculates harvest removal balances and multi-year soil nutrient depletion budget
+ * @access  Public
+ */
+router.post('/nutrient-removal-budget', async (req, res) => {
+  try {
+    const { crop, targetedYieldTonsPerHa, fieldAcreageHectares } = req.body;
+
+    const budget = CropSpecificFertilityAdvisoryService.computeCriticalNutrientRemovalBalances(
+      crop || 'MAIZE',
+      targetedYieldTonsPerHa ?? 4.0,
+      fieldAcreageHectares ?? 1.0
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: budget
+    });
+  } catch (error) {
+    return res.status(400).json({ success: false, error: error.message });
   }
 });
 

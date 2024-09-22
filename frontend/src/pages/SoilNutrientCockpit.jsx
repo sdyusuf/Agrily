@@ -29,6 +29,7 @@ import Footer from '../components/Footer';
 import SoilTextureTriangleCanvas from '../components/SoilTextureTriangleCanvas';
 import SoilNutrientDeficiencyRadarCard from '../components/SoilNutrientDeficiencyRadarCard';
 import FertilizerBagMixCalculatorCard from '../components/FertilizerBagMixCalculatorCard';
+import SoilPhenologyAndBiologicalHealthCard from '../components/SoilPhenologyAndBiologicalHealthCard';
 import './SoilNutrientCockpit.css';
 
 // 7 Nigerian Agro-Ecological Zones with Pedological Baselines
@@ -318,6 +319,16 @@ const SoilNutrientCockpit = () => {
             <span className="tab-icon">📦</span>
             <span>Commercial Bag Mix Calculator</span>
           </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'BIOLOGY'}
+            className={`cockpit-tab-btn ${activeTab === 'BIOLOGY' ? 'active-tab' : ''}`}
+            onClick={() => setActiveTab('BIOLOGY')}
+          >
+            <span className="tab-icon">🔬</span>
+            <span>Microbiome &amp; Phenology</span>
+          </button>
         </div>
 
         {/* Tab 1: Liebig Diagnostics */}
@@ -349,6 +360,17 @@ const SoilNutrientCockpit = () => {
               targetCrop={activeCrop}
               initialAcreageHectares={2.5}
               initialTargetYieldTons={4.5}
+            />
+          </div>
+        )}
+
+        {/* Tab 4: Microbiome & Phenology Advisory */}
+        {activeTab === 'BIOLOGY' && (
+          <div className="tab-pane-container">
+            <SoilPhenologyAndBiologicalHealthCard
+              targetCrop={activeCrop}
+              soilOrganicCarbonPct={activeBaseline.nitrogenPct * 10}
+              biologicalHealthTier="ADEQUATE_ACTIVE_MICROBIOME"
             />
           </div>
         )}
