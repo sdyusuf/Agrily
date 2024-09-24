@@ -221,7 +221,7 @@ class PesticideWithdrawalSafetyService {
       requiredPhiDays = chemical.phiDaysExportStrict;
     }
 
-    const isClearedForHarvest = currentEstimatedResidueMgKg <= allowableMrl && elapsedDays >= requiredPhiDays;
+    const isClearedForHarvest = requiredPhiDays === 0 || (currentEstimatedResidueMgKg <= allowableMrl && elapsedDays >= requiredPhiDays);
     const daysRemainingToSafety = isClearedForHarvest ? 0 : Math.max(0, Math.ceil(requiredPhiDays - elapsedDays));
 
     const safeDate = new Date(sprayDate.getTime() + (requiredPhiDays * 24 * 60 * 60 * 1000));
