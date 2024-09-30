@@ -45,6 +45,7 @@ const fleetAnalyticsRouter = require('./routes/fleetAnalyticsRoutes');
 const fleetTelematicsRouter = require('./routes/fleetTelematicsRoutes');
 const agronomyVisionRouter = require('./routes/agronomyVisionRoutes');
 const soilNutritionRouter = require('./routes/soilNutritionRoutes');
+const satelliteRouter = require('./routes/satelliteRoutes');
 const auth = require('./middleware/auth');
 
 
@@ -101,6 +102,7 @@ app.use((req, res, next) => { //allowing request from any source
   app.use('/api/fleet-telematics', fleetTelematicsRouter);
   app.use('/api/agronomy-vision', agronomyVisionRouter);
   app.use('/api/soil-nutrition', soilNutritionRouter);
+  app.use('/api/satellite', satelliteRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
