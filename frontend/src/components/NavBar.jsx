@@ -52,6 +52,7 @@ function NavBar() {
   const isMarketplaceActive = pathname === '/marketplace';
   const isAgronomyActive = pathname.startsWith('/agronomy');
   const isSoilActive = pathname.startsWith('/soil-nutrition');
+  const isSatelliteActive = pathname.startsWith('/satellite-ndvi') || pathname.startsWith('/agronomy/satellite');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -123,6 +124,17 @@ function NavBar() {
               data-testid="nav-soil-nutrition-link"
             >
               Soil Nutrition
+            </Nav.Link>
+
+            {/* 2.7 Satellite NDVI Radar */}
+            <Nav.Link
+              as={Link}
+              to="/satellite-ndvi"
+              className={`agrily-nav-link ${isSatelliteActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isSatelliteActive ? '700' : '600' }}
+              data-testid="nav-satellite-ndvi-link"
+            >
+              Satellite NDVI
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}
