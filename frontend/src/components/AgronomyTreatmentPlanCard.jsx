@@ -7,6 +7,19 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import {
+  PillIcon,
+  ShieldIcon,
+  FlaskIcon,
+  LeafIcon,
+  TargetIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  EyeIcon,
+  FileTextIcon,
+  CopyIcon,
+  PrintIcon
+} from './Icons';
 import './AgronomyTreatmentPlanCard.css';
 
 export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcreage = 2.5 }) {
@@ -70,11 +83,15 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
     <div className="agronomy-treatment-plan-card" data-testid="agronomy-treatment-plan-card">
       <div className="rx-header">
         <div className="rx-badge-group">
-          <span className="rx-tag">💊 Phytosanitary Advisory Matrix</span>
-          <span className="nafdac-compliance-badge">🛡️ NAFDAC & SON Standard Compliant</span>
+          <span className="rx-tag">
+            <PillIcon size={14} /> Phytosanitary Advisory Matrix
+          </span>
+          <span className="nafdac-compliance-badge">
+            <ShieldIcon size={14} /> NAFDAC &amp; SON Standard Compliant
+          </span>
         </div>
         <h2 className="rx-title">
-          Treatment & Dosage Plan: {prescriptionData ? prescriptionData.diseaseName : 'Crop Foliar Disease'}
+          Treatment &amp; Dosage Plan: {prescriptionData ? prescriptionData.diseaseName : 'Crop Foliar Disease'}
         </h2>
         <p className="rx-subtitle">
           Scientifically targeted chemical and biological curative recommendations with strict Pre-Harvest Interval (PHI) withdrawal windows.
@@ -120,14 +137,14 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
           className={`rx-tab ${activeTab === 'CHEMICAL' ? 'active' : ''}`}
           onClick={() => setActiveTab('CHEMICAL')}
         >
-          🧪 Systemic Chemical Solutions
+          <FlaskIcon size={14} /> Systemic Chemical Solutions
         </button>
         <button
           type="button"
           className={`rx-tab ${activeTab === 'ORGANIC' ? 'active' : ''}`}
           onClick={() => setActiveTab('ORGANIC')}
         >
-          🌿 100% Organic Bio-Controls
+          <LeafIcon size={14} /> 100% Organic Bio-Controls
         </button>
       </div>
 
@@ -141,10 +158,18 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
             <div className="treatment-top">
               <div className="treatment-badge-row">
                 <span className={`treatment-type-pill ${treatment.organicCertified ? 'pill-organic' : 'pill-chem'}`}>
-                  {treatment.organicCertified ? '🌿 ORGANIC CERTIFIED' : '🧪 SYSTEMIC CHEMICAL'}
+                  {treatment.organicCertified ? (
+                    <>
+                      <LeafIcon size={13} /> ORGANIC CERTIFIED
+                    </>
+                  ) : (
+                    <>
+                      <FlaskIcon size={13} /> SYSTEMIC CHEMICAL
+                    </>
+                  )}
                 </span>
                 <span className="efficacy-pill">
-                  🎯 {treatment.curativeEfficacyPct}% Curative Efficacy
+                  <TargetIcon size={14} /> {treatment.curativeEfficacyPct}% Curative Efficacy
                 </span>
               </div>
               <h3 className="treatment-name">{treatment.treatmentName}</h3>
@@ -184,7 +209,7 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
             {/* Pre-Harvest Interval (PHI) Food Safety Alert */}
             <div className={`phi-safety-banner ${treatment.preHarvestIntervalDays === 0 ? 'phi-zero' : 'phi-window'}`}>
               <div className="phi-icon">
-                {treatment.preHarvestIntervalDays === 0 ? '✅' : '⏳'}
+                {treatment.preHarvestIntervalDays === 0 ? <CheckCircleIcon size={20} /> : <ClockIcon size={20} />}
               </div>
               <div className="phi-info">
                 <span className="phi-title">
@@ -200,7 +225,7 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
 
             {/* Application Instructions */}
             <div className="instructions-section">
-              <span className="instructions-heading">Application Protocol & Knapsack Guidance:</span>
+              <span className="instructions-heading">Application Protocol &amp; Knapsack Guidance:</span>
               <p className="instructions-text">{treatment.instructions}</p>
             </div>
 
@@ -209,9 +234,13 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
               <span className="ppe-heading">Mandatory PPE:</span>
               <div className="ppe-tags">
                 {treatment.requiredPPE.map((ppe, i) => (
-                  <span key={i} className="ppe-tag">🥽 {ppe}</span>
+                  <span key={i} className="ppe-tag">
+                    <EyeIcon size={13} /> {ppe}
+                  </span>
                 ))}
-                <span className="nafdac-tag">📜 {treatment.nafdacRegNumber}</span>
+                <span className="nafdac-tag">
+                  <FileTextIcon size={13} /> {treatment.nafdacRegNumber}
+                </span>
               </div>
             </div>
           </div>
@@ -225,7 +254,15 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
             <span className="seal-label">Phytosanitary Digital Clearance Hash:</span>
             <code className="seal-code">{prescriptionData.phytosanitaryClearanceSeal}</code>
             <button type="button" className="copy-seal-btn" onClick={copySeal}>
-              {copiedSeal ? '✓ Copied' : '📋 Copy Seal'}
+              {copiedSeal ? (
+                <>
+                  <CheckCircleIcon size={14} /> Copied
+                </>
+              ) : (
+                <>
+                  <CopyIcon size={14} /> Copy Seal
+                </>
+              )}
             </button>
           </div>
           <button
@@ -233,7 +270,7 @@ export default function AgronomyTreatmentPlanCard({ diagnosisRecord, initialAcre
             className="print-rx-btn"
             onClick={() => window.print()}
           >
-            🖨️ Print Phytosanitary Prescription Certificate
+            <PrintIcon size={16} /> Print Phytosanitary Prescription Certificate
           </button>
         </div>
       )}

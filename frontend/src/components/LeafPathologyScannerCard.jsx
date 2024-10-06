@@ -8,19 +8,29 @@
  */
 
 import React, { useState } from 'react';
+import {
+  WheatIcon,
+  CameraIcon,
+  FlaskIcon,
+  AlertTriangleIcon,
+  AlertCircleIcon,
+  MicroscopeIcon,
+  ZapIcon,
+  PillIcon
+} from './Icons';
 import './LeafPathologyScannerCard.css';
 
 const NIGERIAN_CROPS = [
-  { code: 'TOMATO', label: '🍅 Tomato (Solanum lycopersicum)', defaultDisease: 'TOM-EB-001' },
-  { code: 'CASSAVA', label: '🌿 Cassava (Manihot esculenta)', defaultDisease: 'CAS-CMD-001' },
-  { code: 'MAIZE', label: '🌽 Maize (Zea mays)', defaultDisease: 'MAIZ-FAW-001' },
-  { code: 'YAM', label: '🥔 Yam (Dioscorea rotundata)', defaultDisease: 'YAM-ANT-001' },
-  { code: 'COCOA', label: '🍫 Cocoa (Theobroma cacao)', defaultDisease: 'COC-BP-001' },
-  { code: 'RICE', label: '🌾 Rice (Oryza sativa)', defaultDisease: 'RIC-BLAST-001' },
-  { code: 'SORGHUM', label: '🌾 Sorghum (Sorghum bicolor)', defaultDisease: 'SORG-ANT-001' },
-  { code: 'COWPEA', label: '🌱 Cowpea (Vigna unguiculata)', defaultDisease: 'COW-CLS-001' },
-  { code: 'PEPPER', label: '🌶️ Pepper (Capsicum annuum)', defaultDisease: 'PEP-BS-001' },
-  { code: 'OIL_PALM', label: '🌴 Oil Palm (Elaeis guineensis)', defaultDisease: 'PALM-LS-001' }
+  { code: 'TOMATO', label: 'Tomato (Solanum lycopersicum)', defaultDisease: 'TOM-EB-001' },
+  { code: 'CASSAVA', label: 'Cassava (Manihot esculenta)', defaultDisease: 'CAS-CMD-001' },
+  { code: 'MAIZE', label: 'Maize (Zea mays)', defaultDisease: 'MAIZ-FAW-001' },
+  { code: 'YAM', label: 'Yam (Dioscorea rotundata)', defaultDisease: 'YAM-ANT-001' },
+  { code: 'COCOA', label: 'Cocoa (Theobroma cacao)', defaultDisease: 'COC-BP-001' },
+  { code: 'RICE', label: 'Rice (Oryza sativa)', defaultDisease: 'RIC-BLAST-001' },
+  { code: 'SORGHUM', label: 'Sorghum (Sorghum bicolor)', defaultDisease: 'SORG-ANT-001' },
+  { code: 'COWPEA', label: 'Cowpea (Vigna unguiculata)', defaultDisease: 'COW-CLS-001' },
+  { code: 'PEPPER', label: 'Pepper (Capsicum annuum)', defaultDisease: 'PEP-BS-001' },
+  { code: 'OIL_PALM', label: 'Oil Palm (Elaeis guineensis)', defaultDisease: 'PALM-LS-001' }
 ];
 
 const SEVERITY_OPTIONS = [
@@ -135,7 +145,9 @@ export default function LeafPathologyScannerCard({ onDiagnosisComplete, onSelect
     <div className="leaf-pathology-scanner-card" data-testid="leaf-pathology-scanner-card">
       <div className="scanner-header">
         <div className="scanner-title-group">
-          <span className="scanner-tag">🌾 Agronomy AI Vision v2.4</span>
+          <span className="scanner-tag">
+            <WheatIcon size={14} /> Agronomy AI Vision v2.4
+          </span>
           <h2 className="scanner-title">Crop Foliar Disease Neural Scanner</h2>
           <p className="scanner-subtitle">
             Instant multi-crop leaf pathogen diagnosis, lesion severity staging, and quarantine triage for Nigerian agriculture.
@@ -186,7 +198,7 @@ export default function LeafPathologyScannerCard({ onDiagnosisComplete, onSelect
 
             <div className="viewfinder-controls">
               <label htmlFor="leaf-file-input" className="file-upload-btn">
-                📷 Upload Leaf Photo
+                <CameraIcon size={16} /> Upload Leaf Photo
               </label>
               <input
                 id="leaf-file-input"
@@ -200,7 +212,15 @@ export default function LeafPathologyScannerCard({ onDiagnosisComplete, onSelect
                 className="sample-switch-btn"
                 onClick={() => setIsSimulatingHealthy(!isSimulatingHealthy)}
               >
-                {isSimulatingHealthy ? '🧪 Mode: Healthy Foliage' : '⚠️ Mode: Disease Lesion'}
+                {isSimulatingHealthy ? (
+                  <>
+                    <FlaskIcon size={14} /> Mode: Healthy Foliage
+                  </>
+                ) : (
+                  <>
+                    <AlertTriangleIcon size={14} /> Mode: Disease Lesion
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -216,7 +236,7 @@ export default function LeafPathologyScannerCard({ onDiagnosisComplete, onSelect
 
           {errorMsg && (
             <div className="scanner-error-banner" role="alert">
-              ❌ {errorMsg}
+              <AlertCircleIcon size={16} /> {errorMsg}
             </div>
           )}
         </div>
@@ -309,7 +329,15 @@ export default function LeafPathologyScannerCard({ onDiagnosisComplete, onSelect
             onClick={executeNeuralScan}
             disabled={isScanning}
           >
-            {isScanning ? '🔬 Running Vision Inference...' : '⚡ Run Foliar AI Diagnosis'}
+            {isScanning ? (
+              <>
+                <MicroscopeIcon size={18} /> Running Vision Inference...
+              </>
+            ) : (
+              <>
+                <ZapIcon size={18} /> Run Foliar AI Diagnosis
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -366,7 +394,7 @@ export default function LeafPathologyScannerCard({ onDiagnosisComplete, onSelect
               className="generate-rx-btn"
               onClick={() => onSelectTreatment && onSelectTreatment(diagnosisResult.record)}
             >
-              💊 Generate Curative & Organic Treatment Prescription
+              <PillIcon size={18} /> Generate Curative &amp; Organic Treatment Prescription
             </button>
           </div>
         </div>

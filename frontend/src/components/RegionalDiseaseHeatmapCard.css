@@ -32,7 +32,9 @@
 }
 
 .heatmap-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   background: var(--color-harvest-200, #fefae0);
   color: var(--color-harvest-900, #7f3b08);
   font-size: 0.75rem;
@@ -131,6 +133,9 @@
 }
 
 .checker-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-primary-800, #1b4332);
@@ -201,7 +206,9 @@
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   border: 1px solid rgba(239, 68, 68, 0.3);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* Filters */
@@ -212,10 +219,25 @@
   flex-wrap: wrap;
 }
 
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  color: var(--color-text-muted, #475569);
+  pointer-events: none;
+}
+
 .search-input {
   flex: 1;
   min-width: 200px;
-  padding: 0.55rem 0.85rem;
+  padding: 0.55rem 0.85rem 0.55rem 2.25rem;
   border: 1px solid var(--color-border-subtle, #e5e7eb);
   border-radius: var(--radius-md, 10px);
   font-size: 0.85rem;

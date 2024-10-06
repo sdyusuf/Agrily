@@ -1,0 +1,297 @@
+/**
+ * ==============================================================================
+ * 🛰️ AGRILY DESIGN SYSTEM - SATELLITE DROUGHT RISK CARD STYLING
+ * ==============================================================================
+ * Conforms strictly to DESIGN_SYSTEM.md:
+ *  - Primary palette: Lush Emerald (#1b4332, #2d6a4f, #52b788)
+ *  - Accent palette: Harvest Ochre (#bc6c25, #dda15e, #fefae0)
+ *  - Surface & Card backgrounds: #ffffff, #f8faf9, #e2e8f0
+ *  - Typography: Slate (#0f172a, #475569, #64748b)
+ *  - Micro-interactions: translateY(-2px) hover lifts, cubic-bezier transitions
+ * ==============================================================================
+ */
+
+.satellite-drought-risk-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.satellite-drought-risk-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+/* Card Header */
+.drought-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.drought-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #eafbf1;
+  color: #1b4332;
+  border: 1px solid #b7e4c7;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  width: fit-content;
+}
+
+.drought-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.drought-card-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.drought-card-subtitle strong {
+  color: #1b4332;
+}
+
+/* Primary Drought Tier Badge */
+.drought-tier-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.badge-code {
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.badge-name {
+  font-size: 0.9rem;
+}
+
+.badge-risk {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Main Metrics Grid */
+.drought-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.drought-metric-item {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.metric-title {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.metric-code {
+  font-size: 0.675rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.metric-main-value {
+  display: flex;
+  flex-direction: column;
+}
+
+.value-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.value-sub {
+  font-size: 0.725rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+.metric-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 0.35rem;
+}
+
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.metric-hint {
+  font-size: 0.725rem;
+  color: #475569;
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+/* Simulator Section */
+.simulator-section {
+  background: #fdfbf7;
+  border: 1px solid #f1e4d3;
+  border-radius: 10px;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.simulator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.simulator-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #78350f;
+}
+
+.simulator-offset {
+  font-size: 0.825rem;
+  color: #92400e;
+}
+
+.simulator-offset strong {
+  color: #b45309;
+}
+
+.simulator-slider {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  accent-color: #bc6c25;
+}
+
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #78350f;
+  opacity: 0.85;
+}
+
+/* Prescriptions Card */
+.prescriptions-card {
+  background: #f0fdf4;
+  border-left: 4px solid #2d6a4f;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prescription-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.prescription-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+.prescription-text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #2d6a4f;
+  line-height: 1.5;
+}
+
+.prescription-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.prescription-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #ffffff;
+  border: 1px solid #b7e4c7;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1b4332;
+}
+
+@media (max-width: 768px) {
+  .satellite-drought-risk-card {
+    padding: 1rem;
+  }
+  .drought-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .slider-ticks {
+    font-size: 0.625rem;
+  }
+}

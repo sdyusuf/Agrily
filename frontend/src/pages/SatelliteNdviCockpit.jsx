@@ -4,6 +4,8 @@ import SatelliteCanopyVigorMap from '../components/SatelliteCanopyVigorMap';
 import ZonalCropHealthMetricsCard from '../components/ZonalCropHealthMetricsCard';
 import SpectralBandSelector from '../components/SpectralBandSelector';
 import PhenologyTimelineChart from '../components/PhenologyTimelineChart';
+import SatelliteBandInspectorModal from '../components/SatelliteBandInspectorModal';
+import SatelliteDroughtRiskCard from '../components/SatelliteDroughtRiskCard';
 import { SatelliteDishIcon, LayersIcon, AlertTriangleIcon, SproutIcon, DownloadIcon } from '../components/Icons';
 
 export default function SatelliteNdviCockpit() {
@@ -16,6 +18,7 @@ export default function SatelliteNdviCockpit() {
   const [anomalies, setAnomalies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [ingesting, setIngesting] = useState(false);
+  const [showBandInspectorModal, setShowBandInspectorModal] = useState(false);
   const [notificationMsg, setNotificationMsg] = useState('');
 
   // 1. Fetch registered parcels
@@ -177,6 +180,15 @@ export default function SatelliteNdviCockpit() {
           <button
             type="button"
             className="action-btn secondary"
+            onClick={() => setShowBandInspectorModal(true)}
+            data-testid="open-band-inspector-btn"
+          >
+            <LayersIcon size={16} />
+            Inspect 12 Bands
+          </button>
+          <button
+            type="button"
+            className="action-btn secondary"
             onClick={handleIngestPass}
             disabled={ingesting}
             data-testid="ingest-pass-btn"
@@ -274,12 +286,34 @@ export default function SatelliteNdviCockpit() {
         </div>
       </div>
 
+      {/* Satellite Drought & Moisture Stress Radar Card */}
+      <SatelliteDroughtRiskCard
+        parcelName={activeParcel.parcelName}
+        cropType={activeParcel.cropType}
+        zoneName={activeParcel.agroEcologicalZone}
+        meanNdvi={currentZonalMetrics.meanNdvi}
+        lstCelsius={32.5}
+        vciPct={58.0}
+        tciPct={52.0}
+        tvdi={0.42}
+        cwsi={0.38}
+      />
+
       {/* Phenology Timeline Progression */}
       <PhenologyTimelineChart
         timeline={timelineData}
         selectedDate={selectedDate}
         onSelectDate={(d) => setSelectedDate(d)}
         cropType={activeParcel.cropType}
+      />
+
+      {/* Satellite Multi-Spectral Band Radiometer & Signature Inspector Modal */}
+      <SatelliteBandInspectorModal
+        isOpen={showBandInspectorModal}
+        onClose={() => setShowBandInspectorModal(false)}
+        parcelName={activeParcel.parcelName}
+        mgrsTile="32NNQ"
+        observationDate={selectedDate}
       />
     </div>
   );

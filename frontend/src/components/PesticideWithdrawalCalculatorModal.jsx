@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { ShieldIcon, CheckCircleIcon, ClockIcon, PrintIcon, XIcon } from './Icons';
 import './PesticideWithdrawalCalculatorModal.css';
 
 const FORMULATIONS = [
@@ -71,11 +72,13 @@ export default function PesticideWithdrawalCalculatorModal({ isOpen = true, onCl
       <div className="phi-modal-content">
         <div className="phi-modal-header">
           <div>
-            <span className="modal-tag">🛡️ Food Safety &amp; PHI Verification</span>
+            <span className="modal-tag">
+              <ShieldIcon size={14} /> Food Safety &amp; PHI Verification
+            </span>
             <h2 className="modal-title">Pesticide Residue &amp; Withdrawal Calculator</h2>
           </div>
           <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close modal">
-            ✕
+            <XIcon size={18} />
           </button>
         </div>
 
@@ -164,7 +167,11 @@ export default function PesticideWithdrawalCalculatorModal({ isOpen = true, onCl
               data-testid="phi-verdict-banner"
             >
               <div className="verdict-icon">
-                {evaluationResult.isCleared ? '✅' : '⏳'}
+                {evaluationResult.isCleared ? (
+                  <CheckCircleIcon size={26} color="#059669" />
+                ) : (
+                  <ClockIcon size={26} color="#d97706" />
+                )}
               </div>
               <div className="verdict-body">
                 <h4 className="verdict-title">
@@ -195,7 +202,7 @@ export default function PesticideWithdrawalCalculatorModal({ isOpen = true, onCl
             className="btn-primary"
             onClick={() => window.print()}
           >
-            🖨️ Export MRL Compliance Certificate
+            <PrintIcon size={16} /> Export MRL Compliance Certificate
           </button>
         </div>
       </div>

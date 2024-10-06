@@ -11,6 +11,15 @@ import LeafPathologyScannerCard from '../components/LeafPathologyScannerCard';
 import AgronomyTreatmentPlanCard from '../components/AgronomyTreatmentPlanCard';
 import RegionalDiseaseHeatmapCard from '../components/RegionalDiseaseHeatmapCard';
 import PesticideWithdrawalCalculatorModal from '../components/PesticideWithdrawalCalculatorModal';
+import {
+  LeafIcon,
+  MicroscopeIcon,
+  PillIcon,
+  MapIcon,
+  ClipboardIcon,
+  ClockIcon,
+  RefreshIcon
+} from '../components/Icons';
 import './AgronomyVisionCockpit.css';
 
 export default function AgronomyVisionCockpit() {
@@ -76,7 +85,9 @@ export default function AgronomyVisionCockpit() {
         {/* Cockpit Hero Banner */}
         <section className="cockpit-hero">
           <div className="hero-content">
-            <span className="hero-pill">🌿 Enterprise Agronomy AI Suite</span>
+            <span className="hero-pill">
+              <LeafIcon size={16} /> Enterprise Agronomy AI Suite
+            </span>
             <h1 className="hero-heading">Agronomy Disease Vision &amp; Telemetry Cockpit</h1>
             <p className="hero-description">
               AI-driven crop foliar diagnostics across 10 Nigerian commodities, automated lesion triage staging,
@@ -112,28 +123,28 @@ export default function AgronomyVisionCockpit() {
             className={`tab-btn ${activeViewTab === 'SCANNER' ? 'active-tab' : ''}`}
             onClick={() => setActiveViewTab('SCANNER')}
           >
-            🔬 AI Foliar Scanner
+            <MicroscopeIcon size={16} /> AI Foliar Scanner
           </button>
           <button
             type="button"
             className={`tab-btn ${activeViewTab === 'TREATMENT' ? 'active-tab' : ''}`}
             onClick={() => setActiveViewTab('TREATMENT')}
           >
-            💊 Treatment &amp; Dosage Matrix
+            <PillIcon size={16} /> Treatment &amp; Dosage Matrix
           </button>
           <button
             type="button"
             className={`tab-btn ${activeViewTab === 'HEATMAP' ? 'active-tab' : ''}`}
             onClick={() => setActiveViewTab('HEATMAP')}
           >
-            🗺️ Regional Outbreak Radar
+            <MapIcon size={16} /> Regional Outbreak Radar
           </button>
           <button
             type="button"
             className={`tab-btn ${activeViewTab === 'HISTORY' ? 'active-tab' : ''}`}
             onClick={() => setActiveViewTab('HISTORY')}
           >
-            📋 Diagnostic Audit Trail
+            <ClipboardIcon size={16} /> Diagnostic Audit Trail
           </button>
           <button
             type="button"
@@ -141,7 +152,7 @@ export default function AgronomyVisionCockpit() {
             onClick={() => setShowPhiModal(true)}
             data-testid="open-phi-modal-btn"
           >
-            ⏱️ Residue &amp; PHI Calculator
+            <ClockIcon size={16} /> Residue &amp; PHI Calculator
           </button>
         </nav>
 
@@ -184,7 +195,7 @@ export default function AgronomyVisionCockpit() {
                   onClick={fetchRecentDiagnoses}
                   disabled={isLoadingHistory}
                 >
-                  🔄 Refresh Records
+                  <RefreshIcon size={14} /> Refresh Records
                 </button>
               </div>
 

@@ -7,6 +7,15 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import {
+  MapIcon,
+  LandmarkIcon,
+  TruckIcon,
+  StopCircleIcon,
+  CheckCircleIcon,
+  AlertTriangleIcon,
+  SearchIcon
+} from './Icons';
 import './RegionalDiseaseHeatmapCard.css';
 
 export default function RegionalDiseaseHeatmapCard() {
@@ -87,14 +96,18 @@ export default function RegionalDiseaseHeatmapCard() {
     <div className="regional-disease-heatmap-card" data-testid="regional-disease-heatmap-card">
       <div className="heatmap-header">
         <div className="heatmap-title-group">
-          <span className="heatmap-tag">🗺️ Spatial Contagion Radar</span>
+          <span className="heatmap-tag">
+            <MapIcon size={14} /> Spatial Contagion Radar
+          </span>
           <h2 className="heatmap-title">36-State Crop Outbreak &amp; Quarantine Heatmap</h2>
           <p className="heatmap-subtitle">
             Real-time agro-ecological disease monitoring, vector transmission indexing, and NAQS phytosanitary quarantine zones.
           </p>
         </div>
         <div className="authority-seal">
-          <span className="seal-icon">🏛️</span>
+          <span className="seal-icon">
+            <LandmarkIcon size={18} />
+          </span>
           <span className="seal-text">NAQS Federal Monitoring Authority</span>
         </div>
       </div>
@@ -128,7 +141,9 @@ export default function RegionalDiseaseHeatmapCard() {
       {/* Corridor Clearance Tool */}
       <div className="corridor-checker-box">
         <div className="checker-header">
-          <span className="checker-title">🚚 Interstate Freight &amp; Produce Corridor Clearance Checker</span>
+          <span className="checker-title">
+            <TruckIcon size={18} /> Interstate Freight &amp; Produce Corridor Clearance Checker
+          </span>
           <span className="checker-hint">Select a Nigerian state to inspect active haulage transit bans</span>
         </div>
         <div className="checker-controls">
@@ -150,7 +165,11 @@ export default function RegionalDiseaseHeatmapCard() {
         {clearanceResult && (
           <div className={`clearance-result-banner ${clearanceResult.isTransitInterdicted ? 'banner-prohibited' : 'banner-cleared'}`}>
             <div className="banner-icon">
-              {clearanceResult.isTransitInterdicted ? '🛑' : '✅'}
+              {clearanceResult.isTransitInterdicted ? (
+                <StopCircleIcon size={22} />
+              ) : (
+                <CheckCircleIcon size={22} />
+              )}
             </div>
             <div className="banner-content">
               <span className="clearance-status-tag">
@@ -159,7 +178,7 @@ export default function RegionalDiseaseHeatmapCard() {
               <p className="clearance-advisory">{clearanceResult.advisory}</p>
               {clearanceResult.isTransitInterdicted && (
                 <span className="quarantine-buffer-tag">
-                  ⚠️ Active Quarantine Buffer: <strong>{clearanceResult.quarantineRadiusKm} KM Perimeter</strong>
+                  <AlertTriangleIcon size={14} /> Active Quarantine Buffer: <strong>{clearanceResult.quarantineRadiusKm} KM Perimeter</strong>
                 </span>
               )}
             </div>
@@ -169,13 +188,16 @@ export default function RegionalDiseaseHeatmapCard() {
 
       {/* Filter and Search Bar */}
       <div className="heatmap-filters">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="🔍 Search state, crop, or pathogen..."
-          value={searchFilter}
-          onChange={(e) => setSearchFilter(e.target.value)}
-        />
+        <div className="search-input-wrapper">
+          <SearchIcon size={16} className="search-icon" />
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search state, crop, or pathogen..."
+            value={searchFilter}
+            onChange={(e) => setSearchFilter(e.target.value)}
+          />
+        </div>
         <select
           className="status-filter-select"
           value={statusFilter}
