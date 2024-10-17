@@ -301,6 +301,97 @@ export const LayersIcon = ({ size = 18, color = 'currentColor', className = '', 
   </svg>
 );
 
+export const DownloadIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+
+export const CloudRainIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+    <path d="M16 14v6" />
+    <path d="M8 14v6" />
+    <path d="M12 16v6" />
+  </svg>
+);
+
+export const WindIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+    <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+    <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+  </svg>
+);
+
+export const ThermometerIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z" />
+  </svg>
+);
+
+export const SunIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+  </svg>
+);
+
+export const CloudLightningIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973" />
+    <path d="m13 12-3 5h4l-3 5" />
+  </svg>
+);
+
+export const SnowflakeIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <line x1="12" y1="2" x2="12" y2="22" />
+    <path d="m20 16-4-4 4-4" />
+    <path d="m4 8 4 4-4 4" />
+    <path d="m16 4-4 4-4-4" />
+    <path d="m8 20 4-4 4 4" />
+  </svg>
+);
+
+export const DropletIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />
+  </svg>
+);
+
+export const BellRingIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+  </svg>
+);
+
+export const CompassIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+
+export const OldLayersIcon = ({ size = 18, color = 'currentColor', className = '', ...props }) => (
+  <svg width={size} height={size} {...baseSvgProps} stroke={color} className={className} {...props}>
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 17 12 22 22 17" />
+    <polyline points="2 12 12 17 22 12" />
+  </svg>
+);
+
 /**
  * Helper to dynamically render category vector icons
  */

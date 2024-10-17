@@ -1,0 +1,325 @@
+/* ==========================================================================
+   🌾 AGRILY HYPERLOCAL WEATHER: AGRO SPRAY WINDOW CARD STYLES
+   Adheres strictly to DESIGN_SYSTEM.md ("Earth & Innovation")
+   ========================================================================== */
+
+.agro-spray-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agro-spray-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+  border-color: #52b788;
+}
+
+.spray-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+}
+
+.spray-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fefae0;
+  color: #7f3b08;
+  border: 1px solid #dda15e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  margin-bottom: 0.4rem;
+}
+
+.spray-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.25rem 0;
+}
+
+.spray-card-subtitle {
+  font-size: 0.85rem;
+  color: #475569;
+  margin: 0;
+}
+
+.spray-summary-counters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.spray-counter-pill {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.spray-counter-pill.optimal {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.spray-counter-pill.marginal {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.spray-counter-pill.lockout {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.recommended-boom-banner {
+  background: linear-gradient(135deg, #f0fdf4 0%, #fefae0 100%);
+  border: 1px solid #52b788;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.boom-banner-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.boom-banner-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  letter-spacing: 0.04em;
+}
+
+.boom-banner-window {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0.15rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.boom-score-badge {
+  font-size: 0.75rem;
+  background: #1b4332;
+  color: #ffffff;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+}
+
+.boom-nozzle-note {
+  font-size: 0.8rem;
+  color: #475569;
+  margin: 0;
+}
+
+.boom-banner-metrics {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.boom-banner-metrics div {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.boom-banner-metrics span {
+  font-size: 0.72rem;
+  color: #475569;
+}
+
+.boom-banner-metrics strong {
+  font-size: 1rem;
+  color: #1b4332;
+}
+
+.spray-hourly-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+}
+
+.spray-hour-slot {
+  border-radius: 10px;
+  padding: 0.55rem 0.4rem;
+  border: 1.5px solid #e5e7eb;
+  background: #f8faf9;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  transition: all 150ms ease;
+}
+
+.spray-hour-slot.emerald {
+  background: #f0fdf4;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.spray-hour-slot.warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.spray-hour-slot.danger {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.spray-hour-slot.selected {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(27, 67, 50, 0.16);
+  outline: 2px solid #1b4332;
+}
+
+.slot-time {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.slot-dt {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.slot-wind {
+  font-size: 0.68rem;
+  opacity: 0.85;
+}
+
+.spray-slot-detail-panel {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+}
+
+.slot-detail-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.slot-detail-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0f172a;
+  font-size: 0.9rem;
+}
+
+.slot-status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.slot-status-badge.emerald {
+  background: #d8f3dc;
+  color: #1b4332;
+}
+
+.slot-status-badge.warning {
+  background: #fefae0;
+  color: #bc6c25;
+}
+
+.slot-status-badge.danger {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.slot-nozzle-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+  background: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.slot-detail-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.slot-detail-stat {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.slot-detail-stat span {
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.slot-detail-stat strong {
+  font-size: 0.92rem;
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.slot-limiting-warning {
+  margin-top: 0.75rem;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .spray-hourly-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .slot-detail-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
