@@ -36,6 +36,7 @@ const FleetAnalyticsCockpit = lazy(() => import('./pages/FleetAnalyticsCockpit')
 const AgronomyVisionCockpit = lazy(() => import('./pages/AgronomyVisionCockpit'));
 const SoilNutrientCockpit = lazy(() => import('./pages/SoilNutrientCockpit'));
 const SatelliteNdviCockpit = lazy(() => import('./pages/SatelliteNdviCockpit'));
+const HyperlocalWeatherCockpit = lazy(() => import('./pages/HyperlocalWeatherCockpit'));
 
 /**
  * Route loading fallback component adhering to Agrily design tokens
@@ -141,6 +142,8 @@ function App() {
                 <Route path="/agronomy/soil" element={<SoilNutrientCockpit />} />
                 <Route path="/satellite-ndvi" element={<SatelliteNdviCockpit />} />
                 <Route path="/agronomy/satellite" element={<SatelliteNdviCockpit />} />
+                <Route path="/weather-alerts" element={<HyperlocalWeatherCockpit />} />
+                <Route path="/agronomy/weather" element={<HyperlocalWeatherCockpit />} />
 
                 <Route exact path="/home" element={<PrivateRoute />}>
                   <Route exact path="/home" element={<Home />} />

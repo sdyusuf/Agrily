@@ -53,6 +53,7 @@ function NavBar() {
   const isAgronomyActive = pathname.startsWith('/agronomy');
   const isSoilActive = pathname.startsWith('/soil-nutrition');
   const isSatelliteActive = pathname.startsWith('/satellite-ndvi') || pathname.startsWith('/agronomy/satellite');
+  const isWeatherActive = pathname.startsWith('/weather-alerts') || pathname.startsWith('/agronomy/weather');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -135,6 +136,17 @@ function NavBar() {
               data-testid="nav-satellite-ndvi-link"
             >
               Satellite NDVI
+            </Nav.Link>
+
+            {/* 2.8 Hyperlocal Weather Alerts */}
+            <Nav.Link
+              as={Link}
+              to="/weather-alerts"
+              className={`agrily-nav-link ${isWeatherActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isWeatherActive ? '700' : '600' }}
+              data-testid="nav-weather-alerts-link"
+            >
+              Weather Alerts
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}

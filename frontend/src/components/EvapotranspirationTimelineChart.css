@@ -1,0 +1,143 @@
+/* ==========================================================================
+   🌾 AGRILY HYPERLOCAL WEATHER: EVAPOTRANSPIRATION TIMELINE CHART STYLES
+   Adheres strictly to DESIGN_SYSTEM.md ("Earth & Innovation")
+   ========================================================================== */
+
+.et-timeline-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.et-timeline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+  border-color: #52b788;
+}
+
+.et-chart-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+}
+
+.et-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #f0fdf4;
+  color: #1b4332;
+  border: 1px solid #d8f3dc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  margin-bottom: 0.4rem;
+}
+
+.et-chart-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.25rem 0;
+}
+
+.et-chart-subtitle {
+  font-size: 0.85rem;
+  color: #475569;
+  margin: 0;
+}
+
+.et-balance-badge-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.et-balance-kpi {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.et-balance-kpi span {
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.et-balance-kpi strong {
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.et-balance-kpi strong.deficit {
+  color: #bc6c25;
+}
+
+.et-balance-kpi strong.surplus {
+  color: #1b4332;
+}
+
+.et-svg-container {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.et-forecast-svg {
+  width: 100%;
+  height: auto;
+  min-width: 520px;
+}
+
+.et-day-detail-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.et-detail-item {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.et-detail-item span {
+  display: block;
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.et-detail-item strong {
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.et-stress-pill {
+  color: #1b4332 !important;
+}
+
+@media (max-width: 768px) {
+  .et-day-detail-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
