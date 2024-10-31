@@ -1,0 +1,248 @@
+/* ==========================================================================
+   🌾 AGRILY HARVEST YIELD PREDICTOR: SUB-PARCEL YIELD HEATMAP STYLES
+   Adheres strictly to DESIGN_SYSTEM.md ("Earth & Innovation")
+   ========================================================================== */
+
+.subparcel-yield-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.subparcel-yield-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+  border-color: #52b788;
+}
+
+.subparcel-yield-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.yield-map-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f0fdf4;
+  color: #1b4332;
+  border: 1px solid #d8f3dc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  margin-bottom: 0.45rem;
+}
+
+.yield-map-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.25rem 0;
+}
+
+.yield-map-subtitle {
+  font-size: 0.875rem;
+  color: #475569;
+  margin: 0;
+}
+
+.yield-layer-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.yield-layer-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  background: #f8faf9;
+  color: #475569;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.yield-layer-tab-btn:hover {
+  background: #f0fdf4;
+  border-color: #40916c;
+  color: #1b4332;
+}
+
+.yield-layer-tab-btn.active {
+  background: #1b4332;
+  border-color: #1b4332;
+  color: #ffffff;
+}
+
+.subparcel-yield-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+}
+
+.yield-canvas-box {
+  background: #081c15;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yield-hidden-canvas {
+  display: none;
+}
+
+.yield-grid-overlay {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 380px;
+}
+
+.yield-cell-btn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 150ms ease;
+}
+
+.yield-cell-btn:hover {
+  transform: scale(1.08);
+  z-index: 2;
+}
+
+.yield-cell-btn.selected {
+  outline: 2.5px solid #fefae0;
+  transform: scale(1.06);
+  z-index: 3;
+}
+
+.yield-zone-inspector {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.zone-inspector-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+
+.zone-cell-badge {
+  background: #d8f3dc;
+  color: #1b4332;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.zone-class-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.zone-class-pill.optimal {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.zone-class-pill.deficit {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.zone-inspector-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.85rem 0;
+}
+
+.zone-inspector-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.zone-stat-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.zone-stat-card span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.zone-stat-card strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+.zone-stat-card small {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.zone-prescription-box {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.8rem;
+  color: #7f3b08;
+}
+
+.zone-prescription-box p {
+  margin: 0.25rem 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .subparcel-yield-body {
+    grid-template-columns: 1fr;
+  }
+}
+

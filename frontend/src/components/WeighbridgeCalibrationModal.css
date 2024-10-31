@@ -1,0 +1,219 @@
+.weighbridge-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 1100;
+}
+
+.weighbridge-modal-container {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(45, 106, 79, 0.22);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.24);
+  max-width: 780px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  color: #0f172a;
+}
+
+.weighbridge-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.35rem 1.5rem 1rem;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  border-top-left-radius: 17px;
+  border-top-right-radius: 17px;
+}
+
+.weighbridge-modal-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fefae0;
+  margin-bottom: 0.25rem;
+}
+
+.weighbridge-modal-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.weighbridge-close-btn {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease;
+}
+
+.weighbridge-close-btn:hover {
+  background: rgba(255, 255, 255, 0.26);
+  transform: translateY(-2px);
+}
+
+.weighbridge-modal-body {
+  padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.weighbridge-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1.1rem;
+  margin-bottom: 1.15rem;
+}
+
+.weighbridge-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.weighbridge-field.full-width {
+  margin-bottom: 1rem;
+}
+
+.weighbridge-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.weighbridge-field input,
+.weighbridge-field select,
+.weighbridge-field textarea {
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #f8faf9;
+  color: #0f172a;
+  font-size: 0.88rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.weighbridge-field input:focus,
+.weighbridge-field select:focus,
+.weighbridge-field textarea:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.22);
+  background: #ffffff;
+}
+
+.weighbridge-shrinkage-ledger {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+  background: #f8faf9;
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  border-radius: 14px;
+  padding: 0.9rem;
+}
+
+.shrinkage-metric-box {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.shrinkage-metric-box.highlight {
+  background: #fefae0;
+  border-color: #dda15e;
+}
+
+.shrinkage-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+}
+
+.shrinkage-value {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.shrinkage-value.emerald {
+  color: #1b4332;
+}
+
+.shrinkage-value.warning {
+  color: #bc6c25;
+}
+
+.shrinkage-sub {
+  font-size: 0.7rem;
+  color: #475569;
+}
+
+.weighbridge-calibration-banner {
+  background: rgba(82, 183, 136, 0.16);
+  border: 1px solid #2d6a4f;
+  color: #1b4332;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.weighbridge-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.weighbridge-secondary-btn,
+.weighbridge-primary-btn {
+  padding: 0.62rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.weighbridge-secondary-btn {
+  background: #f8faf9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.weighbridge-primary-btn {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 6px 16px rgba(27, 67, 50, 0.22);
+}
+
+.weighbridge-secondary-btn:hover,
+.weighbridge-primary-btn:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .weighbridge-form-grid,
+  .weighbridge-shrinkage-ledger {
+    grid-template-columns: 1fr;
+  }
+}
