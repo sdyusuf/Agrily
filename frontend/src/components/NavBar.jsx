@@ -54,6 +54,7 @@ function NavBar() {
   const isSoilActive = pathname.startsWith('/soil-nutrition');
   const isSatelliteActive = pathname.startsWith('/satellite-ndvi') || pathname.startsWith('/agronomy/satellite');
   const isWeatherActive = pathname.startsWith('/weather-alerts') || pathname.startsWith('/agronomy/weather');
+  const isYieldActive = pathname.startsWith('/yield-predictor') || pathname.startsWith('/agronomy/yield');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -147,6 +148,17 @@ function NavBar() {
               data-testid="nav-weather-alerts-link"
             >
               Weather Alerts
+            </Nav.Link>
+
+            {/* 2.9 Harvest Yield Predictor */}
+            <Nav.Link
+              as={Link}
+              to="/yield-predictor"
+              className={`agrily-nav-link ${isYieldActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isYieldActive ? '700' : '600' }}
+              data-testid="nav-yield-predictor-link"
+            >
+              Yield Predictor
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}
