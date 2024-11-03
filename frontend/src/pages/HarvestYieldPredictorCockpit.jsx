@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import SubParcelYieldHeatmapCanvas from '../components/SubParcelYieldHeatmapCanvas';
 import YieldSensitivitySimulatorCard from '../components/YieldSensitivitySimulatorCard';
 import BiomassAccumulationCurveChart from '../components/BiomassAccumulationCurveChart';
+import PostHarvestDryingAndFleetCard from '../components/PostHarvestDryingAndFleetCard';
 import WeighbridgeCalibrationModal from '../components/WeighbridgeCalibrationModal';
 import './HarvestYieldPredictorCockpit.css';
 
@@ -401,6 +402,14 @@ const HarvestYieldPredictorCockpit = () => {
             radiationUseEfficiencyGPerMj={activeProfile.rueGPerMj}
           />
         </div>
+
+        {/* Post-Harvest Grain Drying, Aflatoxin & Fleet Evacuation Card */}
+        <PostHarvestDryingAndFleetCard
+          cropKey={selectedCropKey}
+          cropName={activeProfile.cropName}
+          areaHectares={effectiveForecast.areaHa}
+          predictedYieldTonsHa={effectiveForecast.p50TonsHa}
+        />
 
         {/* Weighbridge Calibration Ledger & Post-Harvest Reconciliation */}
         <section
