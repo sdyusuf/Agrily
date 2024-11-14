@@ -1,0 +1,235 @@
+.pest-heatmap-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  padding: 1.35rem 1.45rem;
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease;
+}
+
+.pest-heatmap-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(27, 67, 50, 0.12);
+}
+
+.pest-heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.pest-heatmap-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2d6a4f;
+  margin-bottom: 0.2rem;
+}
+
+.pest-heatmap-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pest-heatmap-subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.pest-mode-tabs {
+  display: inline-flex;
+  background: #f8faf9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.2rem;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.pest-mode-btn {
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.38rem 0.68rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pest-mode-btn.active {
+  background: #1b4332;
+  color: #ffffff;
+}
+
+.pest-heatmap-body {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.pest-grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.32rem;
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.65rem;
+}
+
+.pest-kde-cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.08rem;
+  cursor: pointer;
+  padding: 0.15rem;
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.18s ease;
+}
+
+.pest-kde-cell:hover {
+  transform: translateY(-2px) scale(1.04);
+  border-color: #fefae0;
+}
+
+.pest-kde-cell.selected {
+  border: 2.5px solid #fefae0;
+  box-shadow: 0 0 0 3px #1b4332;
+}
+
+.cell-wind-arrow {
+  font-size: 0.62rem;
+  opacity: 0.88;
+  display: inline-block;
+}
+
+.pest-cell-inspector {
+  background: #f8faf9;
+  border: 1px solid rgba(45, 106, 79, 0.18);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.inspector-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.inspector-sector-code {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #1b4332;
+  background: rgba(82, 183, 136, 0.2);
+  padding: 0.22rem 0.58rem;
+  border-radius: 6px;
+}
+
+.inspector-severity-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+}
+
+.inspector-severity-pill.critical {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.inspector-severity-pill.warning {
+  background: #fefae0;
+  color: #bc6c25;
+  border: 1px solid #dda15e;
+}
+
+.inspector-severity-pill.safe {
+  background: #ecfdf5;
+  color: #1b4332;
+  border: 1px solid #52b788;
+}
+
+.inspector-corridor-title {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.inspector-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.inspector-stat-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.14rem;
+}
+
+.inspector-stat-box span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.inspector-stat-box strong {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1b4332;
+}
+
+.inspector-stat-box small {
+  font-size: 0.67rem;
+  color: #475569;
+}
+
+.inspector-ipm-callout {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.76rem;
+  color: #0f172a;
+}
+
+.inspector-ipm-callout p {
+  margin: 0.25rem 0 0;
+  color: #475569;
+  line-height: 1.45;
+}
+
+@media (max-width: 992px) {
+  .pest-heatmap-body {
+    grid-template-columns: 1fr;
+  }
+}

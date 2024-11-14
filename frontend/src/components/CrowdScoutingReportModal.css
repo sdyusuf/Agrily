@@ -1,0 +1,156 @@
+.scouting-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 1100;
+}
+
+.scouting-modal-box {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(45, 106, 79, 0.24);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.24);
+  max-width: 740px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  color: #0f172a;
+}
+
+.scouting-modal-header {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  padding: 1.3rem 1.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.scouting-modal-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fefae0;
+  margin-bottom: 0.2rem;
+}
+
+.scouting-modal-title {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.scouting-close-btn {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.scouting-modal-form {
+  padding: 1.3rem 1.5rem 1.5rem;
+}
+
+.scouting-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.scouting-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.scouting-field.full {
+  margin-bottom: 1rem;
+}
+
+.scouting-field label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.scouting-field input,
+.scouting-field select,
+.scouting-field textarea {
+  padding: 0.52rem 0.75rem;
+  border-radius: 9px;
+  border: 1px solid #cbd5e1;
+  background: #f8faf9;
+  color: #0f172a;
+  font-size: 0.86rem;
+}
+
+.scouting-live-summary {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+}
+
+.scouting-live-summary span {
+  display: block;
+  font-size: 0.7rem;
+  color: #475569;
+}
+
+.scouting-live-summary strong {
+  color: #1b4332;
+}
+
+.scouting-success-banner {
+  background: #ecfdf5;
+  border: 1px solid #2d6a4f;
+  color: #1b4332;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  margin-bottom: 1rem;
+}
+
+.scouting-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.scouting-cancel-btn,
+.scouting-submit-btn {
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scouting-cancel-btn {
+  background: #f8faf9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.scouting-submit-btn {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  border: none;
+  color: #ffffff;
+}

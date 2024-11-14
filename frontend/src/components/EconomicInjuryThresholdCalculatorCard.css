@@ -1,0 +1,182 @@
+.eil-calculator-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  padding: 1.35rem 1.45rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease;
+}
+
+.eil-calculator-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(27, 67, 50, 0.12);
+}
+
+.eil-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.eil-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2d6a4f;
+  margin-bottom: 0.2rem;
+}
+
+.eil-card-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.eil-card-subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.eil-bcr-pill {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 10px;
+  padding: 0.45rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.72rem;
+  color: #475569;
+}
+
+.eil-bcr-pill strong {
+  font-size: 0.96rem;
+  color: #1b4332;
+}
+
+.eil-threshold-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.15rem;
+}
+
+.eil-stat-box {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.eil-stat-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.eil-stat-main {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.eil-stat-main.emerald {
+  color: #1b4332;
+}
+
+.eil-stat-main.ochre {
+  color: #bc6c25;
+}
+
+.eil-stat-main.danger {
+  color: #991b1b;
+}
+
+.eil-stat-box small {
+  font-size: 0.7rem;
+  color: #475569;
+}
+
+.eil-sliders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1.1rem;
+  margin-bottom: 1.1rem;
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.eil-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.eil-slider-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.eil-slider-label strong {
+  color: #1b4332;
+}
+
+.eil-slider-group input[type='range'] {
+  accent-color: #2d6a4f;
+  cursor: pointer;
+}
+
+.eil-instar-banner {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.instar-eyebrow {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #bc6c25;
+}
+
+.instar-stage-name {
+  font-size: 0.86rem;
+  color: #0f172a;
+}
+
+.instar-susceptibility-pill {
+  background: #1b4332;
+  color: #ffffff;
+  font-size: 0.76rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .eil-threshold-strip,
+  .eil-sliders-grid {
+    grid-template-columns: 1fr;
+  }
+}
