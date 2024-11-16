@@ -1,0 +1,270 @@
+.pest-cockpit-page {
+  min-height: 100vh;
+  background: #f8faf9;
+  color: #0f172a;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.pest-cockpit-main {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 3.5rem;
+}
+
+.pest-hero-banner {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 1.85rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 18px 40px rgba(27, 67, 50, 0.18);
+  flex-wrap: wrap;
+}
+
+.pest-hero-copy {
+  max-width: 720px;
+}
+
+.pest-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.pest-pill-emerald,
+.pest-pill-ochre {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+.pest-pill-emerald {
+  background: rgba(82, 183, 136, 0.25);
+  border: 1px solid rgba(82, 183, 136, 0.55);
+  color: #fefae0;
+}
+
+.pest-pill-ochre {
+  background: rgba(221, 161, 94, 0.24);
+  border: 1px solid #dda15e;
+  color: #fefae0;
+}
+
+.pest-hero-title {
+  margin: 0 0 0.55rem;
+  font-size: 1.72rem;
+  font-weight: 800;
+}
+
+.pest-hero-subtitle {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.pest-hero-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  padding: 0.95rem 1.1rem;
+}
+
+.pest-control-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pest-control-item label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fefae0;
+}
+
+.pest-control-item select,
+.pest-control-item input {
+  padding: 0.52rem 0.75rem;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.pest-scouting-cta {
+  padding: 0.58rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #dda15e;
+  background: #bc6c25;
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease;
+}
+
+.pest-scouting-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(188, 108, 37, 0.35);
+}
+
+.pest-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pest-kpi-card {
+  background: #ffffff;
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pest-kpi-card:hover {
+  transform: translateY(-4px);
+}
+
+.pest-kpi-card.primary {
+  border-left: 5px solid #2d6a4f;
+}
+
+.pest-kpi-card.ochre {
+  background: #fefae0;
+  border-color: #dda15e;
+}
+
+.pest-kpi-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #475569;
+}
+
+.pest-kpi-val {
+  font-size: 1.42rem;
+  font-weight: 800;
+  color: #1b4332;
+}
+
+.pest-kpi-sub {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.pest-workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.pest-ledger-card {
+  background: #ffffff;
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  border-radius: 16px;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.pest-ledger-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.pest-ledger-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: #bc6c25;
+}
+
+.pest-ledger-title {
+  margin: 0.15rem 0 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pest-active-cell-badge {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  color: #1b4332;
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+}
+
+.pest-ledger-table-wrap {
+  overflow-x: auto;
+}
+
+.pest-ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.pest-ledger-table th {
+  text-align: left;
+  padding: 0.68rem 0.75rem;
+  background: #f8faf9;
+  color: #475569;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.pest-ledger-table td {
+  padding: 0.72rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pest-tier-pill {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  color: #bc6c25;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .pest-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pest-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .pest-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}

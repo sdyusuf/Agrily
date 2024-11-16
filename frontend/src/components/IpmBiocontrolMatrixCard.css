@@ -1,0 +1,183 @@
+.ipm-matrix-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(45, 106, 79, 0.16);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease;
+}
+
+.ipm-matrix-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(27, 67, 50, 0.11);
+}
+
+.ipm-matrix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.ipm-matrix-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2d6a4f;
+  margin-bottom: 0.2rem;
+}
+
+.ipm-matrix-title {
+  margin: 0 0 0.2rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ipm-matrix-subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.ipm-tab-group {
+  display: inline-flex;
+  background: #f8faf9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.2rem;
+  gap: 0.25rem;
+}
+
+.ipm-tab-btn {
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.38rem 0.72rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ipm-tab-btn.active {
+  background: #1b4332;
+  color: #ffffff;
+}
+
+.ipm-pushpull-banner {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 12px;
+  padding: 0.85rem 1.05rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.pushpull-tag {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #bc6c25;
+  margin-bottom: 0.15rem;
+}
+
+.ipm-pushpull-banner strong {
+  font-size: 0.84rem;
+  color: #0f172a;
+}
+
+.ipm-agents-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.ipm-agent-card {
+  background: #f8faf9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.agent-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.agent-guild-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(45, 106, 79, 0.14);
+  color: #1b4332;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+
+.agent-knockdown-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #bc6c25;
+}
+
+.agent-name {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.agent-meta {
+  margin: 0.15rem 0;
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+.ipm-irac-table-wrap {
+  overflow-x: auto;
+}
+
+.ipm-irac-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+}
+
+.ipm-irac-table th {
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  background: #f8faf9;
+  color: #475569;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.ipm-irac-table td {
+  padding: 0.7rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bee-safe-pill {
+  background: #ecfdf5;
+  color: #1b4332;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .ipm-pushpull-banner,
+  .ipm-agents-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -55,6 +55,7 @@ function NavBar() {
   const isSatelliteActive = pathname.startsWith('/satellite-ndvi') || pathname.startsWith('/agronomy/satellite');
   const isWeatherActive = pathname.startsWith('/weather-alerts') || pathname.startsWith('/agronomy/weather');
   const isYieldActive = pathname.startsWith('/yield-predictor') || pathname.startsWith('/agronomy/yield');
+  const isPestActive = pathname.startsWith('/pest-heatmap') || pathname.startsWith('/agronomy/pests');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -159,6 +160,17 @@ function NavBar() {
               data-testid="nav-yield-predictor-link"
             >
               Yield Predictor
+            </Nav.Link>
+
+            {/* 2.10 Pest Infestation Heatmap */}
+            <Nav.Link
+              as={Link}
+              to="/pest-heatmap"
+              className={`agrily-nav-link ${isPestActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isPestActive ? '700' : '600' }}
+              data-testid="nav-pest-heatmap-link"
+            >
+              Pest Heatmap
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}
