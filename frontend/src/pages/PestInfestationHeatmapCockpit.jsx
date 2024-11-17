@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import PestSpatialHeatmapCanvas from '../components/PestSpatialHeatmapCanvas';
 import EconomicInjuryThresholdCalculatorCard from '../components/EconomicInjuryThresholdCalculatorCard';
 import IpmBiocontrolMatrixCard from '../components/IpmBiocontrolMatrixCard';
+import SwarmTrajectoryAndUlvDriftCard from '../components/SwarmTrajectoryAndUlvDriftCard';
 import CrowdScoutingReportModal from '../components/CrowdScoutingReportModal';
 import './PestInfestationHeatmapCockpit.css';
 
@@ -248,6 +249,12 @@ const PestInfestationHeatmapCockpit = () => {
 
         {/* Multi-Tier IPM Biocontrol & IRAC Rotation Matrix */}
         <IpmBiocontrolMatrixCard
+          pestKey={selectedPestKey}
+          pestCommonName={activePest.commonName}
+        />
+
+        {/* 72h Swarm Trajectory & ULV Spray Drift Optimizer */}
+        <SwarmTrajectoryAndUlvDriftCard
           pestKey={selectedPestKey}
           pestCommonName={activePest.commonName}
         />
