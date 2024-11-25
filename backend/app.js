@@ -49,6 +49,7 @@ const satelliteRouter = require('./routes/satelliteRoutes');
 const weatherRouter = require('./routes/weatherRoutes');
 const yieldPredictorRouter = require('./routes/yieldPredictorRoutes');
 const pestHeatmapRouter = require('./routes/pestHeatmapRoutes');
+const irrigationAdvisorRouter = require('./routes/irrigationAdvisorRoutes');
 const auth = require('./middleware/auth');
 
 
@@ -109,6 +110,7 @@ app.use((req, res, next) => { //allowing request from any source
   app.use('/api/weather', weatherRouter);
   app.use('/api/yield-predictor', yieldPredictorRouter);
   app.use('/api/pest-heatmap', pestHeatmapRouter);
+  app.use('/api/irrigation-advisor', irrigationAdvisorRouter);
 
   app.use('/', userRouter); // using userRouter
   app.use('/api/', auth, multer, productRouter)
