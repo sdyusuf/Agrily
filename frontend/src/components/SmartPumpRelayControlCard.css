@@ -1,0 +1,211 @@
+.smart-pump-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(27, 67, 50, 0.06), 0 2px 4px -2px rgba(27, 67, 50, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.smart-pump-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -4px rgba(27, 67, 50, 0.1), 0 4px 8px -2px rgba(27, 67, 50, 0.05);
+}
+
+.smart-pump-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.smart-pump-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #bc6c25;
+  margin-bottom: 0.25rem;
+}
+
+.smart-pump-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.smart-pump-status-pill {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.smart-pump-status-pill.pill-energized {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.smart-pump-status-pill.pill-standby {
+  background: #fefae0;
+  color: #7f3b08;
+  border: 1px solid #dda15e;
+}
+
+.smart-pump-station-bar {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.smart-pump-node-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.smart-pump-node-btn:hover {
+  transform: translateY(-2px);
+  border-color: #52b788;
+}
+
+.smart-pump-node-btn.active {
+  background: #1b4332;
+  border-color: #1b4332;
+  color: #ffffff;
+}
+
+.smart-pump-node-btn span {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.smart-pump-node-btn small {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+.smart-pump-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.smart-pump-metric-tile {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+
+.smart-pump-metric-tile.highlight-ochre {
+  background: #fefae0;
+  border-color: #dda15e;
+}
+
+.sp-metric-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #475569;
+  margin-bottom: 0.25rem;
+}
+
+.sp-metric-val {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sp-metric-sub {
+  display: block;
+  font-size: 0.72rem;
+  color: #475569;
+  margin-top: 0.2rem;
+}
+
+.smart-pump-safety-strip {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: #f0fdf4;
+  border: 1px solid #d8f3dc;
+  border-radius: 10px;
+  padding: 0.65rem 0.95rem;
+  font-size: 0.8rem;
+  color: #1b4332;
+  margin-bottom: 1.15rem;
+}
+
+.safety-check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.safety-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.safety-dot.ok {
+  background: #2d6a4f;
+}
+
+.smart-pump-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sp-btn {
+  padding: 0.65rem 1.05rem;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.sp-btn:hover {
+  transform: translateY(-2px);
+}
+
+.sp-btn-primary {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.sp-btn-ochre {
+  background: #bc6c25;
+  color: #ffffff;
+  border: none;
+}
+
+.sp-btn-outline {
+  background: #ffffff;
+  color: #1b4332;
+  border: 1.5px solid #2d6a4f;
+}
+
+@media (max-width: 768px) {
+  .smart-pump-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
