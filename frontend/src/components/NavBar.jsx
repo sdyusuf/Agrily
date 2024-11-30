@@ -56,6 +56,7 @@ function NavBar() {
   const isWeatherActive = pathname.startsWith('/weather-alerts') || pathname.startsWith('/agronomy/weather');
   const isYieldActive = pathname.startsWith('/yield-predictor') || pathname.startsWith('/agronomy/yield');
   const isPestActive = pathname.startsWith('/pest-heatmap') || pathname.startsWith('/agronomy/pests');
+  const isIrrigationActive = pathname.startsWith('/irrigation-advisor') || pathname.startsWith('/agronomy/irrigation');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -171,6 +172,17 @@ function NavBar() {
               data-testid="nav-pest-heatmap-link"
             >
               Pest Heatmap
+            </Nav.Link>
+
+            {/* 2.11 Irrigation Scheduling Advisor */}
+            <Nav.Link
+              as={Link}
+              to="/irrigation-advisor"
+              className={`agrily-nav-link ${isIrrigationActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isIrrigationActive ? '700' : '600' }}
+              data-testid="nav-irrigation-advisor-link"
+            >
+              Irrigation Advisor
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}

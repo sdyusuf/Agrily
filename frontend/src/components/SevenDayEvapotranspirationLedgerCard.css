@@ -1,0 +1,110 @@
+.et-ledger-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(27, 67, 50, 0.06), 0 2px 4px -2px rgba(27, 67, 50, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.et-ledger-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -4px rgba(27, 67, 50, 0.1), 0 4px 8px -2px rgba(27, 67, 50, 0.05);
+}
+
+.et-ledger-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.et-ledger-eyebrow {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2d6a4f;
+  margin-bottom: 0.25rem;
+}
+
+.et-ledger-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.et-ledger-summary-badge {
+  background: #f0fdf4;
+  border: 1px solid #d8f3dc;
+  color: #1b4332;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+}
+
+.et-ledger-table-wrap {
+  overflow-x: auto;
+}
+
+.et-ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.et-ledger-table th {
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  background: #f8faf9;
+  color: #475569;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.et-ledger-table td {
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #0f172a;
+}
+
+.refill-active {
+  color: #065f46;
+  font-weight: 700;
+}
+
+.depl-warn {
+  color: #92400e;
+  font-weight: 700;
+}
+
+.depl-ok {
+  color: #1b4332;
+  font-weight: 600;
+}
+
+.ledger-relay-pill {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.ledger-relay-pill.triggered {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.ledger-relay-pill.idle {
+  background: #f8faf9;
+  color: #475569;
+  border: 1px solid #e5e7eb;
+}
