@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RootZoneDepletionBucketCanvas from '../components/RootZoneDepletionBucketCanvas';
 import SmartPumpRelayControlCard from '../components/SmartPumpRelayControlCard';
 import SevenDayEvapotranspirationLedgerCard from '../components/SevenDayEvapotranspirationLedgerCard';
+import SalinityLeachingAndAwdSimulatorCard from '../components/SalinityLeachingAndAwdSimulatorCard';
 import ManualValveOverrideModal from '../components/ManualValveOverrideModal';
 import './IrrigationSchedulingAdvisorCockpit.css';
 
@@ -309,6 +310,7 @@ const IrrigationSchedulingAdvisorCockpit = () => {
       {/* 7-Day Rolling Evapotranspiration & Auto-Refill Ledger */}
       <section className="irrigation-cockpit-secondary-section">
         <SevenDayEvapotranspirationLedgerCard sevenDayLedger={sevenDayLedger} />
+        <SalinityLeachingAndAwdSimulatorCard />
       </section>
 
       <ManualValveOverrideModal
