@@ -1,0 +1,112 @@
+.adp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 1rem;
+}
+
+.adp-modal-container {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 540px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.18);
+}
+
+.adp-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+
+.adp-modal-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2d6a4f;
+  margin-bottom: 0.25rem;
+}
+
+.adp-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.adp-modal-close-btn {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #475569;
+}
+
+.adp-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.adp-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.adp-form-row label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.adp-form-row select,
+.adp-form-row input,
+.adp-form-row textarea {
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.adp-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.adp-btn-cancel {
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.adp-btn-submit {
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
