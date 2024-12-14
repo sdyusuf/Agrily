@@ -1,0 +1,165 @@
+.glossary-explorer-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(27, 67, 50, 0.06), 0 2px 4px -2px rgba(27, 67, 50, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.glossary-explorer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -4px rgba(27, 67, 50, 0.1), 0 4px 8px -2px rgba(27, 67, 50, 0.05);
+}
+
+.glossary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.glossary-eyebrow {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2d6a4f;
+  margin-bottom: 0.25rem;
+}
+
+.glossary-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.glossary-category-select {
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8faf9;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.glossary-concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.15rem;
+}
+
+.glossary-concept-panel {
+  background: #f8faf9;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.concept-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.concept-code-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1b4332;
+  background: #d8f3dc;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+}
+
+.concept-domain-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #7f3b08;
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+}
+
+.concept-canonical-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.concept-sci-desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #475569;
+  margin: 0;
+}
+
+.concept-translations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+}
+
+.translation-tile {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+}
+
+.tr-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.tr-locale-badge {
+  background: #1b4332;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 5px;
+}
+
+.tr-indigenous-term {
+  font-size: 0.84rem;
+  color: #0f172a;
+}
+
+.tr-phonetic {
+  font-size: 0.72rem;
+  color: #bc6c25;
+}
+
+.tr-example-ind {
+  font-size: 0.78rem;
+  color: #1b4332;
+  font-weight: 600;
+  margin: 0 0 0.15rem;
+}
+
+.tr-example-eng {
+  font-size: 0.74rem;
+  color: #475569;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .glossary-concepts-grid {
+    grid-template-columns: 1fr;
+  }
+}

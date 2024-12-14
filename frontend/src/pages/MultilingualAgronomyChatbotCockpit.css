@@ -1,0 +1,119 @@
+.chatbot-cockpit-page {
+  min-height: 100vh;
+  background: #f8faf9;
+  padding: 2rem 2.5rem 4rem;
+  color: #0f172a;
+}
+
+.chatbot-cockpit-hero {
+  background: linear-gradient(135deg, #081c15 0%, #1b4332 55%, #2d6a4f 100%);
+  border-radius: 20px;
+  padding: 2.25rem 2.5rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 12px 24px -4px rgba(27, 67, 50, 0.18);
+}
+
+.chatbot-hero-content {
+  max-width: 780px;
+}
+
+.chatbot-hero-badge {
+  display: inline-block;
+  background: rgba(82, 183, 136, 0.22);
+  border: 1px solid rgba(82, 183, 136, 0.45);
+  color: #d8f3dc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.chatbot-hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.65rem;
+  color: #ffffff;
+}
+
+.chatbot-hero-subtitle {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #d8f3dc;
+  margin: 0;
+}
+
+.chatbot-hero-escalate-btn {
+  background: #bc6c25;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 1.35rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.chatbot-hero-escalate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -4px rgba(188, 108, 37, 0.4);
+}
+
+.chatbot-toast-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.chatbot-toast-banner button {
+  background: transparent;
+  border: none;
+  color: #065f46;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chatbot-cockpit-main-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chatbot-cockpit-secondary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .chatbot-cockpit-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .chatbot-cockpit-page {
+    padding: 1.25rem 1rem 3rem;
+  }
+  .chatbot-hero-title {
+    font-size: 1.5rem;
+  }
+}

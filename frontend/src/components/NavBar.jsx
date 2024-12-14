@@ -57,6 +57,7 @@ function NavBar() {
   const isYieldActive = pathname.startsWith('/yield-predictor') || pathname.startsWith('/agronomy/yield');
   const isPestActive = pathname.startsWith('/pest-heatmap') || pathname.startsWith('/agronomy/pests');
   const isIrrigationActive = pathname.startsWith('/irrigation-advisor') || pathname.startsWith('/agronomy/irrigation');
+  const isChatbotActive = pathname.startsWith('/agronomy-chatbot') || pathname.startsWith('/agronomy/chatbot');
   const isHomeActive = pathname === '/' || pathname === '/home';
   const isEscrowActive = pathname.startsWith('/escrow');
   const isLogisticsActive = [
@@ -183,6 +184,17 @@ function NavBar() {
               data-testid="nav-irrigation-advisor-link"
             >
               Irrigation Advisor
+            </Nav.Link>
+
+            {/* 2.12 Multilingual Agronomy Chatbot */}
+            <Nav.Link
+              as={Link}
+              to="/agronomy-chatbot"
+              className={`agrily-nav-link ${isChatbotActive ? 'active-link' : ''}`}
+              style={{ fontWeight: isChatbotActive ? '700' : '600' }}
+              data-testid="nav-agronomy-chatbot-link"
+            >
+              Agronomy Chatbot
             </Nav.Link>
 
             {/* 3. Logistics & Fleet (Strictly Authenticated: Operations & Fleet) */}
