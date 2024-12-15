@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MultilingualAgronomyChatThreadCanvas from '../components/MultilingualAgronomyChatThreadCanvas';
 import IndigenousVoiceWaveformAndUssdCard from '../components/IndigenousVoiceWaveformAndUssdCard';
 import IndigenousGlossaryExplorerCard from '../components/IndigenousGlossaryExplorerCard';
+import RagKnowledgeCitationAndDialectCard from '../components/RagKnowledgeCitationAndDialectCard';
 import ExtensionOfficerEscalationModal from '../components/ExtensionOfficerEscalationModal';
 import './MultilingualAgronomyChatbotCockpit.css';
 
@@ -232,9 +233,10 @@ const MultilingualAgronomyChatbotCockpit = () => {
         />
       </section>
 
-      {/* Secondary Section: Indigenous Glossary Explorer */}
+      {/* Secondary Section: Indigenous Glossary Explorer & RAG Dialect Card */}
       <section className="chatbot-cockpit-secondary-section">
         <IndigenousGlossaryExplorerCard glossary={glossary} />
+        <RagKnowledgeCitationAndDialectCard />
       </section>
 
       <ExtensionOfficerEscalationModal
